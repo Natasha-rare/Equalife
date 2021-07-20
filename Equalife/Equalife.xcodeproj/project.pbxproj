@@ -1,0 +1,479 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1774672426A71E97001F85F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774672326A71E97001F85F9 /* AppDelegate.swift */; };
+		1774672626A71E97001F85F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774672526A71E97001F85F9 /* SceneDelegate.swift */; };
+		1774672B26A71E97001F85F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1774672926A71E97001F85F9 /* Main.storyboard */; };
+		1774672D26A71E9A001F85F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1774672C26A71E9A001F85F9 /* Assets.xcassets */; };
+		1774673026A71E9A001F85F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1774672E26A71E9A001F85F9 /* LaunchScreen.storyboard */; };
+		1774673B26A72301001F85F9 /* Article.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1774673A26A72301001F85F9 /* Article.storyboard */; };
+		1774673D26A72321001F85F9 /* Speeding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1774673C26A72321001F85F9 /* Speeding.storyboard */; };
+		1774673F26A723F7001F85F9 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774673E26A723F7001F85F9 /* MainVC.swift */; };
+		1774674126A72405001F85F9 /* ArticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774674026A72405001F85F9 /* ArticleVC.swift */; };
+		1774674326A72426001F85F9 /* SavedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774674226A72426001F85F9 /* SavedVC.swift */; };
+		1774674526A72450001F85F9 /* SpeedingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774674426A72450001F85F9 /* SpeedingVC.swift */; };
+		1774674726A7249E001F85F9 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774674626A7249E001F85F9 /* News.swift */; };
+		1774674926A725A9001F85F9 /* NewsGets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774674826A725A9001F85F9 /* NewsGets.swift */; };
+		1774674B26A725C1001F85F9 /* NewsSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774674A26A725C1001F85F9 /* NewsSearch.swift */; };
+		1774674D26A72739001F85F9 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774674C26A72739001F85F9 /* SettingsVC.swift */; };
+		5423AECF3C607DC56BD199BD /* Pods_Equalife.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0738DBBDEE2AA897378FEBB /* Pods_Equalife.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0111BE27D0A29E7B9F02B9CA /* Pods-Equalife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Equalife.release.xcconfig"; path = "Target Support Files/Pods-Equalife/Pods-Equalife.release.xcconfig"; sourceTree = "<group>"; };
+		1774672026A71E97001F85F9 /* Equalife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Equalife.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1774672326A71E97001F85F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1774672526A71E97001F85F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		1774672A26A71E97001F85F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1774672C26A71E9A001F85F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1774672F26A71E9A001F85F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1774673126A71E9A001F85F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1774673A26A72301001F85F9 /* Article.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Article.storyboard; sourceTree = "<group>"; };
+		1774673C26A72321001F85F9 /* Speeding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Speeding.storyboard; sourceTree = "<group>"; };
+		1774673E26A723F7001F85F9 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		1774674026A72405001F85F9 /* ArticleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleVC.swift; sourceTree = "<group>"; };
+		1774674226A72426001F85F9 /* SavedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVC.swift; sourceTree = "<group>"; };
+		1774674426A72450001F85F9 /* SpeedingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedingVC.swift; sourceTree = "<group>"; };
+		1774674626A7249E001F85F9 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		1774674826A725A9001F85F9 /* NewsGets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsGets.swift; sourceTree = "<group>"; };
+		1774674A26A725C1001F85F9 /* NewsSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSearch.swift; sourceTree = "<group>"; };
+		1774674C26A72739001F85F9 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		6CDA110BA158FC16DC5DE417 /* Pods-Equalife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Equalife.debug.xcconfig"; path = "Target Support Files/Pods-Equalife/Pods-Equalife.debug.xcconfig"; sourceTree = "<group>"; };
+		D0738DBBDEE2AA897378FEBB /* Pods_Equalife.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Equalife.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1774671D26A71E97001F85F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5423AECF3C607DC56BD199BD /* Pods_Equalife.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1774671726A71E97001F85F9 = {
+			isa = PBXGroup;
+			children = (
+				1774672226A71E97001F85F9 /* Equalife */,
+				1774672126A71E97001F85F9 /* Products */,
+				C0C005A0A7BA0EA081FA9BBE /* Pods */,
+				847A332DE5D9931BC2D805A6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1774672126A71E97001F85F9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1774672026A71E97001F85F9 /* Equalife.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1774672226A71E97001F85F9 /* Equalife */ = {
+			isa = PBXGroup;
+			children = (
+				1774673926A71F52001F85F9 /* Controller */,
+				1774673826A71F3E001F85F9 /* View */,
+				1774673726A71F37001F85F9 /* Model */,
+				1774672326A71E97001F85F9 /* AppDelegate.swift */,
+				1774672526A71E97001F85F9 /* SceneDelegate.swift */,
+				1774672926A71E97001F85F9 /* Main.storyboard */,
+				1774672C26A71E9A001F85F9 /* Assets.xcassets */,
+				1774672E26A71E9A001F85F9 /* LaunchScreen.storyboard */,
+				1774673126A71E9A001F85F9 /* Info.plist */,
+				1774673A26A72301001F85F9 /* Article.storyboard */,
+				1774673C26A72321001F85F9 /* Speeding.storyboard */,
+			);
+			path = Equalife;
+			sourceTree = "<group>";
+		};
+		1774673726A71F37001F85F9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1774674626A7249E001F85F9 /* News.swift */,
+				1774674826A725A9001F85F9 /* NewsGets.swift */,
+				1774674A26A725C1001F85F9 /* NewsSearch.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1774673826A71F3E001F85F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1774673926A71F52001F85F9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1774673E26A723F7001F85F9 /* MainVC.swift */,
+				1774674026A72405001F85F9 /* ArticleVC.swift */,
+				1774674226A72426001F85F9 /* SavedVC.swift */,
+				1774674426A72450001F85F9 /* SpeedingVC.swift */,
+				1774674C26A72739001F85F9 /* SettingsVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		847A332DE5D9931BC2D805A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0738DBBDEE2AA897378FEBB /* Pods_Equalife.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0C005A0A7BA0EA081FA9BBE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6CDA110BA158FC16DC5DE417 /* Pods-Equalife.debug.xcconfig */,
+				0111BE27D0A29E7B9F02B9CA /* Pods-Equalife.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1774671F26A71E97001F85F9 /* Equalife */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1774673426A71E9A001F85F9 /* Build configuration list for PBXNativeTarget "Equalife" */;
+			buildPhases = (
+				7DBC21FFA99C0F613905C546 /* [CP] Check Pods Manifest.lock */,
+				1774671C26A71E97001F85F9 /* Sources */,
+				1774671D26A71E97001F85F9 /* Frameworks */,
+				1774671E26A71E97001F85F9 /* Resources */,
+				8B4646F94F437B08D34D2EF8 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Equalife;
+			productName = Equalife;
+			productReference = 1774672026A71E97001F85F9 /* Equalife.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1774671826A71E97001F85F9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					1774671F26A71E97001F85F9 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+				};
+			};
+			buildConfigurationList = 1774671B26A71E97001F85F9 /* Build configuration list for PBXProject "Equalife" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1774671726A71E97001F85F9;
+			productRefGroup = 1774672126A71E97001F85F9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1774671F26A71E97001F85F9 /* Equalife */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1774671E26A71E97001F85F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1774673026A71E9A001F85F9 /* LaunchScreen.storyboard in Resources */,
+				1774673B26A72301001F85F9 /* Article.storyboard in Resources */,
+				1774672D26A71E9A001F85F9 /* Assets.xcassets in Resources */,
+				1774672B26A71E97001F85F9 /* Main.storyboard in Resources */,
+				1774673D26A72321001F85F9 /* Speeding.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7DBC21FFA99C0F613905C546 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Equalife-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B4646F94F437B08D34D2EF8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Equalife/Pods-Equalife-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Equalife/Pods-Equalife-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Equalife/Pods-Equalife-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1774671C26A71E97001F85F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1774674326A72426001F85F9 /* SavedVC.swift in Sources */,
+				1774674926A725A9001F85F9 /* NewsGets.swift in Sources */,
+				1774674526A72450001F85F9 /* SpeedingVC.swift in Sources */,
+				1774674B26A725C1001F85F9 /* NewsSearch.swift in Sources */,
+				1774672426A71E97001F85F9 /* AppDelegate.swift in Sources */,
+				1774673F26A723F7001F85F9 /* MainVC.swift in Sources */,
+				1774674726A7249E001F85F9 /* News.swift in Sources */,
+				1774672626A71E97001F85F9 /* SceneDelegate.swift in Sources */,
+				1774674126A72405001F85F9 /* ArticleVC.swift in Sources */,
+				1774674D26A72739001F85F9 /* SettingsVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1774672926A71E97001F85F9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1774672A26A71E97001F85F9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1774672E26A71E9A001F85F9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1774672F26A71E9A001F85F9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1774673226A71E9A001F85F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1774673326A71E9A001F85F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1774673526A71E9A001F85F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CDA110BA158FC16DC5DE417 /* Pods-Equalife.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CBSKMU7MH4;
+				INFOPLIST_FILE = Equalife/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bunsberry.Equalife;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1774673626A71E9A001F85F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0111BE27D0A29E7B9F02B9CA /* Pods-Equalife.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CBSKMU7MH4;
+				INFOPLIST_FILE = Equalife/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bunsberry.Equalife;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1774671B26A71E97001F85F9 /* Build configuration list for PBXProject "Equalife" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1774673226A71E9A001F85F9 /* Debug */,
+				1774673326A71E9A001F85F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1774673426A71E9A001F85F9 /* Build configuration list for PBXNativeTarget "Equalife" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1774673526A71E9A001F85F9 /* Debug */,
+				1774673626A71E9A001F85F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1774671826A71E97001F85F9 /* Project object */;
+}

@@ -1,2 +1,2 @@
 # NewsApp
-Useful app with Smart news from different services. Wish u'll like it ^.^
+### Useful app with Smart news from different services. Hope u'll like it ^.^
