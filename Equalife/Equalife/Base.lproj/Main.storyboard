@@ -4,11 +4,43 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="BDO-7N-5XN">
+            <objects>
+                <viewController id="Jah-mT-MLg" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SwL-59-yi8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R91-mE-NcP">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <items>
+                                    <navigationItem title="Редактировать издания" id="6pU-10-lx3">
+                                        <barButtonItem key="rightBarButtonItem" title="Готово" id="5Xu-3l-a5h"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rLl-N1-7jM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="R91-mE-NcP" firstAttribute="leading" secondItem="rLl-N1-7jM" secondAttribute="leading" id="khJ-Qx-fCJ"/>
+                            <constraint firstItem="R91-mE-NcP" firstAttribute="trailing" secondItem="rLl-N1-7jM" secondAttribute="trailing" id="xGQ-8F-AMf"/>
+                            <constraint firstItem="R91-mE-NcP" firstAttribute="top" secondItem="rLl-N1-7jM" secondAttribute="top" id="yu2-fQ-De6"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6dI-qd-EMo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="929" y="860"/>
+        </scene>
         <!--SavedVC-->
         <scene sceneID="eZp-rV-uYw">
             <objects>
@@ -31,11 +63,110 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qkd-dQ-xz8">
+                                <rect key="frame" x="0.0" y="88" width="414" height="64"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="RPa-dN-3A2"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IUp-gt-75o">
+                                    <size key="itemSize" width="64" height="64"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="editorCell" id="L4I-OC-nlI" customClass="EditorCell" customModule="Equalife" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="0.0" width="64" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qLw-dO-CdA">
+                                            <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38P-tu-itY">
+                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                    <color key="tintColor" systemColor="labelColor"/>
+                                                    <state key="normal" image="meduza">
+                                                        <color key="titleColor" systemColor="labelColor"/>
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="editorChosen" destination="L4I-OC-nlI" eventType="touchUpInside" id="ShU-zJ-Jsq"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="38P-tu-itY" firstAttribute="leading" secondItem="qLw-dO-CdA" secondAttribute="leading" id="4Jd-cG-CgG"/>
+                                                <constraint firstItem="38P-tu-itY" firstAttribute="top" secondItem="qLw-dO-CdA" secondAttribute="top" id="7uy-fk-1FI"/>
+                                                <constraint firstAttribute="bottom" secondItem="38P-tu-itY" secondAttribute="bottom" id="Shp-v3-A07"/>
+                                                <constraint firstAttribute="trailing" secondItem="38P-tu-itY" secondAttribute="trailing" id="rpF-j3-qRP"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="64" height="64"/>
+                                        <connections>
+                                            <outlet property="bgView" destination="qLw-dO-CdA" id="DYw-68-k6Y"/>
+                                            <outlet property="editorButton" destination="38P-tu-itY" id="qlE-Ct-iMW"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="editCell" id="QoX-XL-vrV" customClass="EditEditorsCell" customModule="Equalife" customModuleProvider="target">
+                                        <rect key="frame" x="84" y="0.0" width="40" height="64"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="60H-EC-7Hk">
+                                            <rect key="frame" x="0.0" y="0.0" width="40" height="64"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5YX-hM-bU2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="64"/>
+                                                    <color key="tintColor" systemColor="labelColor"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" systemColor="labelColor"/>
+                                                        <imageReference key="image" image="pencil" catalog="system" symbolScale="large"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="Jah-mT-MLg" kind="presentation" id="9Sj-bQ-nVJ"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5YX-hM-bU2" firstAttribute="top" secondItem="60H-EC-7Hk" secondAttribute="top" id="1o0-SR-8FT"/>
+                                                <constraint firstAttribute="bottom" secondItem="5YX-hM-bU2" secondAttribute="bottom" id="a52-LS-GI3"/>
+                                                <constraint firstAttribute="trailing" secondItem="5YX-hM-bU2" secondAttribute="trailing" id="aVe-O4-dyp"/>
+                                                <constraint firstItem="5YX-hM-bU2" firstAttribute="leading" secondItem="60H-EC-7Hk" secondAttribute="leading" id="h7H-PQ-DhI"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="40" height="64"/>
+                                        <connections>
+                                            <outlet property="editButton" destination="5YX-hM-bU2" id="p9z-tA-UeN"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="PCl-a4-ZGI"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="t64-Ul-xu0"/>
+                                </connections>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3m-UK-MRC" userLabel="Line">
+                                <rect key="frame" x="0.0" y="152" width="414" height="1"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="wjU-ze-FXX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Qkd-dQ-xz8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TSL-ez-ByR"/>
+                            <constraint firstItem="a3m-UK-MRC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UlP-hg-HiJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Qkd-dQ-xz8" secondAttribute="trailing" id="WfB-Y2-C9F"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="a3m-UK-MRC" secondAttribute="trailing" id="e2L-go-lJ0"/>
+                            <constraint firstItem="a3m-UK-MRC" firstAttribute="top" secondItem="Qkd-dQ-xz8" secondAttribute="bottom" id="eNL-hv-9lH"/>
+                            <constraint firstItem="Qkd-dQ-xz8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vaL-pT-8Ob"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="4RA-Fy-yOz">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="4RA-Fy-yOz">
                         <barButtonItem key="backBarButtonItem" title="Back" id="WMN-zo-WEA"/>
                         <leftBarButtonItems>
                             <barButtonItem title="Item" image="bookmark" catalog="system" id="2Bd-HP-NRn">
@@ -56,6 +187,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="topBarCollectionView" destination="Qkd-dQ-xz8" id="6bs-pm-Ymv"/>
                         <segue destination="bOz-Su-z2F" kind="show" identifier="toArticle" id="2SG-0T-3p7"/>
                     </connections>
                 </viewController>
@@ -78,8 +210,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xib-zn-Myq" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="vwi-4e-nbM">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vwi-4e-nbM">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" systemColor="labelColor"/>
                         <textAttributes key="titleTextAttributes">
@@ -109,6 +241,8 @@
     <resources>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="meduza" width="41" height="25"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="timer" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

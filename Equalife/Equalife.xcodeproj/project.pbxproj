@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,9 @@
 		1774674926A725A9001F85F9 /* NewsGets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774674826A725A9001F85F9 /* NewsGets.swift */; };
 		1774674B26A725C1001F85F9 /* NewsSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774674A26A725C1001F85F9 /* NewsSearch.swift */; };
 		1774674D26A72739001F85F9 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774674C26A72739001F85F9 /* SettingsVC.swift */; };
+		1774674F26A73C94001F85F9 /* EditorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774674E26A73C94001F85F9 /* EditorCell.swift */; };
+		1774675126A743E7001F85F9 /* EditEditorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774675026A743E7001F85F9 /* EditEditorsCell.swift */; };
+		1774675326A75DE1001F85F9 /* BorderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774675226A75DE1001F85F9 /* BorderExtension.swift */; };
 		5423AECF3C607DC56BD199BD /* Pods_Equalife.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0738DBBDEE2AA897378FEBB /* Pods_Equalife.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +47,9 @@
 		1774674826A725A9001F85F9 /* NewsGets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsGets.swift; sourceTree = "<group>"; };
 		1774674A26A725C1001F85F9 /* NewsSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSearch.swift; sourceTree = "<group>"; };
 		1774674C26A72739001F85F9 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		1774674E26A73C94001F85F9 /* EditorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorCell.swift; sourceTree = "<group>"; };
+		1774675026A743E7001F85F9 /* EditEditorsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEditorsCell.swift; sourceTree = "<group>"; };
+		1774675226A75DE1001F85F9 /* BorderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderExtension.swift; sourceTree = "<group>"; };
 		6CDA110BA158FC16DC5DE417 /* Pods-Equalife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Equalife.debug.xcconfig"; path = "Target Support Files/Pods-Equalife/Pods-Equalife.debug.xcconfig"; sourceTree = "<group>"; };
 		D0738DBBDEE2AA897378FEBB /* Pods_Equalife.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Equalife.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -109,6 +115,9 @@
 		1774673826A71F3E001F85F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1774674E26A73C94001F85F9 /* EditorCell.swift */,
+				1774675026A743E7001F85F9 /* EditEditorsCell.swift */,
+				1774675226A75DE1001F85F9 /* BorderExtension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -139,7 +148,6 @@
 				6CDA110BA158FC16DC5DE417 /* Pods-Equalife.debug.xcconfig */,
 				0111BE27D0A29E7B9F02B9CA /* Pods-Equalife.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -263,9 +271,12 @@
 				1774674926A725A9001F85F9 /* NewsGets.swift in Sources */,
 				1774674526A72450001F85F9 /* SpeedingVC.swift in Sources */,
 				1774674B26A725C1001F85F9 /* NewsSearch.swift in Sources */,
+				1774674F26A73C94001F85F9 /* EditorCell.swift in Sources */,
+				1774675326A75DE1001F85F9 /* BorderExtension.swift in Sources */,
 				1774672426A71E97001F85F9 /* AppDelegate.swift in Sources */,
 				1774673F26A723F7001F85F9 /* MainVC.swift in Sources */,
 				1774674726A7249E001F85F9 /* News.swift in Sources */,
+				1774675126A743E7001F85F9 /* EditEditorsCell.swift in Sources */,
 				1774672626A71E97001F85F9 /* SceneDelegate.swift in Sources */,
 				1774674126A72405001F85F9 /* ArticleVC.swift in Sources */,
 				1774674D26A72739001F85F9 /* SettingsVC.swift in Sources */,
