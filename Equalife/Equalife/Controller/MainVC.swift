@@ -18,7 +18,7 @@ class MainVC: UIViewController {
     
     var articles: [[Article]] = [
         [Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false)],
-        [Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false), Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false),]]
+        [Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false), Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false),], [], []]
     
     // var articles: [[Article]] = [[]*chosenEditors.count]
     
@@ -68,8 +68,7 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
         for  (index, editor) in chosenEditors.enumerated() {
             if editor.editorId == chosenId {
                 let cell = topBarCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as! EditorCell
-                cell.bgView.addBorders(edges: .bottom, color: .systemBackground, inset: 0, thickness: 2)
-                
+                cell.anotherChosen()
                 chosenId = id
             }
         }
@@ -90,11 +89,20 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
             return CGSize(width: 64, height: 64)
         } else {
             if UIDevice.current.userInterfaceIdiom == .phone {
-                return CGSize(width: self.view.frame.width - 30, height: 100)
+                if UIDevice.current.orientation.isLandscape {
+                    return CGSize(width: (self.view.frame.width - 45)/2.25, height: 140)
+                } else {
+                    return CGSize(width: self.view.frame.width - 30, height: 140)
+                }
             } else {
-                return CGSize(width: (self.view.frame.width - 60)/3, height: 100)
+                return CGSize(width: (self.view.frame.width - 45)/2, height: 140)
             }
         }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        articlesCollectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -112,18 +120,32 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
                 
                 if indexPath.item == 0 {
                     cell.editorButton.setImage(UIImage(named: "globe"), for: .normal)
-                    cell.bgView.addBorders(edges: .bottom, color: .label, inset: 0, thickness: 2)
+                    cell.thisChosen()
                 }
                 return cell
             }
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "articleCell", for: indexPath) as! ArticleCell
             cell.titleLabel.text = articles[chosenIndex][indexPath.row].title
-            cell.descriptionLabel.text = articles[chosenIndex][indexPath.row].contents // [1...100]
+            cell.contentTextView.text = articles[chosenIndex][indexPath.row].contents // [1...100]
             cell.articleImageView.image = UIImage(named: "LogoFlat")
+            cell.contentView.layer.borderColor = UIColor.black.cgColor
+            cell.contentView.layer.borderWidth = 1
 //            cell.articleImageView.image = KF.get ...
             return cell
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == articlesCollectionView {
+            performSegue(withIdentifier: "toArticle", sender: nil)
+        }
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.destination is ArticleVC {
+//            // articleVc.article = article
+//        }
+//    }
 
 }

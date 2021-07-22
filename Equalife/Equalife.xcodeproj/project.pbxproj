@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1719B28026AA0CF10036CCAD /* EditorsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1719B27F26AA0CF10036CCAD /* EditorsVC.swift */; };
+		1719B28226AA12100036CCAD /* PublisherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1719B28126AA12100036CCAD /* PublisherCell.swift */; };
 		1774672426A71E97001F85F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774672326A71E97001F85F9 /* AppDelegate.swift */; };
 		1774672626A71E97001F85F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774672526A71E97001F85F9 /* SceneDelegate.swift */; };
 		1774672B26A71E97001F85F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1774672926A71E97001F85F9 /* Main.storyboard */; };
@@ -31,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		0111BE27D0A29E7B9F02B9CA /* Pods-Equalife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Equalife.release.xcconfig"; path = "Target Support Files/Pods-Equalife/Pods-Equalife.release.xcconfig"; sourceTree = "<group>"; };
+		1719B27F26AA0CF10036CCAD /* EditorsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorsVC.swift; sourceTree = "<group>"; };
+		1719B28126AA12100036CCAD /* PublisherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherCell.swift; sourceTree = "<group>"; };
 		1774672026A71E97001F85F9 /* Equalife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Equalife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1774672326A71E97001F85F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1774672526A71E97001F85F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 				1774675026A743E7001F85F9 /* EditEditorsCell.swift */,
 				1774675226A75DE1001F85F9 /* BorderExtension.swift */,
 				17F51EEC26A862A500C6CDDC /* ArticleCell.swift */,
+				1719B28126AA12100036CCAD /* PublisherCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 				1774674226A72426001F85F9 /* SavedVC.swift */,
 				1774674426A72450001F85F9 /* SpeedingVC.swift */,
 				1774674C26A72739001F85F9 /* SettingsVC.swift */,
+				1719B27F26AA0CF10036CCAD /* EditorsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -282,8 +288,10 @@
 				1774674726A7249E001F85F9 /* News.swift in Sources */,
 				1774675126A743E7001F85F9 /* EditEditorsCell.swift in Sources */,
 				1774672626A71E97001F85F9 /* SceneDelegate.swift in Sources */,
+				1719B28226AA12100036CCAD /* PublisherCell.swift in Sources */,
 				1774674126A72405001F85F9 /* ArticleVC.swift in Sources */,
 				1774674D26A72739001F85F9 /* SettingsVC.swift in Sources */,
+				1719B28026AA0CF10036CCAD /* EditorsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

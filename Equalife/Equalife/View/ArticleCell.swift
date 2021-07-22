@@ -10,5 +10,5 @@ import UIKit
 class ArticleCell: UICollectionViewCell {
     @IBOutlet weak var articleImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var contentTextView: UITextView!
 }
