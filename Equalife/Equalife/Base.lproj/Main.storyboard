@@ -121,7 +121,7 @@
                                                     <color key="tintColor" systemColor="labelColor"/>
                                                     <state key="normal">
                                                         <color key="titleColor" systemColor="labelColor"/>
-                                                        <imageReference key="image" image="pencil" catalog="system" symbolScale="large"/>
+                                                        <imageReference key="image" image="edit" symbolScale="large"/>
                                                     </state>
                                                     <connections>
                                                         <segue destination="Jah-mT-MLg" kind="presentation" id="9Sj-bQ-nVJ"/>
@@ -153,16 +153,82 @@
                                     <constraint firstAttribute="height" constant="1" id="wjU-ze-FXX"/>
                                 </constraints>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y2a-q6-vHO">
+                                <rect key="frame" x="0.0" y="153" width="414" height="709"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1h0-nU-QCS">
+                                    <size key="itemSize" width="391" height="171"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="articleCell" id="ffJ-OU-WiD" customClass="ArticleCell" customModule="Equalife" customModuleProvider="target">
+                                        <rect key="frame" x="12" y="0.0" width="390" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5qA-wp-Kpm">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoFlat" translatesAutoresizingMaskIntoConstraints="NO" id="7zb-q5-3oc">
+                                                    <rect key="frame" x="195" y="0.0" width="195" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="IrZ-QU-l8Y"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8i-jz-I3O">
+                                                    <rect key="frame" x="8" y="8" width="179" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEV-5b-6m8">
+                                                    <rect key="frame" x="8" y="37.5" width="179" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="iEV-5b-6m8" firstAttribute="top" secondItem="Q8i-jz-I3O" secondAttribute="bottom" constant="8" id="37B-Kr-5U0"/>
+                                                <constraint firstItem="iEV-5b-6m8" firstAttribute="leading" secondItem="5qA-wp-Kpm" secondAttribute="leading" constant="8" id="6DS-wV-lEO"/>
+                                                <constraint firstItem="7zb-q5-3oc" firstAttribute="leading" secondItem="iEV-5b-6m8" secondAttribute="trailing" constant="8" id="H59-5J-epd"/>
+                                                <constraint firstAttribute="bottom" secondItem="7zb-q5-3oc" secondAttribute="bottom" id="Jys-bl-YR8"/>
+                                                <constraint firstItem="Q8i-jz-I3O" firstAttribute="leading" secondItem="5qA-wp-Kpm" secondAttribute="leading" constant="8" id="NSb-Kf-ETf"/>
+                                                <constraint firstAttribute="trailing" secondItem="7zb-q5-3oc" secondAttribute="trailing" id="Xyg-hc-qdO"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="iEV-5b-6m8" secondAttribute="bottom" constant="8" id="bf6-RF-ESq"/>
+                                                <constraint firstItem="Q8i-jz-I3O" firstAttribute="top" secondItem="5qA-wp-Kpm" secondAttribute="top" constant="8" id="h9d-so-jRK"/>
+                                                <constraint firstItem="7zb-q5-3oc" firstAttribute="width" secondItem="5qA-wp-Kpm" secondAttribute="width" multiplier="0.5" id="kPD-mW-Bjn"/>
+                                                <constraint firstItem="7zb-q5-3oc" firstAttribute="leading" secondItem="Q8i-jz-I3O" secondAttribute="trailing" constant="8" id="moR-Y9-1mj"/>
+                                                <constraint firstItem="7zb-q5-3oc" firstAttribute="top" secondItem="5qA-wp-Kpm" secondAttribute="top" id="uE0-70-BB9"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="articleImageView" destination="7zb-q5-3oc" id="ByK-T0-RVM"/>
+                                            <outlet property="descriptionLabel" destination="iEV-5b-6m8" id="zAk-gX-03J"/>
+                                            <outlet property="titleLabel" destination="Q8i-jz-I3O" id="tKj-bo-OIM"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Ob7-vc-Osy"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ezQ-PV-joZ"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Y2a-q6-vHO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4aX-hY-q6f"/>
+                            <constraint firstItem="Y2a-q6-vHO" firstAttribute="top" secondItem="a3m-UK-MRC" secondAttribute="bottom" id="4fN-Ax-tEI"/>
                             <constraint firstItem="Qkd-dQ-xz8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TSL-ez-ByR"/>
                             <constraint firstItem="a3m-UK-MRC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UlP-hg-HiJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Qkd-dQ-xz8" secondAttribute="trailing" id="WfB-Y2-C9F"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Y2a-q6-vHO" secondAttribute="trailing" id="YdL-hm-mJj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="a3m-UK-MRC" secondAttribute="trailing" id="e2L-go-lJ0"/>
                             <constraint firstItem="a3m-UK-MRC" firstAttribute="top" secondItem="Qkd-dQ-xz8" secondAttribute="bottom" id="eNL-hv-9lH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Y2a-q6-vHO" secondAttribute="bottom" id="jsr-4M-3k3"/>
                             <constraint firstItem="Qkd-dQ-xz8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vaL-pT-8Ob"/>
                         </constraints>
                     </view>
@@ -187,6 +253,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="articlesCollectionView" destination="Y2a-q6-vHO" id="gne-jR-nCj"/>
                         <outlet property="topBarCollectionView" destination="Qkd-dQ-xz8" id="6bs-pm-Ymv"/>
                         <segue destination="bOz-Su-z2F" kind="show" identifier="toArticle" id="2SG-0T-3p7"/>
                     </connections>
@@ -239,10 +306,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LogoFlat" width="195" height="195"/>
         <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="edit" width="25" height="25"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="meduza" width="41" height="25"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="timer" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

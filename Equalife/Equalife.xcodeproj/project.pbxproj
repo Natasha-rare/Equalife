@@ -25,6 +25,7 @@
 		1774674F26A73C94001F85F9 /* EditorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774674E26A73C94001F85F9 /* EditorCell.swift */; };
 		1774675126A743E7001F85F9 /* EditEditorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774675026A743E7001F85F9 /* EditEditorsCell.swift */; };
 		1774675326A75DE1001F85F9 /* BorderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774675226A75DE1001F85F9 /* BorderExtension.swift */; };
+		17F51EED26A862A500C6CDDC /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F51EEC26A862A500C6CDDC /* ArticleCell.swift */; };
 		5423AECF3C607DC56BD199BD /* Pods_Equalife.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0738DBBDEE2AA897378FEBB /* Pods_Equalife.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		1774674E26A73C94001F85F9 /* EditorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorCell.swift; sourceTree = "<group>"; };
 		1774675026A743E7001F85F9 /* EditEditorsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEditorsCell.swift; sourceTree = "<group>"; };
 		1774675226A75DE1001F85F9 /* BorderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderExtension.swift; sourceTree = "<group>"; };
+		17F51EEC26A862A500C6CDDC /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		6CDA110BA158FC16DC5DE417 /* Pods-Equalife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Equalife.debug.xcconfig"; path = "Target Support Files/Pods-Equalife/Pods-Equalife.debug.xcconfig"; sourceTree = "<group>"; };
 		D0738DBBDEE2AA897378FEBB /* Pods_Equalife.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Equalife.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -118,6 +120,7 @@
 				1774674E26A73C94001F85F9 /* EditorCell.swift */,
 				1774675026A743E7001F85F9 /* EditEditorsCell.swift */,
 				1774675226A75DE1001F85F9 /* BorderExtension.swift */,
+				17F51EEC26A862A500C6CDDC /* ArticleCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				1774674926A725A9001F85F9 /* NewsGets.swift in Sources */,
 				1774674526A72450001F85F9 /* SpeedingVC.swift in Sources */,
 				1774674B26A725C1001F85F9 /* NewsSearch.swift in Sources */,
+				17F51EED26A862A500C6CDDC /* ArticleCell.swift in Sources */,
 				1774674F26A73C94001F85F9 /* EditorCell.swift in Sources */,
 				1774675326A75DE1001F85F9 /* BorderExtension.swift in Sources */,
 				1774672426A71E97001F85F9 /* AppDelegate.swift in Sources */,

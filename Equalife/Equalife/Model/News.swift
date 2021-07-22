@@ -10,13 +10,15 @@ import Foundation
 // Структура статьи (просто для начала)
 struct Article {
     var title: String = ""
+    var contents: String = ""
     var imagesURL: [String] = []
     var author: String? = ""
     var date: String = ""
     var isSaved: Bool = false
     
-    init(title: String, imagesURL: [String], author: String?, date: String, isSaved: Bool) {
+    init(title: String, contents: String, imagesURL: [String], author: String?, date: String, isSaved: Bool) {
         self.title = title
+        self.contents = contents
         
         if let author = author {
             self.author = author
