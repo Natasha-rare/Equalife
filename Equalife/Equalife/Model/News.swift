@@ -10,13 +10,15 @@ import Foundation
 // Структура статьи (просто для начала)
 struct Article {
     var title: String = ""
+    var contents: String = ""
     var imagesURL: [String] = []
     var author: String? = ""
     var date: String = ""
     var isSaved: Bool = false
     
-    init(title: String, imagesURL: [String], author: String?, date: String, isSaved: Bool) {
+    init(title: String, contents: String, imagesURL: [String], author: String?, date: String, isSaved: Bool) {
         self.title = title
+        self.contents = contents
         
         if let author = author {
             self.author = author
@@ -35,12 +37,14 @@ struct Article {
 struct Editor {
     var name: String = ""
     var imageName: String = ""
+    var info: String = ""
     var editorId: Int = 0
     var isAdded: Bool = false
     
-    init(name: String, imageName: String, editorId: Int, isAdded: Bool) {
+    init(name: String, imageName: String, info: String, editorId: Int, isAdded: Bool) {
         self.name = name
         self.imageName = imageName
+        self.info = info
         self.editorId = editorId
         self.isAdded = isAdded
     }
