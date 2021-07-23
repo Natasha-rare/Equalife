@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+
+		1247C05B26AAAB4900A820FA /* Struct and classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1247C05A26AAAB4900A820FA /* Struct and classes.swift */; };
+
 		1719B28026AA0CF10036CCAD /* EditorsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1719B27F26AA0CF10036CCAD /* EditorsVC.swift */; };
 		1719B28226AA12100036CCAD /* PublisherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1719B28126AA12100036CCAD /* PublisherCell.swift */; };
 		173CD85826AA971F004360CB /* EditorInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CD85726AA971F004360CB /* EditorInfoVC.swift */; };
+
 		1774672426A71E97001F85F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774672326A71E97001F85F9 /* AppDelegate.swift */; };
 		1774672626A71E97001F85F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774672526A71E97001F85F9 /* SceneDelegate.swift */; };
 		1774672B26A71E97001F85F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1774672926A71E97001F85F9 /* Main.storyboard */; };
@@ -35,9 +39,13 @@
 
 /* Begin PBXFileReference section */
 		0111BE27D0A29E7B9F02B9CA /* Pods-Equalife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Equalife.release.xcconfig"; path = "Target Support Files/Pods-Equalife/Pods-Equalife.release.xcconfig"; sourceTree = "<group>"; };
+
+		1247C05A26AAAB4900A820FA /* Struct and classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Struct and classes.swift"; sourceTree = "<group>"; };
+
 		1719B27F26AA0CF10036CCAD /* EditorsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorsVC.swift; sourceTree = "<group>"; };
 		1719B28126AA12100036CCAD /* PublisherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherCell.swift; sourceTree = "<group>"; };
 		173CD85726AA971F004360CB /* EditorInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorInfoVC.swift; sourceTree = "<group>"; };
+
 		1774672026A71E97001F85F9 /* Equalife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Equalife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1774672326A71E97001F85F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1774672526A71E97001F85F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +84,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1247C05926AAAB3700A820FA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1247C05A26AAAB4900A820FA /* Struct and classes.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		1774671726A71E97001F85F9 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +113,7 @@
 		1774672226A71E97001F85F9 /* Equalife */ = {
 			isa = PBXGroup;
 			children = (
+				1247C05926AAAB3700A820FA /* Data */,
 				1774673926A71F52001F85F9 /* Controller */,
 				1774673826A71F3E001F85F9 /* View */,
 				1774673726A71F37001F85F9 /* Model */,
@@ -294,7 +311,11 @@
 				173CD85826AA971F004360CB /* EditorInfoVC.swift in Sources */,
 				1774673F26A723F7001F85F9 /* MainVC.swift in Sources */,
 				1774674726A7249E001F85F9 /* News.swift in Sources */,
+
+				1247C05B26AAAB4900A820FA /* Struct and classes.swift in Sources */,
+
 				1774675126A743E7001F85F9 /* EditEditorsCell.swift in Sources */,
+
 				1774672626A71E97001F85F9 /* SceneDelegate.swift in Sources */,
 				1719B28226AA12100036CCAD /* PublisherCell.swift in Sources */,
 				1774674126A72405001F85F9 /* ArticleVC.swift in Sources */,
