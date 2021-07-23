@@ -11,36 +11,17 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--EditorsVC-->
+        <!--Изменить издания-->
         <scene sceneID="BDO-7N-5XN">
             <objects>
                 <viewController id="Jah-mT-MLg" customClass="EditorsVC" customModule="Equalife" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SwL-59-yi8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R91-mE-NcP">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
-                                <items>
-                                    <navigationItem title="Редактировать издания" id="6pU-10-lx3">
-                                        <barButtonItem key="leftBarButtonItem" title="Править" id="UpS-60-h68">
-                                            <color key="tintColor" systemColor="labelColor"/>
-                                            <connections>
-                                                <action selector="edit" destination="Jah-mT-MLg" id="UN0-65-2xh"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Готово" style="done" id="5Xu-3l-a5h">
-                                            <color key="tintColor" systemColor="labelColor"/>
-                                            <connections>
-                                                <action selector="finish" destination="Jah-mT-MLg" id="4b8-Oy-VhX"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fgq-Hk-yJ6">
-                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="40" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fgq-Hk-yJ6">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="publisherCell" id="CdY-QN-VQg" customClass="PublisherCell" customModule="Equalife" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.5" width="374" height="46"/>
@@ -73,6 +54,7 @@
                                                 <constraint firstItem="JFa-Kj-VpW" firstAttribute="leading" secondItem="g2k-Gv-geA" secondAttribute="trailing" constant="12" id="nyk-mQ-m34"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                         <connections>
                                             <outlet property="logoImageView" destination="g2k-Gv-geA" id="wXg-zg-MQG"/>
                                             <outlet property="titleLabel" destination="JFa-Kj-VpW" id="UJZ-eY-PiW"/>
@@ -87,23 +69,114 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rLl-N1-7jM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="tintColor" systemColor="labelColor"/>
                         <constraints>
                             <constraint firstItem="rLl-N1-7jM" firstAttribute="trailing" secondItem="fgq-Hk-yJ6" secondAttribute="trailing" id="4XM-pD-Siw"/>
+                            <constraint firstItem="fgq-Hk-yJ6" firstAttribute="top" secondItem="rLl-N1-7jM" secondAttribute="top" id="7qN-vi-mWf"/>
                             <constraint firstItem="fgq-Hk-yJ6" firstAttribute="leading" secondItem="rLl-N1-7jM" secondAttribute="leading" id="KCV-cJ-Xgh"/>
                             <constraint firstItem="rLl-N1-7jM" firstAttribute="bottom" secondItem="fgq-Hk-yJ6" secondAttribute="bottom" id="UIk-zJ-Mc0"/>
-                            <constraint firstItem="fgq-Hk-yJ6" firstAttribute="top" secondItem="R91-mE-NcP" secondAttribute="bottom" id="d8q-Kf-Qee"/>
-                            <constraint firstItem="R91-mE-NcP" firstAttribute="leading" secondItem="rLl-N1-7jM" secondAttribute="leading" id="khJ-Qx-fCJ"/>
-                            <constraint firstItem="R91-mE-NcP" firstAttribute="trailing" secondItem="rLl-N1-7jM" secondAttribute="trailing" id="xGQ-8F-AMf"/>
-                            <constraint firstItem="R91-mE-NcP" firstAttribute="top" secondItem="rLl-N1-7jM" secondAttribute="top" id="yu2-fQ-De6"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Изменить издания" id="Jm2-PY-xdE">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="HJK-Ej-X3q"/>
+                        <barButtonItem key="rightBarButtonItem" title="Править" id="O3H-fq-Nt9">
+                            <color key="tintColor" systemColor="labelColor"/>
+                            <connections>
+                                <action selector="edit" destination="Jah-mT-MLg" id="P80-Zf-Z0t"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="editButton" destination="O3H-fq-Nt9" id="z8g-ZV-0Qj"/>
                         <outlet property="tableView" destination="fgq-Hk-yJ6" id="c1C-ys-dkZ"/>
+                        <segue destination="ELE-md-QS5" kind="show" identifier="toInfo" id="Ym8-VG-DfT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6dI-qd-EMo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="928.98550724637687" y="859.82142857142856"/>
+        </scene>
+        <!--Editor InfoVC-->
+        <scene sceneID="nU9-j7-h47">
+            <objects>
+                <viewController id="ELE-md-QS5" customClass="EditorInfoVC" customModule="Equalife" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gVL-id-vkA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vBz-TM-ZcX">
+                                <rect key="frame" x="145" y="108" width="124" height="124"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="vBz-TM-ZcX" secondAttribute="height" multiplier="1:1" id="8cG-cN-hY5"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="kYU-cs-7Tv"/>
+                                </constraints>
+                                <imageReference key="image" image="meduza"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gwg-8P-8KX">
+                                <rect key="frame" x="20" y="240" width="374" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5H-ZP-5Yi">
+                                <rect key="frame" x="40" y="269" width="334" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="334" id="SAV-9Y-AJk"/>
+                                    <constraint firstAttribute="height" constant="100" id="e1F-xo-vIA"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et doloreoen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thV-Nn-K9z">
+                                <rect key="frame" x="168" y="389" width="78.5" height="35.5"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add" imagePadding="4" titleAlignment="center">
+                                    <imageReference key="image" image="minus" catalog="system" symbolScale="medium"/>
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="17"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="add" destination="ELE-md-QS5" eventType="touchUpInside" id="tMh-ih-gBA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bVk-mE-Eeo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bVk-mE-Eeo" firstAttribute="trailing" secondItem="Gwg-8P-8KX" secondAttribute="trailing" constant="20" id="5bD-Yc-eWI"/>
+                            <constraint firstItem="vBz-TM-ZcX" firstAttribute="top" secondItem="bVk-mE-Eeo" secondAttribute="top" constant="20" id="9wF-pL-FmD"/>
+                            <constraint firstItem="bVk-mE-Eeo" firstAttribute="trailing" secondItem="B5H-ZP-5Yi" secondAttribute="trailing" constant="40" id="C1O-7U-vFx"/>
+                            <constraint firstItem="thV-Nn-K9z" firstAttribute="centerX" secondItem="gVL-id-vkA" secondAttribute="centerX" id="Ezk-tj-CSd"/>
+                            <constraint firstItem="Gwg-8P-8KX" firstAttribute="leading" secondItem="bVk-mE-Eeo" secondAttribute="leading" constant="20" id="MXi-qL-V9R"/>
+                            <constraint firstItem="thV-Nn-K9z" firstAttribute="top" secondItem="B5H-ZP-5Yi" secondAttribute="bottom" constant="20" id="XUJ-Ux-MeC"/>
+                            <constraint firstItem="B5H-ZP-5Yi" firstAttribute="leading" secondItem="bVk-mE-Eeo" secondAttribute="leading" constant="40" id="cRo-UH-Eu3"/>
+                            <constraint firstItem="B5H-ZP-5Yi" firstAttribute="top" secondItem="Gwg-8P-8KX" secondAttribute="bottom" id="h0V-Ue-1QC"/>
+                            <constraint firstItem="Gwg-8P-8KX" firstAttribute="top" secondItem="vBz-TM-ZcX" secondAttribute="bottom" constant="8" symbolic="YES" id="h8s-wL-0No"/>
+                            <constraint firstItem="vBz-TM-ZcX" firstAttribute="width" secondItem="gVL-id-vkA" secondAttribute="width" multiplier="0.3" id="pke-lw-sqJ"/>
+                            <constraint firstItem="vBz-TM-ZcX" firstAttribute="centerX" secondItem="gVL-id-vkA" secondAttribute="centerX" id="yHp-Fo-meI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Q47-T8-7pf"/>
+                    <connections>
+                        <outlet property="addButton" destination="thV-Nn-K9z" id="zy5-YU-7Vd"/>
+                        <outlet property="infoTextView" destination="B5H-ZP-5Yi" id="Vlv-pG-NA2"/>
+                        <outlet property="logoImageView" destination="vBz-TM-ZcX" id="sPI-yP-VvN"/>
+                        <outlet property="titleLabel" destination="Gwg-8P-8KX" id="Gni-FC-2XN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ceF-IH-6um" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1715.9420289855075" y="859.82142857142856"/>
         </scene>
         <!--SavedVC-->
         <scene sceneID="eZp-rV-uYw">
@@ -231,7 +304,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MQQ-kE-XPt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2483" y="-520"/>
+            <point key="canvasLocation" x="2483" y="-577"/>
         </scene>
         <!--MainVC-->
         <scene sceneID="tne-QT-ifu">
@@ -313,7 +386,7 @@
                                                         <imageReference key="image" image="edit" symbolScale="large"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="Jah-mT-MLg" kind="presentation" id="9Sj-bQ-nVJ"/>
+                                                        <segue destination="Jah-mT-MLg" kind="show" id="9Sj-bQ-nVJ"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -415,7 +488,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="labelColor"/>
                         <constraints>
                             <constraint firstItem="Y2a-q6-vHO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4aX-hY-q6f"/>
                             <constraint firstItem="Y2a-q6-vHO" firstAttribute="top" secondItem="a3m-UK-MRC" secondAttribute="bottom" id="4fN-Ax-tEI"/>
@@ -430,7 +503,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="4RA-Fy-yOz">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="WMN-zo-WEA"/>
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="WMN-zo-WEA"/>
                         <leftBarButtonItems>
                             <barButtonItem title="Item" image="bookmark" catalog="system" id="2Bd-HP-NRn">
                                 <color key="tintColor" systemColor="labelColor"/>
@@ -513,18 +586,19 @@
         <image name="edit" width="25" height="25"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="meduza" width="41" height="25"/>
+        <image name="minus" catalog="system" width="128" height="24"/>
         <image name="timer" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

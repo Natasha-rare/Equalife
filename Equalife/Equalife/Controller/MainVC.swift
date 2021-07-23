@@ -10,10 +10,10 @@ import UIKit
 class MainVC: UIViewController {
     
     var chosenEditors: [Editor] = [
-        Editor(name: "Global", imageName: "globe", editorId: 0, isAdded: false),
-        Editor(name: "Meduza.io", imageName: "meduza", editorId: 1, isAdded: false),
-        Editor(name: "DTF", imageName: "dtf", editorId: 2, isAdded: false),
-        Editor(name: "TJournal", imageName: "tj", editorId: 3, isAdded: false)
+        Editor(name: "Global", imageName: "globe", info: "", editorId: 0, isAdded: false),
+        Editor(name: "Meduza.io", imageName: "meduza", info: "", editorId: 1, isAdded: false),
+        Editor(name: "DTF", imageName: "dtf", info: "", editorId: 2, isAdded: false),
+        Editor(name: "TJournal", imageName: "tj", info: "", editorId: 3, isAdded: false)
     ]
     
     var articles: [[Article]] = [
@@ -129,8 +129,17 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
             cell.titleLabel.text = articles[chosenIndex][indexPath.row].title
             cell.contentTextView.text = articles[chosenIndex][indexPath.row].contents // [1...100]
             cell.articleImageView.image = UIImage(named: "LogoFlat")
-            cell.contentView.layer.borderColor = UIColor.black.cgColor
-            cell.contentView.layer.borderWidth = 1
+//            cell.contentView.layer.borderColor = UIColor.black.cgColor
+//            cell.contentView.layer.borderWidth = 1
+            
+            cell.layer.cornerRadius = 3
+            cell.layer.shadowRadius = 5
+            cell.layer.shadowOffset = .zero
+            cell.layer.shadowOpacity = 0.2
+            cell.layer.shadowColor = UIColor.label.cgColor
+            cell.layer.shadowPath = UIBezierPath(rect: cell.contentView.bounds).cgPath
+            cell.layer.masksToBounds = false
+            
 //            cell.articleImageView.image = KF.get ...
             return cell
         }

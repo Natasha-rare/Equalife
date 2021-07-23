@@ -37,12 +37,14 @@ struct Article {
 struct Editor {
     var name: String = ""
     var imageName: String = ""
+    var info: String = ""
     var editorId: Int = 0
     var isAdded: Bool = false
     
-    init(name: String, imageName: String, editorId: Int, isAdded: Bool) {
+    init(name: String, imageName: String, info: String, editorId: Int, isAdded: Bool) {
         self.name = name
         self.imageName = imageName
+        self.info = info
         self.editorId = editorId
         self.isAdded = isAdded
     }
