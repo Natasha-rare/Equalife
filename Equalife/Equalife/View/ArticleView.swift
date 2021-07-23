@@ -27,7 +27,7 @@ struct ContentView: View {
             VStack(){
                 Spacer()
                 HStack{
-                    Text(self.article.author)
+                    Text(self.article.author ?? "")
                         .padding(.leading, 30)
                         .font(.title)
                     Spacer()
@@ -61,11 +61,7 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+
 
 // extension для получения размеров экрана
 extension UIScreen{
