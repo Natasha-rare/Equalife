@@ -10,19 +10,36 @@ import UIKit
 class MainVC: UIViewController {
     
     var chosenEditors: [Editor] = [
-        Editor(name: "Global", imageName: "globe", editorId: 0, isAdded: false),
-        Editor(name: "Meduza.io", imageName: "meduza", editorId: 1, isAdded: false),
-        Editor(name: "DTF", imageName: "dtf", editorId: 2, isAdded: false),
-        Editor(name: "TJournal", imageName: "tj", editorId: 3, isAdded: false)
+        Editor(name: "Global", imageName: "globe", info: "", editorId: 0, isAdded: false),
+        Editor(name: "Meduza.io", imageName: "meduza", info: "", editorId: 1, isAdded: false),
+        Editor(name: "DTF", imageName: "dtf", info: "", editorId: 2, isAdded: false),
+        Editor(name: "TJournal", imageName: "tj", info: "", editorId: 3, isAdded: false)
     ]
     
     var articles: [[Article]] = [
-        [Article(title: "Title", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false)],
-        [Article(title: "Title", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false), Article(title: "Title", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false),]]
+        [Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false)],
+        [Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false), Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false),], [], []]
     
-    var chosenId: Int = 0
+    // var articles: [[Article]] = [[]*chosenEditors.count]
+    
+    var chosenId: Int = 0 {
+        didSet {
+            for (index, editor) in chosenEditors.enumerated() {
+                if editor.editorId == chosenId {
+                    chosenIndex = index
+                }
+            }
+        }
+    }
+    var chosenIndex: Int = 0 {
+        didSet {
+            articlesCollectionView.reloadData()
+        }
+    }
+    
     
     @IBOutlet weak var topBarCollectionView: UICollectionView!
+    @IBOutlet weak var articlesCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,14 +62,13 @@ class MainVC: UIViewController {
     
 }
 
-extension MainVC: UICollectionViewDelegate, UICollectionViewDataSource, EditorDelegate {
+extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, EditorDelegate {
     
     func changeDelegate(id: Int) {
         for  (index, editor) in chosenEditors.enumerated() {
             if editor.editorId == chosenId {
                 let cell = topBarCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as! EditorCell
-                cell.bgView.addBorders(edges: .bottom, color: .systemBackground, inset: 0, thickness: 2)
-                
+                cell.anotherChosen()
                 chosenId = id
             }
         }
@@ -61,14 +77,38 @@ extension MainVC: UICollectionViewDelegate, UICollectionViewDataSource, EditorDe
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // if cv = tbcv
-        return chosenEditors.count + 1
+        if collectionView == topBarCollectionView {
+            return chosenEditors.count + 1
+        } else {
+            return articles[chosenIndex].count
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == topBarCollectionView {
+            return CGSize(width: 64, height: 64)
+        } else {
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                if UIDevice.current.orientation.isLandscape {
+                    return CGSize(width: (self.view.frame.width - 45)/2.25, height: 140)
+                } else {
+                    return CGSize(width: self.view.frame.width - 30, height: 140)
+                }
+            } else {
+                return CGSize(width: (self.view.frame.width - 45)/2, height: 140)
+            }
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        articlesCollectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // for another cv
-//        if collectionView == topBarCollectionView {
         
-        if indexPath.item == chosenEditors.count {
+        if collectionView == topBarCollectionView {
+            if indexPath.item == chosenEditors.count {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "editCell", for: indexPath) as! EditEditorsCell
                 return cell
             } else {
@@ -79,14 +119,42 @@ extension MainVC: UICollectionViewDelegate, UICollectionViewDataSource, EditorDe
                 cell.editorId = chosenEditors[indexPath.item].editorId
                 
                 if indexPath.item == 0 {
-                    cell.editorButton.setImage(UIImage(systemName: "globe"), for: .normal)
-                    cell.bgView.addBorders(edges: .bottom, color: .label, inset: 0, thickness: 2)
+                    cell.editorButton.setImage(UIImage(named: "globe"), for: .normal)
+                    cell.thisChosen()
                 }
                 return cell
             }
-//        }else {
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "articleCell", for: indexPath) as! ArticleCell
+            cell.titleLabel.text = articles[chosenIndex][indexPath.row].title
+            cell.contentTextView.text = articles[chosenIndex][indexPath.row].contents // [1...100]
+            cell.articleImageView.image = UIImage(named: "LogoFlat")
+//            cell.contentView.layer.borderColor = UIColor.black.cgColor
+//            cell.contentView.layer.borderWidth = 1
             
-//        }
+            cell.layer.cornerRadius = 3
+            cell.layer.shadowRadius = 5
+            cell.layer.shadowOffset = .zero
+            cell.layer.shadowOpacity = 0.2
+            cell.layer.shadowColor = UIColor.label.cgColor
+            cell.layer.shadowPath = UIBezierPath(rect: cell.contentView.bounds).cgPath
+            cell.layer.masksToBounds = false
+            
+//            cell.articleImageView.image = KF.get ...
+            return cell
+        }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == articlesCollectionView {
+            performSegue(withIdentifier: "toArticle", sender: nil)
+        }
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.destination is ArticleVC {
+//            // articleVc.article = article
+//        }
+//    }
 
 }
