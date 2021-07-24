@@ -9,6 +9,8 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+var articles: [Article] = []
+
 func getImagesArray(imgJson: JSON)->[String]{
     var imagesURL: [String] = []
     for (k, v) in imgJson{
@@ -19,8 +21,7 @@ func getImagesArray(imgJson: JSON)->[String]{
     return imagesURL
 }
 
-func getContent(url:String) -> Article{
-    var article: Article = Article()
+func getContent(url:String){
     AF.request("https://meduza.io/api/v3/\(url)").responseJSON{
         responseJSON in
         switch responseJSON.result{
@@ -32,18 +33,18 @@ func getContent(url:String) -> Article{
             var url = json["url"].stringValue
             var date:String = json["pub_date"].stringValue
             var images = getImagesArray(imgJson: json["image"])
-            article = Article(title: title, contents: content, imagesURL: images, author: "", date: date, isSaved: false)
+            var article = Article(title: title, contents: content, imagesURL: images, author: "", date: date, isSaved: false)
+            articles.append(article)
         case let .failure(error):
             print(error)
         }
     }
-    return article
 }
 
 
 // Здесь будут все GET запросы
 func GetNews(id :Int) ->[Article]{
-    var articles: [Article] = []
+//    var articles: [Article] = []
     switch id{
         case 0: //Meduza_news
             AF.request("https://meduza.io/api/v3/search?chrono=news&locale=ru&page=0&per_page=24").responseJSON
@@ -52,16 +53,27 @@ func GetNews(id :Int) ->[Article]{
             case .success(let value):
                 let json = JSON(value)
                 for (key, value) in json["documents"]{
-                    articles.append(getContent(url: key)) //empty cause function doesn't works
-                    print(articles)
+                    getContent(url: key)
+//                    print(articles)
                 }
             case let .failure(error):
                 print(error)
             }
         }
     case 1: //Meduza_stories
-        break
-        //
+        AF.request("https://meduza.io/api/v3/search?chrono=articles&locale=ru&page=0&per_page=24").responseJSON
+        {responseJSON in
+        switch responseJSON.result {
+        case .success(let value):
+            let json = JSON(value)
+            for (key, value) in json["documents"]{
+                getContent(url: key)
+//                print(articles)
+            }
+        case let .failure(error):
+            print(error)
+        }
+    }
     default:
         print("Error")
     }
