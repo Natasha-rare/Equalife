@@ -4,5 +4,5 @@ target 'Equalife' do
 
   pod 'Alamofire'
   #pod 'RealmSwift'
-
+  pod 'SwiftyJSON'
 end
