@@ -15,6 +15,8 @@ struct Article {
     var author: String? = ""
     var date: String = ""
     var isSaved: Bool = false
+    init(){
+    }
     
     init(title: String, contents: String, imagesURL: [String], author: String?, date: String, isSaved: Bool) {
         self.title = title
@@ -40,6 +42,8 @@ struct Editor {
     var info: String = ""
     var editorId: Int = 0
     var isAdded: Bool = false
+    init(){
+    }
     
     init(name: String, imageName: String, info: String, editorId: Int, isAdded: Bool) {
         self.name = name
