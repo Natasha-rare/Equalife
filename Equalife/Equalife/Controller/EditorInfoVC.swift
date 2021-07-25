@@ -31,7 +31,7 @@ class EditorInfoVC: UIViewController {
     }
     
     func buttonSetup() {
-        if editor.isAdded {
+        if !editor.isAdded {
             addButton.setTitle("Добавить", for: .normal)
             addButton.setImage(UIImage(systemName: "plus"), for: .normal)
             addButton.backgroundColor = UIColor.systemGreen

@@ -9,8 +9,9 @@ import UIKit
 
 class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, InfoDelegate {
     
-    var chosenEditors: [Editor] = [Editor(name: "Meduza", imageName: "meduza", info: "", editorId: 0, isAdded: true)]
-    let availableEditors: [Editor] = [Editor(name: "Meduza", imageName: "meduza", info: "", editorId: 0, isAdded: false)]
+    var chosenEditors: [Editor] = [Editor(name: "Meduza", imageName: "meduza", info: "Новостной журнал, с основной целевой аудиторией из левых взглядов", editorId: 0, isAdded: true)]
+    var availableEditors: [Editor] = [Editor(name: "DTF", imageName: "dtf", info: "", editorId: 1, isAdded: false),
+                                      Editor(name: "TJournal", imageName: "tj", info: "", editorId: 2, isAdded: false)]
     
     var chosenEditor = Editor(name: "", imageName: "", info: "", editorId: 0, isAdded: true)
     
@@ -24,8 +25,51 @@ class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, I
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("number set")
         return 2
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if indexPath.section == 0 {
+            return .delete
+        } else {
+            return .insert
+        }
+    }
+    
+    // when insert or delete is tapped
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // TODO: move to another array and row
+        if editingStyle == .insert {
+            chosenEditors.append(availableEditors[indexPath.row])
+            availableEditors.remove(at: indexPath.row)
+            tableView.moveRow(at: indexPath, to: IndexPath(row: tableView.numberOfRows(inSection: 0), section: 0))
+        } else {
+            //TODO: while sorted by id
+            availableEditors.append(chosenEditors[indexPath.row])
+            chosenEditors.remove(at: indexPath.row)
+            tableView.moveRow(at: indexPath, to: IndexPath(row: tableView.numberOfRows(inSection: 1), section: 1))
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if sourceIndexPath.section == 0 {
+            let element = chosenEditors.remove(at: sourceIndexPath.row)
+            chosenEditors.insert(element, at: destinationIndexPath.row)
+        } else {
+            let element = availableEditors.remove(at: sourceIndexPath.row)
+            availableEditors.insert(element, at: destinationIndexPath.row)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        if sourceIndexPath.section != proposedDestinationIndexPath.section {
+            var row = 0
+            if sourceIndexPath.section < proposedDestinationIndexPath.section {
+                row = self.tableView(tableView, numberOfRowsInSection: sourceIndexPath.section) - 1
+            }
+            return IndexPath(row: row, section: sourceIndexPath.section)
+        }
+        return proposedDestinationIndexPath
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -41,7 +85,6 @@ class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, I
         case 0:
             return chosenEditors.count
         case 1:
-            print("availableEditors.count")
             return availableEditors.count
         default:
             return 0
