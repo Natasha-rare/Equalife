@@ -8,7 +8,7 @@
 import UIKit
 
 protocol InfoDelegate {
-    func infoChanged()
+    func infoChanged(editor: Editor)
 }
 
 class EditorInfoVC: UIViewController {
@@ -21,6 +21,7 @@ class EditorInfoVC: UIViewController {
     
     var editor: Editor!
     var delegate: InfoDelegate?
+    var startAdded: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,8 @@ class EditorInfoVC: UIViewController {
         titleLabel.text = editor.name
         infoLabel.text = editor.info
         buttonSetup()
+        
+        startAdded = editor.isAdded
     }
     
     func buttonSetup() {
@@ -46,6 +49,7 @@ class EditorInfoVC: UIViewController {
     @IBAction func add() {
         // realm id change added and delegate
         editor.isAdded = !editor.isAdded
+        delegate?.infoChanged(editor: editor)
         buttonSetup()
     }
 

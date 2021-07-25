@@ -123,9 +123,31 @@ class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, I
         vc.editor = chosenEditor
     }
     
-    func infoChanged() {
+    func infoChanged(editor: Editor) {
         // reload arrays
-        tableView.reloadData()
+        var found = false
+        
+        for (index, ae) in availableEditors.enumerated() {
+            if ae.editorId == editor.editorId {
+                chosenEditors.append(availableEditors[index])
+                chosenEditors[chosenEditors.count - 1].isAdded = true
+                availableEditors.remove(at: index)
+                tableView.moveRow(at: IndexPath(row: index, section: 1), to: IndexPath(row: tableView.numberOfRows(inSection: 0), section: 0))
+                found = true
+            }
+        }
+        
+        if !found {
+            for (index, ce) in chosenEditors.enumerated() {
+                if ce.editorId == editor.editorId {
+                    //TODO: while sorted by id
+                    availableEditors.append(chosenEditors[index])
+                    availableEditors[availableEditors.count - 1].isAdded = false
+                    chosenEditors.remove(at: index)
+                    tableView.moveRow(at: IndexPath(row: index, section: 0), to: IndexPath(row: tableView.numberOfRows(inSection: 1), section: 1))
+                }
+            }
+        }
     }
     
     @IBAction func edit() {
