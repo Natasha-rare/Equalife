@@ -41,11 +41,13 @@ class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, I
         // TODO: move to another array and row
         if editingStyle == .insert {
             chosenEditors.append(availableEditors[indexPath.row])
+            chosenEditors[chosenEditors.count - 1].isAdded = true
             availableEditors.remove(at: indexPath.row)
             tableView.moveRow(at: indexPath, to: IndexPath(row: tableView.numberOfRows(inSection: 0), section: 0))
         } else {
             //TODO: while sorted by id
             availableEditors.append(chosenEditors[indexPath.row])
+            availableEditors[availableEditors.count - 1].isAdded = false
             chosenEditors.remove(at: indexPath.row)
             tableView.moveRow(at: indexPath, to: IndexPath(row: tableView.numberOfRows(inSection: 1), section: 1))
         }

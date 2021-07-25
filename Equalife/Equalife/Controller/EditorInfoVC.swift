@@ -15,7 +15,8 @@ class EditorInfoVC: UIViewController {
     
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var infoTextView: UITextView!
+    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     
     var editor: Editor!
@@ -26,7 +27,7 @@ class EditorInfoVC: UIViewController {
 
         logoImageView.image = UIImage(named: editor.imageName)
         titleLabel.text = editor.name
-        infoTextView.text = editor.info
+        infoLabel.text = editor.info
         buttonSetup()
     }
     
