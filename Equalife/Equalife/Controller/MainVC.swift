@@ -7,6 +7,11 @@
 
 import UIKit
 
+var articles: [[Article]] = [
+    [Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false)],
+    [Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false), Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false),], [], []]
+
+
 class MainVC: UIViewController {
     
     var chosenEditors: [Editor] = [
@@ -15,11 +20,7 @@ class MainVC: UIViewController {
         Editor(name: "DTF", imageName: "dtf", info: "", editorId: 2, isAdded: false),
         Editor(name: "TJournal", imageName: "tj", info: "", editorId: 3, isAdded: false)
     ]
-    
-    var articles: [[Article]] = [
-        [Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false)],
-        [Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false), Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false),], [], []]
-    
+
     // var articles: [[Article]] = [[]*chosenEditors.count]
     
     var chosenId: Int = 0 {
