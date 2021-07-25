@@ -9,172 +9,233 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+class APIService {
 
-
-func getImagesArray(imgJson: JSON)->[String]{
-    var imagesURL: [String] = []
-    for (k, v) in imgJson{
-        if k.contains("url"){
-            imagesURL.append("https://meduza.io/\(v)")
-        }
-    }
-    return imagesURL
-}
-
-func getContent(url:String, completion: @escaping(_ articles: [Article])->()){
-    var articles: [Article] = []
-    AF.request("https://meduza.io/api/v3/\(url)").responseJSON{
-        responseJSON in
-        switch responseJSON.result{
-        case .success(let value):
-            let json = JSON(value)["root"]
-            var text = json["content"]["body"].stringValue
-            var content = text.html2String
-            var title = json["title"].stringValue
-            var url = json["url"].stringValue
-            var date:String = json["pub_date"].stringValue
-            var images = getImagesArray(imgJson: json["image"])
-            var article = Article(title: title, contents: content, imagesURL: images, author: "", date: date, isSaved: false)
-            articles.append(article)
-        case let .failure(error):
-            print(error)
-        }
-        completion(articles)
-    }
-}
-
-func getTextFromBlocks(json: Array<JSON>)->String{
-    var text:String = ""
-    for block in json{
-        if block["type"] == "text"{
-            text += block["data"]["text"].stringValue
-        }
-    }
-    return text
-}
-
-func getContentDtf(type:String, site:String = "dtf", completion: @escaping(_ art: [Article])->()){
-    var art:[Article] = []
-    AF.request("https://api.\(site).ru/v1.9/timeline/\(type)").responseJSON{
-        responseJSON in
-        switch responseJSON.result{
-        case .success(let value):
-            let jsonAll = JSON(value)["result"]
-            print("leeen", jsonAll.count)
-            for i  in 0...jsonAll.count - 1 {
-            var json = jsonAll[i]
-            var title = json["title"].stringValue
-            var url = json["url"].stringValue
-            var date:String = json["dateRFC"].stringValue
-                var images = [json["cover"]["url"].stringValue]
-            var text = json["entryContent"]["html"].stringValue.html2String
-            var content:[String] = text.components(separatedBy: " \n")
-            content.removeSubrange(0..<4)
-            if content[0].contains("Listen"){content.removeFirst()}
-            var author = json["author"]["name"].stringValue
-            var article = Article(title: title, contents: content.joined(separator: ""), imagesURL: images, author: author, date: date, isSaved: false)
-            art.append(article) // output works
+    func getImagesArray(imgJson: JSON)->[String]{
+        var imagesURL: [String] = []
+        for (k, v) in imgJson{
+            if k.contains("url"){
+                imagesURL.append("https://meduza.io/\(v)")
             }
-        case let .failure(error):
-            print(error)
         }
-        completion(art)
+        return imagesURL
     }
-}
 
-// Здесь будут все GET запросы
-func GetNews(id :Int) ->[Article]{
-    var articles: [Article] = []
-    switch id{
-        case 0: //Meduza_news
-            AF.request("https://meduza.io/api/v3/search?chrono=news&locale=ru&page=0&per_page=24").responseJSON
-            {responseJSON in
-            switch responseJSON.result {
+    func getContent(url:String, completion: @escaping (Article)->()) {
+        var article: Article? = nil
+        AF.request("https://meduza.io/api/v3/\(url)").responseJSON { responseJSON in
+            switch responseJSON.result{
             case .success(let value):
-                let json = JSON(value)
-                for (key, value) in json["documents"]{
-                    getContent(url: key){articleRes in articles = articleRes}
-//                    print(articles)
+                let json = JSON(value)["root"]
+//                let url = json["url"].stringValue
+                let images = self.getImagesArray(imgJson: json["image"])
+                article = Article(title: json["title"].stringValue,
+                                         contents: json["content"]["body"].stringValue.html2String,
+                                         imagesURL: images,
+                                         author: "",
+                                         date: json["pub_date"].stringValue,
+                                         isSaved: false)
+                if let articleRes = article {
+                    completion(articleRes)
                 }
             case let .failure(error):
                 print(error)
             }
         }
-    case 1: //Meduza_stories
-        AF.request("https://meduza.io/api/v3/search?chrono=articles&locale=ru&page=0&per_page=24").responseJSON
-        {responseJSON in
-        switch responseJSON.result {
-        case .success(let value):
-            let json = JSON(value)
-            for (key, value) in json["documents"]{
-                getContent(url: key){articleRes in articles = articleRes}
+    }
+
+    func getTextFromBlocks(json: Array<JSON>)->String{
+        var text:String = ""
+        for block in json{
+            if block["type"] == "text"{
+                text += block["data"]["text"].stringValue
             }
-        case let .failure(error):
-            print(error)
+        }
+        return text
+    }
+
+    func getContentDtf(type:String, site:String = "dtf", completion: @escaping(_ art: [Article])->()){
+        var articles :[Article] = []
+        AF.request("https://api.\(site).ru/v1.9/timeline/\(type)").responseJSON{
+            responseJSON in
+            switch responseJSON.result{
+            case .success(let value):
+                let jsonAll = JSON(value)["result"]
+                for i  in 0..<jsonAll.count {
+                    let json = jsonAll[i]
+                    let _ = json["url"].stringValue
+                    let text = json["entryContent"]["html"].stringValue.html2String
+                    var content:[String] = text.components(separatedBy: " \n")
+                    content.removeSubrange(0..<4)
+                    if content[0].contains("Listen") { content.removeFirst() }
+                    
+                    let a = Article(title: json["title"].stringValue,
+                                   contents: content.joined(separator: ""),
+                                   imagesURL: [json["cover"]["url"].stringValue],
+                                   author: json["author"]["name"].stringValue,
+                                   date: json["dateRFC"].stringValue,
+                                   isSaved: false)
+                    
+                    articles.append(a) // output works
+                    if articles.count == jsonAll.count {
+                        completion(articles)
+                    }
+                }
+            case let .failure(error):
+                print(error)
+            }
         }
     }
-    case 5://DTF_games
-        getContentDtf(type: "games")
-            {article in articles = article} // Надо передавать данные в какой-нибудь класс?..
-    case 6: //DTF_gameindustry
-        getContentDtf(type: "gameindustry"){
-            article in articles = article
-            print(articles)
+
+    // Здесь будут все GET запросы
+    func GetNews(id :Int, page: Int, completion: @escaping ([Article])->()){
+        var articles: [Article] = []
+        switch id{
+            case 0: //Meduza_news
+                AF.request("https://meduza.io/api/v3/search?chrono=news&locale=ru&page=\(page)&per_page=24").responseJSON { responseJSON in
+                    switch responseJSON.result {
+                    case .success(let value):
+                        let json = JSON(value)
+                        
+                        for (key, _) in json["documents"] {
+                            self.getContent(url: key){ articleRes in
+                                articles.append(articleRes)
+                                
+                                if articles.count == 24 {
+                                    DispatchQueue.main.async {
+                                        completion(articles)
+                                    }
+                                }
+                            }
+                        }
+                    case let .failure(error):
+                        print(error)
+                    }
+                }
+        case 1: //Meduza_stories
+            AF.request("https://meduza.io/api/v3/search?chrono=articles&locale=ru&page=\(page)&per_page=24").responseJSON
+            {responseJSON in
+            switch responseJSON.result {
+            case .success(let value):
+                let json = JSON(value)
+                for (key, _) in json["documents"] {
+                    self.getContent(url: key){ articleRes in
+                        articles.append(articleRes)
+                        
+                        if articles.count == 24 {
+                            DispatchQueue.main.async {
+                                completion(articles)
+                            }
+                        }
+                    }
+                }
+            case let .failure(error):
+                print(error)
+            }
         }
-    case 7: //DTF_gamedev
-        getContentDtf(type: "gamedev"){
-            article in articles = article
+        case 5://DTF_games
+            getContentDtf(type: "games/recent") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 6: //DTF_gameindustry
+            getContentDtf(type: "gameindustry") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 7: //DTF_gamedev
+            getContentDtf(type: "gamedev") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 8: //DTF_cinema
+            getContentDtf(type: "cinema") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 9: //DTF_all
+            getContentDtf(type: "default/recent") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 10: //Tjournal_news
+            getContentDtf(type: "news", site: "tjournal") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 11: //Tjournal_stories
+            getContentDtf(type: "stories", site: "tjournal") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 12: //Tjournal_tech
+            getContentDtf(type: "tech", site: "tjournal") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 13: //Tjournal_dev
+            getContentDtf(type: "dev", site: "tjournal") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 14: //Tjournal_all
+            getContentDtf(type: "default/recent", site: "tjournal") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 15: //Vc_all
+            getContentDtf(type: "default/recent", site: "vc") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 16: //Vc_design
+            getContentDtf(type: "design", site: "vc") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 17: //Vc_tech
+            getContentDtf(type: "tech", site: "vc") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 18: //Vc_dev
+            getContentDtf(type: "dev", site: "vc") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        default:
+            print("Error")
         }
-    case 8: //DTF_cinema
-        getContentDtf(type: "cinema"){
-            article in articles = article
-        }
-    case 9: //DTF_all
-        getContentDtf(type: "default/recent"){
-            article in articles = article
-        }
-    case 10: //Tjournal_news
-        getContentDtf(type: "news", site: "tjournal")
-            {article in articles = article} // Надо передавать данные в какой-нибудь класс?..
-    case 11: //Tjournal_stories
-        getContentDtf(type: "stories", site: "tjournal"){
-            article in articles = article
-            print(articles)
-        }
-    case 12: //Tjournal_tech
-        getContentDtf(type: "tech", site: "tjournal"){
-            article in articles = article
-        }
-    case 13: //Tjournal_dev
-        getContentDtf(type: "dev", site: "tjournal"){
-            article in articles = article
-        }
-    case 14: //Tjournal_all
-        getContentDtf(type: "default/recent", site: "tjournal"){
-            article in articles = article
-        }
-    case 15: //Vc_all
-        getContentDtf(type: "default/recent", site: "vc"){
-            article in articles = article
-        }
-    case 16: //Vc_design
-        getContentDtf(type: "design", site: "vc"){
-            article in articles = article
-        }
-    case 17: //Vc_tech
-        getContentDtf(type: "tech", site: "vc"){
-            article in articles = article
-            print("asdfd", articles)
-        }
-    case 18: //Vc_dev
-        getContentDtf(type: "dev", site: "vc"){
-            article in articles = article
-        }
-    default:
-        print("Error")
     }
-    print("aaa", articles)
-    return articles
+        
 }
 
 extension Data {
