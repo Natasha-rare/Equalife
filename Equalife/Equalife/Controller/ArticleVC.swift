@@ -31,18 +31,26 @@ class ArticleViewController: UIViewController{
     @IBOutlet weak var articleImageView: UIImageView!
     @IBOutlet weak var StackView: UIStackView!
     
+    @IBOutlet weak var articleDateLabel: UILabel!
+    @IBOutlet weak var articleAurhorLabel: UILabel!
+
     let logo = UIImage(named: "LogoFlat")
+    let author : String = "Author"
+    let date : String = "2020-20-20"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         articleImageView.contentMode = .scaleAspectFit
         articleImageView.image = logo
         articleImageView.isUserInteractionEnabled = false
+
+        articleAurhorLabel.text = author
+        articleAurhorLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         
-//        yourView.layer.shadowColor = UIColor.black.cgColor
-//        yourView.layer.shadowOpacity = 1
-//        yourView.layer.shadowOffset = .zero
-//        yourView.layer.shadowRadius = 10
+        articleDateLabel.text = date
+        articleDateLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        
+        
         articleTextView.layer.shadowColor = UIColor.black.cgColor
         articleTextView.layer.shadowOpacity = 1
         articleTextView.layer.shadowOffset = .zero
