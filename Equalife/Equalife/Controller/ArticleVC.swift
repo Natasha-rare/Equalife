@@ -18,7 +18,8 @@ let testArticle = Article(title: "TestArticle", contents: content, imagesURL: ["
 class ArticleViewController: UIViewController{
 
 
-    //var articleImageView = UIImageView()
+//    var articleImageView = UIImageView()
+//    var articleTextView = UITextView()
     let screenWidth = UIScreen.screenWidth
     let screenHeight = UIScreen.screenHeight
 //    var article : Article
@@ -28,11 +29,14 @@ class ArticleViewController: UIViewController{
 //    }
     @IBOutlet weak var articleTextView: UITextView!
     @IBOutlet weak var articleImageView: UIImageView!
+    @IBOutlet weak var StackView: UIStackView!
+    
+    let logo = UIImage(named: "LogoFlat")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        articleImageView.image = UIImage(named: "LogoFlat")
+        articleImageView.contentMode = .scaleAspectFit
+        articleImageView.image = logo
         articleImageView.isUserInteractionEnabled = false
         
 //        yourView.layer.shadowColor = UIColor.black.cgColor
@@ -46,8 +50,9 @@ class ArticleViewController: UIViewController{
         articleTextView.text = testArticle.contents
         articleTextView.font = UIFont.systemFont(ofSize: 17)
         articleTextView.isEditable = false
-        
-        self.view.addSubview(articleTextView)
+        articleTextView.isScrollEnabled = false
+        //self.StackView.addSubview(articleImageView)
+        //self.StackView.addSubview(articleTextView)
     }
 }
 
