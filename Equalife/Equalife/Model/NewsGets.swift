@@ -91,6 +91,11 @@ class APIService {
     func GetNews(id :Int, page: Int, completion: @escaping ([Article])->()){
         var articles: [Article] = []
         switch id{
+            case -1:
+                // TODO: global news
+                DispatchQueue.main.async {
+                    completion([])
+                }
             case 0: //Meduza_news
                 AF.request("https://meduza.io/api/v3/search?chrono=news&locale=ru&page=\(page)&per_page=24").responseJSON { responseJSON in
                     switch responseJSON.result {

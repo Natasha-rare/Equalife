@@ -6,24 +6,22 @@
 //
 
 import UIKit
-
-var articles: [[Article]] = [
-    [Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false)],
-    [Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false), Article(title: "Title", contents: "Lorem ipsum shit here should be I guess", imagesURL: [""], author: "Author", date: "2020 20 20", isSaved: false),], [], []]
-
+import CloudKit
+import Kingfisher
 
 class MainVC: UIViewController {
     
     var chosenEditors: [Editor] = [
-        Editor(name: "Global", imageName: "globe", info: "", editorId: 0, isAdded: false),
-        Editor(name: "Meduza.io", imageName: "meduza", info: "", editorId: 1, isAdded: false),
-        Editor(name: "DTF", imageName: "dtf", info: "", editorId: 2, isAdded: false),
-        Editor(name: "TJournal", imageName: "tj", info: "", editorId: 3, isAdded: false)
+        Editor(name: "Global", imageName: "globe", info: "", editorId: -1, isAdded: true),
+        Editor(name: "Meduza - news", imageName: "meduza", info: "", editorId: 0, isAdded: true),
+        Editor(name: "Meduza - stories", imageName: "meduza", info: "", editorId: 1, isAdded: true),
+        Editor(name: "DTF - games", imageName: "dtf", info: "", editorId: 5, isAdded: true)
     ]
-
-    // var articles: [[Article]] = [[]*chosenEditors.count]
     
-    var chosenId: Int = 0 {
+    var articles: [[Article]] = []
+    var isLoading = false
+    
+    var chosenId: Int = -1 {
         didSet {
             for (index, editor) in chosenEditors.enumerated() {
                 if editor.editorId == chosenId {
@@ -34,13 +32,19 @@ class MainVC: UIViewController {
     }
     var chosenIndex: Int = 0 {
         didSet {
-            articlesCollectionView.reloadData()
+            if articles[chosenIndex].isEmpty {
+                getNews(id: chosenId, page: 0)
+            } else {
+                articlesCollectionView.reloadData()
+            }
         }
     }
     
     
     @IBOutlet weak var topBarCollectionView: UICollectionView!
     @IBOutlet weak var articlesCollectionView: UICollectionView!
+    
+    let api = APIService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +62,23 @@ class MainVC: UIViewController {
         // add border to tbcv
         // TODO: getting editors from realm
         
+        for _ in 0..<chosenEditors.count {
+            articles.append([])
+        }
+        
         chosenId = chosenEditors[0].editorId
+    }
+    
+    func getNews(id: Int, page: Int) {
+        // showing indicator
+        isLoading = true
+        articlesCollectionView.reloadData()
+        
+        api.GetNews(id: id, page: page, completion: { articlesRes in
+            self.articles[self.chosenIndex] = articlesRes
+            self.isLoading = false
+            self.articlesCollectionView.reloadData()
+        })
     }
     
 }
@@ -81,6 +101,9 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
         if collectionView == topBarCollectionView {
             return chosenEditors.count + 1
         } else {
+            if articles[chosenIndex].isEmpty {
+                return 1
+            }
             return articles[chosenIndex].count
         }
     }
@@ -89,6 +112,10 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
         if collectionView == topBarCollectionView {
             return CGSize(width: 64, height: 64)
         } else {
+            if articles[chosenIndex].isEmpty {
+                return CGSize(width: self.view.frame.width, height: collectionView.frame.height)
+            }
+            
             if UIDevice.current.userInterfaceIdiom == .phone {
                 if UIDevice.current.orientation.isLandscape {
                     return CGSize(width: (self.view.frame.width - 45)/2.25, height: 140)
@@ -126,13 +153,38 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
                 return cell
             }
         } else {
+            // Articles Collection View
+            
+            if articles[chosenIndex].isEmpty {
+                switch isLoading {
+                case true:
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "loadingCell", for: indexPath) as! LoadingArticlesCell
+                    cell.loadingIndicator.startAnimating()
+                    return cell
+                case false:
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noArticlesCell", for: indexPath) as! NoArticlesCell
+                    return cell
+                }
+            }
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "articleCell", for: indexPath) as! ArticleCell
             cell.titleLabel.text = articles[chosenIndex][indexPath.row].title
-            cell.contentTextView.text = articles[chosenIndex][indexPath.row].contents // [1...100]
-            cell.articleImageView.image = UIImage(named: "LogoFlat")
-//            cell.contentView.layer.borderColor = UIColor.black.cgColor
-//            cell.contentView.layer.borderWidth = 1
             
+            if articles[chosenIndex][indexPath.row].imagesURL.isEmpty {
+                cell.articleImageView.image = UIImage(named: "imagePlaceholder")
+            } else {
+                let url = URL(string: articles[chosenIndex][indexPath.row].imagesURL[0])
+                let processor = DownsamplingImageProcessor(size: cell.articleImageView.bounds.size)
+                cell.articleImageView.kf.setImage(
+                    with: url,
+                    placeholder: UIImage(named: "imagePlaceholder"),
+                    options: [
+                        .processor(processor),
+                        .scaleFactor(UIScreen.main.scale),
+                        .transition(.fade(0.5)),
+                        .cacheOriginalImage
+                    ])
+            }
             cell.layer.cornerRadius = 3
             cell.layer.shadowRadius = 5
             cell.layer.shadowOffset = .zero
@@ -141,7 +193,6 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
             cell.layer.shadowPath = UIBezierPath(rect: cell.contentView.bounds).cgPath
             cell.layer.masksToBounds = false
             
-//            cell.articleImageView.image = KF.get ...
             return cell
         }
     }
