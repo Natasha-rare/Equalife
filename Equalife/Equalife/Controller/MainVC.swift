@@ -6,17 +6,16 @@
 //
 
 import UIKit
-import CloudKit
 import Kingfisher
+import RealmSwift
 
-class MainVC: UIViewController {
+protocol EditorChange {
+    func editorsChanged()
+}
+
+class MainVC: UIViewController, EditorChange {
     
-    var chosenEditors: [Editor] = [
-        Editor(name: "Global", imageName: "globe", info: "", editorId: -1, isAdded: true),
-        Editor(name: "Meduza - news", imageName: "meduza", info: "", editorId: 0, isAdded: true),
-        Editor(name: "Meduza - stories", imageName: "meduza", info: "", editorId: 1, isAdded: true),
-        Editor(name: "DTF - games", imageName: "dtf", info: "", editorId: 5, isAdded: true)
-    ]
+    var chosenEditors: [Editor] = [Editor(name: "Global", imageName: "globe", info: "", editorId: -1, isAdded: true)]
     
     var articles: [[Article]] = []
     var isLoading = false
@@ -46,8 +45,41 @@ class MainVC: UIViewController {
     
     let api = APIService()
     
+    let realm = try! Realm()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // starting stuff
+        
+        if UsersData.shared.haveAlreadyLaunched == nil || UsersData.shared.haveAlreadyLaunched == false {
+            let startEditors = [
+                Editor(name: "Meduza - Новости", imageName: "meduza", info: "Латвийское интернет-издание, созданное бывшим главным редактором Lenta.ru Галиной Тимченко в 2014 году", editorId: 0, isAdded: false),
+                Editor(name: "Meduza - Истории", imageName: "meduza", info: "Латвийское интернет-издание, созданное бывшим главным редактором Lenta.ru Галиной Тимченко в 2014 году", editorId: 1, isAdded: false),
+                Editor(name: "DTF", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 9, isAdded: false),
+                Editor(name: "DTF - Игры", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 5, isAdded: false),
+                Editor(name: "DTF - Игровая индустрия", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 6, isAdded: false),
+                Editor(name: "DTF - Разработка", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 7, isAdded: false),
+                Editor(name: "DTF - Кино", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 8, isAdded: false),
+                Editor(name: "TJournal", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 14, isAdded: false),
+                Editor(name: "TJournal - Новости", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 10, isAdded: false),
+                Editor(name: "TJournal - Истории", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 11, isAdded: false),
+                Editor(name: "TJournal - Технологии", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 12, isAdded: false),
+                Editor(name: "TJournal - разработка", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 13, isAdded: false),
+                Editor(name: "vc.ru", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 15, isAdded: false),
+                Editor(name: "vc.ru - Дизайн", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 16, isAdded: false),
+                Editor(name: "vc.ru - Технологии", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 17, isAdded: false),
+                Editor(name: "vc.ru - Разработка", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 18, isAdded: false)
+            ]
+            
+            try! realm.write {
+                for editor in startEditors {
+                    realm.add(RealmEditor(name: editor.name, imageName: editor.imageName, info: editor.info, editorId: editor.editorId, isAdded: editor.isAdded))
+                }
+            }
+            
+            UsersData.shared.haveAlreadyLaunched = true
+        }
         
         self.navigationItem.title = ""
         let logo = UIImageView(image: UIImage(named: "LogoFlat"))
@@ -62,11 +94,43 @@ class MainVC: UIViewController {
         // add border to tbcv
         // TODO: getting editors from realm
         
+        updateEditors()
+    }
+    
+    func updateEditors() {
+        chosenEditors.removeAll()
+        chosenEditors.append(Editor(name: "Global", imageName: "globe", info: "", editorId: -1, isAdded: true))
+        
+        let realmEditors = realm.objects(RealmEditor.self)
+        for editor in realmEditors {
+            if editor.isAdded {
+                chosenEditors.append(Editor(name: editor.name, imageName: editor.imageName, info: editor.info, editorId: editor.editorId, isAdded: editor.isAdded))
+            }
+        }
+        
+        chosenEditors.sort(by: { $0.sortId > $1.sortId })
+        
+        articles.removeAll()
         for _ in 0..<chosenEditors.count {
             articles.append([])
         }
         
-        chosenId = chosenEditors[0].editorId
+        topBarCollectionView.reloadData()
+        chosenId = -1
+    }
+    
+    func editorsChanged() {
+        for (index, _) in chosenEditors.enumerated() {
+            if index != 0 {
+                let cell = topBarCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as! EditorCell
+                cell.anotherChosen()
+            }
+        }
+        
+        let cell = topBarCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as! EditorCell
+        cell.thisChosen()
+        
+        updateEditors()
     }
     
     func getNews(id: Int, page: Int) {
@@ -93,11 +157,9 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
                 chosenId = id
             }
         }
-        // reload shit
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // if cv = tbcv
         if collectionView == topBarCollectionView {
             return chosenEditors.count + 1
         } else {
@@ -202,11 +264,11 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
             performSegue(withIdentifier: "toArticle", sender: nil)
         }
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.destination is ArticleVC {
-//            // articleVc.article = article
-//        }
-//    }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toEditing" {
+            let vc = segue.destination as! EditorsVC
+            vc.delegate = self
+        }
+    }
 }

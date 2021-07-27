@@ -393,7 +393,7 @@
                                                         <imageReference key="image" image="edit" symbolScale="large"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="Jah-mT-MLg" kind="show" id="9Sj-bQ-nVJ"/>
+                                                        <segue destination="Jah-mT-MLg" kind="show" identifier="toEditing" id="9Sj-bQ-nVJ"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

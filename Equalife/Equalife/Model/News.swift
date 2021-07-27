@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 // Структура статьи (просто для начала)
 struct Article {
@@ -41,9 +42,10 @@ struct Editor {
     var imageName: String = ""
     var info: String = ""
     var editorId: Int = 0
+    var sortId: Int = 0
     var isAdded: Bool = false
-    init(){
-    }
+    
+    init() {}
     
     init(name: String, imageName: String, info: String, editorId: Int, isAdded: Bool) {
         self.name = name
@@ -53,5 +55,24 @@ struct Editor {
         self.isAdded = isAdded
     }
 }
+
+class RealmEditor: Object {
+    @objc dynamic var name: String = ""
+    @objc dynamic var imageName: String = ""
+    @objc dynamic var info: String = ""
+    @objc dynamic var editorId: Int = 0
+    @objc dynamic var sortId: Int = 0
+    @objc dynamic var isAdded: Bool = false
+    
+    convenience init(name: String, imageName: String, info: String, editorId: Int, isAdded: Bool) {
+        self.init()
+        self.name = name
+        self.imageName = imageName
+        self.info = info
+        self.editorId = editorId
+        self.isAdded = isAdded
+    }
+}
+
 
 // TODO: Здесь будут все добавленные издания, сохраненные в кэше, но это все потом
