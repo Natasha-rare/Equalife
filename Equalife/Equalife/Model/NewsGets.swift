@@ -43,6 +43,29 @@ class APIService {
             }
         }
     }
+    
+    func getWorldNews(completion: @escaping(_ art: [Article])->()){
+        var articles:[Article] = []
+        AF.request("https://newsapi.org/v2/top-headlines?language=ru&apiKey=209637fc7d0549bdb08f9f490015c8c4").responseJSON { responseJSON in
+            switch responseJSON.result {
+            case .success(let value):
+                var jsonAll = JSON(value)["articles"]
+                for i in 0..<jsonAll.count{
+                    let json = jsonAll[i]
+                    var a = Article(title: json["title"].stringValue,
+                                    contents: json["description"].stringValue,
+                                    imagesURL: [json["urlToImage"].stringValue],
+                                    author: json["author"].stringValue,
+                                    date: json["publishedAt"].stringValue, isSaved: false)
+                    articles.append(a)
+                }
+                completion(articles)
+            case let .failure(error):
+                print(error)
+                
+            }
+        }
+    }
 
     func getTextFromBlocks(json: Array<JSON>)->String{
         var text:String = ""
@@ -91,7 +114,14 @@ class APIService {
     func GetNews(id :Int, page: Int, completion: @escaping ([Article])->()){
         var articles: [Article] = []
         switch id{
-            case 0: //Meduza_news
+        case -1: //global
+            getWorldNews(){ allArticles in
+                articles = allArticles
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 0: //Meduza_news
                 AF.request("https://meduza.io/api/v3/search?chrono=news&locale=ru&page=\(page)&per_page=24").responseJSON { responseJSON in
                     switch responseJSON.result {
                     case .success(let value):
@@ -231,6 +261,7 @@ class APIService {
                     completion(articles)
                 }
             }
+        
         default:
             print("Error")
         }
