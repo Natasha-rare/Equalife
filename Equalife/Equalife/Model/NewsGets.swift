@@ -20,6 +20,13 @@ class APIService {
         }
         return imagesURL
     }
+    
+//    func getImagesDtf(text:String) -> [String]{
+//        var imagesUrl:[String] = []
+//        var src:String = ""
+//
+//        return imagesUrl
+//    }
 
     func getContent(url:String, completion: @escaping (Article)->()) {
         var article: Article? = nil
@@ -91,7 +98,6 @@ class APIService {
                     var content:[String] = text.components(separatedBy: " \n")
                     content.removeSubrange(0..<4)
                     if content[0].contains("Listen") { content.removeFirst() }
-                    
                     let a = Article(title: json["title"].stringValue,
                                    contents: content.joined(separator: ""),
                                    imagesURL: [json["cover"]["url"].stringValue],
@@ -261,7 +267,62 @@ class APIService {
                     completion(articles)
                 }
             }
-        
+        case 19: //Vc_finance
+            getContentDtf(type: "finance", site: "vc") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 20: //Vc_media
+            getContentDtf(type: "media", site: "vc") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 21: //Vc_education
+            getContentDtf(type: "education", site: "vc") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 22: //Vc_yandex.zen
+            getContentDtf(type: "yandex.zen", site: "vc") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 23: //Tjournal_yandex.zen
+            getContentDtf(type: "yandex.zen", site: "tjournal") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 24: //Tjournal_games
+            getContentDtf(type: "games", site: "tjournal") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 25: //DTF_news
+            getContentDtf(type: "news", site: "dtf") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
+        case 26: //DTF_design
+            getContentDtf(type: "design", site: "dtf") { article in
+                articles = article
+                DispatchQueue.main.async {
+                    completion(articles)
+                }
+            }
         default:
             print("Error")
         }
