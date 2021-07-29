@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 //Текст, с помощью которого проверял скрол (его можно удалить как добавите подгрузку статьи)
 let content = """
@@ -17,46 +18,22 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra venenatis
 // Тестовый объект Article
 let testArticle = Article(title: "TestArticle", contents: content, imagesURL: ["FlatLogo"], author: "Author", date: "22-07-2021", isSaved: false)
 
-class ArticleViewController: UIViewController{
+class ArticleVC: UIViewController{
     
-
-    let screenWidth = UIScreen.screenWidth
-    let screenHeight = UIScreen.screenHeight
-
-    @IBOutlet weak var articleTextView: UITextView!
-    @IBOutlet weak var articleImageView: UIImageView!
-    @IBOutlet weak var StackView: UIStackView!
-    
-    @IBOutlet weak var articleDateLabel: UILabel!
-    @IBOutlet weak var articleAurhorLabel: UILabel!
-
-    // TODO: Надо добавить загрузку фото из сети
-    let image = UIImage(named : testArticle.imagesURL[0])
-    let author : String = testArticle.author ?? " "
-    let date : String = testArticle.date
-    
+    let contentView = UIHostingController(rootView: ArticleView(article: testArticle
+    ))
     override func viewDidLoad() {
         super.viewDidLoad()
-        articleImageView.contentMode = .scaleAspectFit
-        articleImageView.image = image
-        articleImageView.isUserInteractionEnabled = false
-
-        articleAurhorLabel.text = author
-        articleAurhorLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        addChild(contentView)
+        view.addSubview(contentView.view)
+        setupConstrains()
         
-        articleDateLabel.text = date
-        articleDateLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        
-        
-        articleTextView.layer.shadowColor = UIColor.black.cgColor
-        articleTextView.layer.shadowOpacity = 1
-        articleTextView.layer.shadowOffset = .zero
-        articleTextView.layer.shadowRadius = 10
-        articleTextView.text = testArticle.contents
-        articleTextView.font = UIFont.systemFont(ofSize: 17)
-        articleTextView.isEditable = false
-        articleTextView.isScrollEnabled = false
-        //self.StackView.addSubview(articleImageView)
-        //self.StackView.addSubview(articleTextView)
+    }
+    fileprivate func setupConstrains(){
+        contentView.view.translatesAutoresizingMaskIntoConstraints = false
+        contentView.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        contentView.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        contentView.view.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        contentView.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
 }

@@ -7,61 +7,104 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ArticleView: View {
     
     let article : Article
     let screenWidth = UIScreen.screenWidth
     let screenHeight = UIScreen.screenHeight
     
-    init(article : Article) {
-        self.article = article
-    }
-    
-    // Это тестовый текст для проверки отображения
-    let someText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nisi diam. Ut nec quam aliquam, volutpat massa a, commodo ex. Mauris sed arcu mi. Integer vitae lorem enim. Maecenas sit amet scelerisque sapien, vitae vulputate odio. Aliquam pretium tellus et mauris consequat condimentum. Nullam non metus eu sem suscipit imperdiet. Etiam tempus nisi augue, tincidunt aliquam sapien lacinia eu. Aliquam placerat tortor et velit tempus pulvinar. Phasellus tempus elit sem, nec suscipit dui pulvinar scelerisque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam vitae tempus sem. Integer elementum sagittis eleifend. Donec efficitur nunc mi, vitae blandit neque hendrerit sit amet. Nunc luctus risus et tristique volutpat. Ut iaculis tincidunt quam, non ullamcorper eros. "
     
     var body: some View {
-        ZStack{
-            Color(#colorLiteral(red: 0.768627451, green: 0.768627451, blue: 0.768627451, alpha: 1))
-                .ignoresSafeArea()
-            VStack(){
-                Spacer()
-                HStack{
-                    Text(self.article.author ?? "")
-                        .padding(.leading, 30)
-                        .font(.title)
+        ScrollView(.vertical, showsIndicators: false, content: {
+            ZStack{
+                VStack{
                     Spacer()
-                    Text(self.article.date)
-                        .padding(.trailing, 30)
                 }
-                .frame(width: screenWidth, height: screenHeight * 0.3, alignment: .bottom)
-                Rectangle()
-                    .fill(Color(.white))
-                    .overlay(
-                        VStack{
-                            HStack{
-                                Text(self.article.title)
-                                    .font(.largeTitle)
-                                    .fontWeight(.bold)
-                                    .padding(.leading, 30)
-                                    .padding(.top, 20)
+                VStack{
+                    Image(article.imagesURL[0])
+                        .resizable()
+                        .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.3, alignment: .center)
+                        .overlay(
+                            VStack{
                                 Spacer()
+                                HStack{
+                                    Text(article.author ??  " " )
+                                        .font(.title)
+                                        .fontWeight(.bold)
+                                        .padding(.leading, 20)
+                                        
+                                    Spacer()
+                                    Text(article.date)
+                                        .font(.title)
+                                        .fontWeight(.bold)
+                                        .padding(.trailing, 20)
+                                }
                             }
-                            Text(someText)
-                                .padding(.leading, 30)
-                                .padding(.trailing, 30)
-                                .padding(.top, 15)
-                        }
-                        .frame(width: screenWidth, height: screenHeight * 0.7 , alignment: .top)
-                    )
-                    .frame(width: screenWidth, height: screenHeight * 0.7 , alignment: .leading)
+                        )
+                    Divider()
+                    HStack{
+                        Text(article.title)
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                            .padding(.leading, 20)
+                        Spacer()
+                    }
+                    Text(article.contents)
+                        .multilineTextAlignment(.leading)
+                        .padding([.leading, .trailing] , 20)
+                }
             }
-            .ignoresSafeArea(.all)
-        }
+        })
     }
 }
 
 
+struct ArticleView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView{
+            ArticleView(article: Article(title: "Title", contents: " Lorem ipsum shit here should be I guess", imagesURL: ["TestImage"], author: "Author", date: "2020-20-20", isSaved: false))
+        }
+    }
+}
+
+//    ZStack{
+//        Color(#colorLiteral(red: 0.768627451, green: 0.768627451, blue: 0.768627451, alpha: 1))
+//            .ignoresSafeArea()
+//        VStack(){
+//            Spacer()
+//            HStack{
+//                Text(self.article.author ?? "")
+//                    .padding(.leading, 30)
+//                    .font(.title)
+//                Spacer()
+//                Text(self.article.date)
+//                    .padding(.trailing, 30)
+//            }
+//            .frame(width: screenWidth, height: screenHeight * 0.3, alignment: .bottom)
+//            Rectangle()
+//                .fill(Color(.white))
+//                .overlay(
+//                    VStack{
+//                        HStack{
+//                            Text(self.article.title)
+//                                .font(.largeTitle)
+//                                .fontWeight(.bold)
+//                                .padding(.leading, 30)
+//                                .padding(.top, 20)
+//                            Spacer()
+//                        }
+//                        Text(self.article.contents)
+//                            .padding(.leading, 30)
+//                            .padding(.trailing, 30)
+//                            .padding(.top, 15)
+//                    }
+//                    .frame(width: screenWidth, height: screenHeight * 0.7 , alignment: .top)
+//                )
+//                .frame(width: screenWidth, height: screenHeight * 0.7 , alignment: .leading)
+//        }
+//        .ignoresSafeArea(.all)
+//    }
+//}
 
 // extension для получения размеров экрана
 extension UIScreen{
