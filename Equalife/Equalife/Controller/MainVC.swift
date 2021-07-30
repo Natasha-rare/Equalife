@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import RealmSwift
+import CloudKit
 
 protocol EditorChange {
     func editorsChanged()
@@ -15,10 +16,11 @@ protocol EditorChange {
 
 class MainVC: UIViewController, EditorChange {
     
-    var chosenEditors: [Editor] = [Editor(name: "Global", imageName: "globe", info: "", editorId: -1, isAdded: true)]
+    var chosenEditors: [Editor] = [Editor(name: "Global", imageName: "globe", info: "", editorId: -1, isAdded: true, category: [])]
     
     var articles: [[Article]] = []
-    var isLoading = false
+    fileprivate var isLoading = false
+    fileprivate var hasConnection = true
     
     var chosenId: Int = -1 {
         didSet {
@@ -32,13 +34,23 @@ class MainVC: UIViewController, EditorChange {
     var chosenIndex: Int = 0 {
         didSet {
             if articles[chosenIndex].isEmpty {
-                getNews(id: chosenId, page: 0)
+                if Reachability.isConnectedToNetwork(){
+                    getNews(id: chosenId, page: page)
+                } else{
+                    hasConnection = false
+                    articlesCollectionView.reloadData()
+                }
             } else {
                 articlesCollectionView.reloadData()
             }
         }
     }
     
+    var page: Int {
+        get {
+            return articles[chosenIndex].count / 8
+        }
+    }
     
     @IBOutlet weak var topBarCollectionView: UICollectionView!
     @IBOutlet weak var articlesCollectionView: UICollectionView!
@@ -54,27 +66,27 @@ class MainVC: UIViewController, EditorChange {
         
         if UsersData.shared.haveAlreadyLaunched == nil || UsersData.shared.haveAlreadyLaunched == false {
             let startEditors = [
-                Editor(name: "Meduza - Новости", imageName: "meduza", info: "Латвийское интернет-издание, созданное бывшим главным редактором Lenta.ru Галиной Тимченко в 2014 году", editorId: 0, isAdded: false),
-                Editor(name: "Meduza - Истории", imageName: "meduza", info: "Латвийское интернет-издание, созданное бывшим главным редактором Lenta.ru Галиной Тимченко в 2014 году", editorId: 1, isAdded: false),
-                Editor(name: "DTF", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 9, isAdded: false),
-                Editor(name: "DTF - Игры", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 5, isAdded: false),
-                Editor(name: "DTF - Игровая индустрия", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 6, isAdded: false),
-                Editor(name: "DTF - Разработка", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 7, isAdded: false),
-                Editor(name: "DTF - Кино", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 8, isAdded: false),
-                Editor(name: "TJournal", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 14, isAdded: false),
-                Editor(name: "TJournal - Новости", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 10, isAdded: false),
-                Editor(name: "TJournal - Истории", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 11, isAdded: false),
-                Editor(name: "TJournal - Технологии", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 12, isAdded: false),
-                Editor(name: "TJournal - разработка", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 13, isAdded: false),
-                Editor(name: "vc.ru", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 15, isAdded: false),
-                Editor(name: "vc.ru - Дизайн", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 16, isAdded: false),
-                Editor(name: "vc.ru - Технологии", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 17, isAdded: false),
-                Editor(name: "vc.ru - Разработка", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 18, isAdded: false)
+                Editor(name: "Meduza - Новости", imageName: "meduza", info: "Латвийское интернет-издание, созданное бывшим главным редактором Lenta.ru Галиной Тимченко в 2014 году", editorId: 0, isAdded: false, category: [.politics]),
+                Editor(name: "Meduza - Истории", imageName: "meduza", info: "Латвийское интернет-издание, созданное бывшим главным редактором Lenta.ru Галиной Тимченко в 2014 году", editorId: 1, isAdded: false, category: [.politics]),
+                Editor(name: "DTF", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 9, isAdded: false, category: [.games, .tech, .movies]),
+                Editor(name: "DTF - Игры", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 5, isAdded: false, category: [.games]),
+                Editor(name: "DTF - Игровая индустрия", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 6, isAdded: false, category: [.games]),
+                Editor(name: "DTF - Разработка", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 7, isAdded: false, category: [.tech]),
+                Editor(name: "DTF - Кино", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 8, isAdded: false, category: [.movies]),
+                Editor(name: "TJournal", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 14, isAdded: false, category: [.politics, .tech]),
+                Editor(name: "TJournal - Новости", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 10, isAdded: false, category: [.politics]),
+                Editor(name: "TJournal - Истории", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 11, isAdded: false, category: [.politics]),
+                Editor(name: "TJournal - Технологии", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 12, isAdded: false, category: [.tech]),
+                Editor(name: "TJournal - разработка", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 13, isAdded: false, category: [.tech]),
+                Editor(name: "vc.ru", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 15, isAdded: false, category: [.design, .tech]),
+                Editor(name: "vc.ru - Дизайн", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 16, isAdded: false, category: [.design]),
+                Editor(name: "vc.ru - Технологии", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 17, isAdded: false, category: [.tech]),
+                Editor(name: "vc.ru - Разработка", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 18, isAdded: false, category: [.tech])
             ]
             
             try! realm.write {
                 for editor in startEditors {
-                    realm.add(RealmEditor(name: editor.name, imageName: editor.imageName, info: editor.info, editorId: editor.editorId, isAdded: editor.isAdded))
+                    realm.add(RealmEditor(name: editor.name, imageName: editor.imageName, info: editor.info, editorId: editor.editorId, isAdded: editor.isAdded, category: editor.category))
                 }
             }
             
@@ -91,20 +103,22 @@ class MainVC: UIViewController, EditorChange {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
         
-        // add border to tbcv
-        // TODO: getting editors from realm
-        
         updateEditors()
     }
     
     func updateEditors() {
         chosenEditors.removeAll()
-        chosenEditors.append(Editor(name: "Global", imageName: "globe", info: "", editorId: -1, isAdded: true))
+        chosenEditors.append(Editor(name: "Global", imageName: "globe", info: "", editorId: -1, isAdded: true, category: []))
         
         let realmEditors = realm.objects(RealmEditor.self)
         for editor in realmEditors {
+            let categoriesString: [String] = editor.category.components(separatedBy: "|")
+            var categories: [EditorCategory] = []
+            for categoryString in categoriesString {
+                categories.append(EditorCategory(rawValue: categoryString)!)
+            }
             if editor.isAdded {
-                chosenEditors.append(Editor(name: editor.name, imageName: editor.imageName, info: editor.info, editorId: editor.editorId, isAdded: editor.isAdded))
+                chosenEditors.append(Editor(name: editor.name, imageName: editor.imageName, info: editor.info, editorId: editor.editorId, isAdded: editor.isAdded, category: categories))
             }
         }
         
@@ -120,16 +134,6 @@ class MainVC: UIViewController, EditorChange {
     }
     
     func editorsChanged() {
-        for (index, _) in chosenEditors.enumerated() {
-            if index != 0 {
-                let cell = topBarCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as! EditorCell
-                cell.anotherChosen()
-            }
-        }
-        
-        let cell = topBarCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as! EditorCell
-        cell.thisChosen()
-        
         updateEditors()
     }
     
@@ -138,13 +142,24 @@ class MainVC: UIViewController, EditorChange {
         isLoading = true
         articlesCollectionView.reloadData()
         
+        // MARK: here start animating
+        
         api.GetNews(id: id, page: page, completion: { articlesRes in
-            self.articles[self.chosenIndex] = articlesRes
+            self.articles[self.chosenIndex].append(contentsOf: articlesRes)
             self.isLoading = false
             self.articlesCollectionView.reloadData()
         })
     }
     
+}
+
+extension MainVC: LoadMoreDelegate {
+    func loadNextPage() {
+        getNews(id: chosenId, page: page)
+        let cell = collectionView(articlesCollectionView, cellForItemAt: IndexPath(item: articles[chosenIndex].count, section: 0)) as! LoadMoreCell
+        cell.loadButton.isEnabled = false
+//        cell.loadButton.tintColor = .link
+    }
 }
 
 extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, EditorDelegate {
@@ -166,7 +181,7 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
             if articles[chosenIndex].isEmpty {
                 return 1
             }
-            return articles[chosenIndex].count
+            return articles[chosenIndex].count + 1
         }
     }
     
@@ -174,6 +189,10 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
         if collectionView == topBarCollectionView {
             return CGSize(width: 64, height: 64)
         } else {
+            if !hasConnection {
+                return CGSize(width: self.view.frame.width, height: collectionView.frame.height)
+            }
+            
             if articles[chosenIndex].isEmpty {
                 return CGSize(width: self.view.frame.width, height: collectionView.frame.height)
             }
@@ -211,11 +230,18 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
                 if indexPath.item == 0 {
                     cell.editorButton.setImage(UIImage(named: "globe"), for: .normal)
                     cell.thisChosen()
+                } else {
+                    cell.anotherChosen()
                 }
                 return cell
             }
         } else {
             // Articles Collection View
+            
+            if !hasConnection {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noConnectionCell", for: indexPath)
+                return cell
+            }
             
             if articles[chosenIndex].isEmpty {
                 switch isLoading {
@@ -229,8 +255,19 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
                 }
             }
             
+            if indexPath.row == articles[chosenIndex].count {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "loadMoreCell", for: indexPath) as! LoadMoreCell
+                cell.delegate = self
+                cell.loadButton.isEnabled = true
+                cell.loadButton.tintColor = .systemBlue
+                return cell
+            }
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "articleCell", for: indexPath) as! ArticleCell
             cell.titleLabel.text = articles[chosenIndex][indexPath.row].title
+            if articles[chosenIndex][indexPath.row].title.isEmpty {
+                cell.titleLabel.text = "Картинка"
+            }
             
             if articles[chosenIndex][indexPath.row].imagesURL.isEmpty {
                 cell.articleImageView.image = UIImage(named: "imagePlaceholder")

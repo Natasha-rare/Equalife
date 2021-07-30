@@ -26,10 +26,16 @@ class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, I
 
         let realmEditors = realm.objects(RealmEditor.self)
         for editor in realmEditors {
+            let categoriesString: [String] = editor.category.components(separatedBy: "|")
+            var categories: [EditorCategory] = []
+            for categoryString in categoriesString {
+                categories.append(EditorCategory(rawValue: categoryString)!)
+            }
+            
             if editor.isAdded {
-                chosenEditors.append(Editor(name: editor.name, imageName: editor.imageName, info: editor.info, editorId: editor.editorId, isAdded: editor.isAdded))
+                chosenEditors.append(Editor(name: editor.name, imageName: editor.imageName, info: editor.info, editorId: editor.editorId, isAdded: editor.isAdded, category: categories))
             } else {
-                availableEditors.append(Editor(name: editor.name, imageName: editor.imageName, info: editor.info, editorId: editor.editorId, isAdded: editor.isAdded))
+                availableEditors.append(Editor(name: editor.name, imageName: editor.imageName, info: editor.info, editorId: editor.editorId, isAdded: editor.isAdded, category: categories))
             }
         }
         
@@ -71,12 +77,11 @@ class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, I
                 if editor.editorId == chosenEditors[chosenEditors.count - 1].editorId {
                     try! realm.write {
                         editor.isAdded = true
-                        editor.sortId = chosenEditors[chosenEditors.count - 1].sortId
+                        editor.sortId = chosenEditors.count
                     }
                 }
             }
         } else {
-            //TODO: while sorted by id
             availableEditors.insert(chosenEditors[indexPath.row], at: 0)
             availableEditors[0].isAdded = false
             chosenEditors.remove(at: indexPath.row)
@@ -92,42 +97,6 @@ class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, I
                 }
             }
         }
-    }
-    
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        if sourceIndexPath.section == 0 {
-            let element = chosenEditors.remove(at: sourceIndexPath.row)
-            chosenEditors.insert(element, at: destinationIndexPath.row)
-            // TODO: realm reordering
-//            let realmEditors = realm.objects(RealmEditor.self)
-//
-//            for (index, editor) in chosenEditors.enumerated() {
-//                chosenEditors[index].sortId = index + 1
-//
-//                for realmEditor in realmEditors {
-//                    if editor.editorId == realmEditor.editorId {
-//                        try! realm.write {
-//                            print("X! index of \(realmEditor.name) changed to \(index)")
-//                            realmEditor.sortId = index + 1
-//                        }
-//                    }
-//                }
-//            }
-        } else {
-            let element = availableEditors.remove(at: sourceIndexPath.row)
-            availableEditors.insert(element, at: destinationIndexPath.row)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
-        if sourceIndexPath.section != proposedDestinationIndexPath.section {
-            var row = 0
-            if sourceIndexPath.section < proposedDestinationIndexPath.section {
-                row = self.tableView(tableView, numberOfRowsInSection: sourceIndexPath.section) - 1
-            }
-            return IndexPath(row: row, section: sourceIndexPath.section)
-        }
-        return proposedDestinationIndexPath
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -183,24 +152,47 @@ class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, I
         // reload arrays
         var found = false
         
+        // adding
         for (index, ae) in availableEditors.enumerated() {
             if ae.editorId == editor.editorId {
                 chosenEditors.append(availableEditors[index])
                 chosenEditors[chosenEditors.count - 1].isAdded = true
+                chosenEditors[chosenEditors.count - 1].sortId = chosenEditors.count
                 availableEditors.remove(at: index)
                 tableView.moveRow(at: IndexPath(row: index, section: 1), to: IndexPath(row: tableView.numberOfRows(inSection: 0), section: 0))
                 found = true
+                
+                let realmEditors = realm.objects(RealmEditor.self)
+                for editor in realmEditors {
+                    if editor.editorId == ae.editorId {
+                        try! realm.write {
+                            editor.isAdded = true
+                            editor.sortId = chosenEditors[chosenEditors.count - 1].sortId
+                        }
+                    }
+                }
             }
         }
         
+        // removing
         if !found {
             for (index, ce) in chosenEditors.enumerated() {
                 if ce.editorId == editor.editorId {
                     //TODO: while sorted by id
-                    availableEditors.append(chosenEditors[index])
-                    availableEditors[availableEditors.count - 1].isAdded = false
+                    availableEditors.insert(chosenEditors[index], at: 0)
+                    availableEditors[0].isAdded = false
                     chosenEditors.remove(at: index)
                     tableView.moveRow(at: IndexPath(row: index, section: 0), to: IndexPath(row: tableView.numberOfRows(inSection: 1), section: 1))
+                    
+                    let realmEditors = realm.objects(RealmEditor.self)
+                    for editor in realmEditors {
+                        if editor.editorId == availableEditors[0].editorId {
+                            try! realm.write {
+                                editor.isAdded = false
+                                editor.sortId = chosenEditors[0].sortId
+                            }
+                        }
+                    }
                 }
             }
         }
