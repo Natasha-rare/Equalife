@@ -16,7 +16,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra venenatis
 """
 
 // Тестовый объект Article
-let testArticle = Article(title: "TestArticle", contents: content, imagesURL: ["FlatLogo"], author: "Author", date: "22-07-2021", isSaved: false)
+let testArticle = Article(title: "TestArticle", contents: content, imagesURL: ["LogoFlat", "LogoFlat"], author: "Author", date: "22-07-2021", isSaved: false)
 
 class ArticleVC: UIViewController{
     
