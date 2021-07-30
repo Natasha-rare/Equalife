@@ -24,6 +24,7 @@ struct ArticleView: View {
                                 ForEach((0...article.imagesURL.count - 1), id: \.self) { imageIndex in
                                     Image(article.imagesURL[imageIndex])
                                         .resizable()
+                                        .aspectRatio(contentMode: .fit)
                                         .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.3)
                                 }
                             }
@@ -45,23 +46,19 @@ struct ArticleView: View {
                                     Spacer()
                                     HStack{
                                         Text(article.author ??  " " )
+                                            .foregroundColor(.white)
                                             .font(.title)
                                             .fontWeight(.bold)
                                             .padding([.leading, .trailing], 5)
-                                            .background(
-                                                RoundedRectangle(cornerRadius: 10)
-                                                    .fill(Color(#colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)))
-                                            )
+                                            
                                             
                                         Spacer()
                                         Text(article.date)
+                                            .foregroundColor(.white)
                                             .font(.title)
                                             .fontWeight(.bold)
                                             .padding([.leading, .trailing], 5)
-                                            .background(
-                                                RoundedRectangle(cornerRadius: 10)
-                                                    .fill(Color(#colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)))
-                                            )
+                                            
                                     }
                                 }
                             }
