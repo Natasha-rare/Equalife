@@ -22,15 +22,22 @@ struct ArticleView: View {
                     VStack{
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 20) {
-                                    ForEach((0...article.imagesURL.count - 1), id: \.self) { imageIndex in
-                                        KFImage(URL(string: article.imagesURL[imageIndex])!)
+                                    if article.imagesURL.count == 0 {
+                                        Image("imagePlaceholder")
                                             .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.3)
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.35)
+                                    } else {
+                                        ForEach((0..<article.imagesURL.count), id: \.self) { imageIndex in
+                                            KFImage(URL(string: article.imagesURL[imageIndex])!)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.35)
+                                        }
                                     }
                                 }
                             }
-                            .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.3, alignment: .center)
+                            .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.35, alignment: .center)
                             .overlay(
                                 ZStack(){
                                     LinearGradient(gradient:
@@ -66,20 +73,21 @@ struct ArticleView: View {
                                 
                             )
                         VStack{
-                            HStack{
-                                Text(article.title)
-                                    .foregroundColor(Color(.black))
-                                    .font(.title)
-                                    .fontWeight(.semibold)
-                                    .padding(.leading, 20)
-                                    
-                                Spacer()
-                            }
+                            Text(article.title)
+                                .foregroundColor(Color(.black))
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                                .padding([.leading, .trailing], 20)
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
+                            
                             Text(article.contents)
                                 .foregroundColor(Color(.black))
                                 .font(.body)
                                 .multilineTextAlignment(.leading)
-                                .padding([.leading, .trailing] , 20)
+                                .padding([.leading, .trailing], 20)
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                     }
                 }

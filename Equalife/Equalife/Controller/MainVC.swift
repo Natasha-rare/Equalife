@@ -21,6 +21,7 @@ class MainVC: UIViewController, EditorChange {
     var articles: [[Article]] = []
     fileprivate var isLoading = false
     fileprivate var hasConnection = true
+    fileprivate var chosenArticle = Article()
     
     var chosenId: Int = -1 {
         didSet {
@@ -298,6 +299,7 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == articlesCollectionView {
+            chosenArticle = articles[chosenIndex][indexPath.item]
             performSegue(withIdentifier: "toArticle", sender: nil)
         }
     }
@@ -306,6 +308,9 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
         if segue.identifier == "toEditing" {
             let vc = segue.destination as! EditorsVC
             vc.delegate = self
+        } else if segue.identifier == "toArticle" {
+            let vc = segue.destination as! ArticleVC
+            vc.article = chosenArticle
         }
     }
 }
