@@ -31,13 +31,22 @@ struct ArticleView: View {
                                     Text(article.author ??  " " )
                                         .font(.title)
                                         .fontWeight(.bold)
-                                        .padding(.leading, 20)
+                                        .padding(5)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 5)
+                                                .fill(Color(#colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)))
+                                        )
+                                        
                                         
                                     Spacer()
                                     Text(article.date)
                                         .font(.title)
                                         .fontWeight(.bold)
-                                        .padding(.trailing, 20)
+                                        .padding(5)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 5)
+                                                .fill(Color(#colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)))
+                                        )
                                 }
                             }
                         )
