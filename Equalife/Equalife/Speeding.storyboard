@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,16 +15,101 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cC5-aC-8KI">
+                                <rect key="frame" x="20" y="95" width="374" height="767"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <mutableString key="text">Аналитики «Тинькофф Образования» провели исследование, чтобы определить самые популярные вузы и факультеты среди абитуриентов-программистов и установить факторы, влияющие на их выбор. Большая часть опрошенных учится в НИУ ИТМО, также больше всего в опросе участвовали учащиеся МФТИ, МГУ и ВШЭ.
+
+В ходе работы авторы опросили 128 студентов технических специальностей из разных городов, вузов и образовательных курсов. Из них 54 студента имели диплом «Всероссийской олимпиады школьников» и 74 учились по программе «Тинькофф Поколения». У респондентов спрашивали, в каких вузах они учатся и на каких факультетах, чем руководствовались при выборе учебного заведения и оправдал ли он их ожидания.
+Компания не уточнила дополнительных фактов об опрошенных, например, их материальное положение. В отчёте отметили, что средняя стоимость обучения на технических курсах топовых вузов составляет около 296 тысяч рублей в год, что в 1,7 раза выше, чем в среднем по стране. При этом аналитики не дали полную информацию о том, сколько студентов учится на бюджетной и платной основах. Авторы упомянули лишь то, что из 6,3 % студентов, сменивших вуз, меньше трети респондентов поступали в вузы по грантам, целевым образовательным субсидиям и «другим способам». 4,4 % студентов поступали по ЕГЭ и 2,7 % по результатам олимпиады.
+Большая часть опрошенных учится в Национальном исследовательском университете ИТМО в Санкт-Петербурге (22 %) и в Московском физико-техническом институте (21 %). Следом идут Московский государственный университет (12 %), Высшая школа экономики (10 %), Санкт-Петербургский государственный университет (5 %), Московский государственный технический университет им. Н. Э. Баумана (3 %), Санкт-Петербургский политехнический университет Петра Великого (2 %), Уральский федеральный университет (2 %), Российский технологический университет МИРЭА в Москве (1 %) и Национальный исследовательский ядерный университет МИФИ (1 %).
+Среди опрошенных большая часть учится на мехмате МГУ и факультете компьютерных наук ВШЭ. В число самых популярных также вошла Физтех-школа прикладной математики и информатики в МФТИ вместе с факультетом инноваций и высоких технологий и факультетом управления и прикладной математики.
+</mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="28"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IX8-J0-6DK">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Скорочтение" id="Z0U-Rb-eHj">
+                                        <barButtonItem key="backBarButtonItem" title="Назад" id="SSj-7S-S3l"/>
+                                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pCT-ZS-oR2">
+                                            <rect key="frame" x="46.5" y="4" width="160" height="36"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="     Скорочтение" image="info.circle" catalog="system">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="c3s-EN-o4y" kind="show" id="41B-t7-x7g"/>
+                                            </connections>
+                                        </button>
+                                        <rightBarButtonItems>
+                                            <barButtonItem style="plain" systemItem="pause" id="Hfs-dp-Jik">
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="play" id="iHc-ML-KPB">
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="DRI-aV-suw">
+                                                <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0:00" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" id="LMG-ub-MJw">
+                                                    <rect key="frame" x="212.5" y="3" width="97" height="38.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="94"/>
+            <point key="canvasLocation" x="34.782608695652179" y="93.75"/>
+        </scene>
+        <!--instruction VC-->
+        <scene sceneID="YL0-Tb-bKX">
+            <objects>
+                <viewController title="instruction VC" id="c3s-EN-o4y" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UV6-mp-KQa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HYj-o5-dAl">
+                                <rect key="frame" x="20" y="38" width="374" height="453"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <mutableString key="text">Добро пожаловать в модуль скорочтение! Перед Вами находится текст, который вы должна прочитать как можно быстрее. Вверху находится таймер, который будет отсчитывать премя, пройденное с начала выполнения задания. Вы можете остановить таймер и начать заново. Удачи!</mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="28"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ScP-Uu-gcx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1u0-TN-ghh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="811.59420289855075" y="93.75"/>
         </scene>
     </scenes>
     <resources>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -15,6 +15,16 @@ class SpeedingVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func createTimer() {
+      if timer == nil {
+        timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                     target: self,
+                                     selector: #selector(updateTimer),
+                                     userInfo: nil,
+                                     repeats: true)
+      }
+    }
+    
 
     /*
     // MARK: - Navigation
