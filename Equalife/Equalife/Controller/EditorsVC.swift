@@ -77,7 +77,7 @@ class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, I
                 if editor.editorId == chosenEditors[chosenEditors.count - 1].editorId {
                     try! realm.write {
                         editor.isAdded = true
-                        editor.sortId = chosenEditors[chosenEditors.count - 1].sortId
+                        editor.sortId = chosenEditors.count
                     }
                 }
             }

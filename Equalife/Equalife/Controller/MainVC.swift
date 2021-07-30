@@ -125,16 +125,6 @@ class MainVC: UIViewController, EditorChange {
     }
     
     func editorsChanged() {
-        for (index, _) in chosenEditors.enumerated() {
-            if index != 0 {
-                let cell = topBarCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as! EditorCell
-                cell.anotherChosen()
-            }
-        }
-        
-        let cell = topBarCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as! EditorCell
-        cell.thisChosen()
-        
         updateEditors()
     }
     
@@ -216,6 +206,8 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
                 if indexPath.item == 0 {
                     cell.editorButton.setImage(UIImage(named: "globe"), for: .normal)
                     cell.thisChosen()
+                } else {
+                    cell.anotherChosen()
                 }
                 return cell
             }
