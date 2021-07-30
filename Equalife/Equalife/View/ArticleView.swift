@@ -17,7 +17,7 @@ struct ArticleView: View {
     
     var body: some View {
             ScrollView(.vertical, showsIndicators: false, content: {
-                GeometryReader{ geometry in
+//                GeometryReader{ geometry in
                 ZStack{
                     VStack{
                             ScrollView(.horizontal, showsIndicators: false) {
@@ -61,7 +61,7 @@ struct ArticleView: View {
                                                 
                                                 
                                             Spacer()
-                                            Text("Top View \(geometry.frame(in: .global).midY)")
+                                            Text("Top View ") //\(geometry.frame(in: .global).midY)
                                                 .foregroundColor(.white)
                                                 .font(.title)
                                                 .fontWeight(.bold)
@@ -91,8 +91,7 @@ struct ArticleView: View {
                         }
                     }
                 }
-                }
-                
+            //}
             })
             .ignoresSafeArea()
     }
