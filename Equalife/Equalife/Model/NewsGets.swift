@@ -65,9 +65,12 @@ class APIService {
                     let json = jsonAll[i]
                     let _ = json["url"].stringValue
                     let text = json["entryContent"]["html"].stringValue.html2String
-                    var content:[String] = text.components(separatedBy: " \n")
-                    content.removeSubrange(0..<4)
-                    if content[0].contains("Listen") { content.removeFirst() }
+                    var content: [String] = text.components(separatedBy: " \n")
+                    
+                    if content.count > 4 {
+                        content.removeSubrange(0..<4)
+                        if content[0].contains("Listen") { content.removeFirst() }  // карл, зачем?
+                    }
                     
                     let a = Article(title: json["title"].stringValue,
                                    contents: content.joined(separator: ""),

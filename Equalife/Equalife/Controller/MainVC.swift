@@ -231,6 +231,9 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "articleCell", for: indexPath) as! ArticleCell
             cell.titleLabel.text = articles[chosenIndex][indexPath.row].title
+            if articles[chosenIndex][indexPath.row].title.isEmpty {
+                cell.titleLabel.text = "Картинка"
+            }
             
             if articles[chosenIndex][indexPath.row].imagesURL.isEmpty {
                 cell.articleImageView.image = UIImage(named: "imagePlaceholder")
