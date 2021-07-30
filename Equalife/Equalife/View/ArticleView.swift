@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ArticleView: View {
     
@@ -22,7 +23,8 @@ struct ArticleView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
                                 ForEach((0...article.imagesURL.count - 1), id: \.self) { imageIndex in
-                                    Image(article.imagesURL[imageIndex])
+//                                    Image()
+                                    KFImage(URL(string: article.imagesURL[imageIndex])!)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.3)

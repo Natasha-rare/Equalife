@@ -16,7 +16,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra venenatis
 """
 
 // Тестовый объект Article
-let testArticle = Article(title: "TestArticle", contents: content, imagesURL: ["LogoFlat", "LogoFlat"], author: "Author", date: "22-07-2021", isSaved: false)
+let testArticle = Article(title: "TestArticle", contents: content, imagesURL: ["https://scontent-arn2-1.xx.fbcdn.net/v/t1.18169-9/20994373_278133706005435_3829605645311607410_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=973b4a&_nc_ohc=fRznqutEKlwAX_mcGOf&_nc_ht=scontent-arn2-1.xx&oh=2bc17bed259da86898a08946839f0724&oe=612B5066", "LogoFlat"], author: "Author", date: "22-07-2021", isSaved: false)
 
 class ArticleVC: UIViewController{
     
@@ -29,6 +29,7 @@ class ArticleVC: UIViewController{
         setupConstrains()
         
     }
+    
     fileprivate func setupConstrains(){
         contentView.view.translatesAutoresizingMaskIntoConstraints = false
         contentView.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
