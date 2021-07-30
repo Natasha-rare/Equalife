@@ -54,9 +54,9 @@ class APIService {
         return text
     }
 
-    func getContentDtf(type:String, site:String = "dtf", completion: @escaping(_ art: [Article])->()){
+    func getContentDtf(type:String, page: Int, site:String = "dtf", completion: @escaping(_ art: [Article])->()){
         var articles :[Article] = []
-        AF.request("https://api.\(site).ru/v1.9/timeline/\(type)").responseJSON{
+        AF.request("https://api.\(site).ru/v1.9/timeline/\(type)?count=8&offset\(page*8)").responseJSON{
             responseJSON in
             switch responseJSON.result{
             case .success(let value):
@@ -100,7 +100,7 @@ class APIService {
                     completion([])
                 }
             case 0: //Meduza_news
-                AF.request("https://meduza.io/api/v3/search?chrono=news&locale=ru&page=\(page)&per_page=24").responseJSON { responseJSON in
+                AF.request("https://meduza.io/api/v3/search?chrono=news&locale=ru&page=\(page)&per_page=8").responseJSON { responseJSON in
                     switch responseJSON.result {
                     case .success(let value):
                         let json = JSON(value)
@@ -121,7 +121,7 @@ class APIService {
                     }
                 }
         case 1: //Meduza_stories
-            AF.request("https://meduza.io/api/v3/search?chrono=articles&locale=ru&page=\(page)&per_page=24").responseJSON
+            AF.request("https://meduza.io/api/v3/search?chrono=articles&locale=ru&page=\(page)&per_page=12").responseJSON
             {responseJSON in
             switch responseJSON.result {
             case .success(let value):
@@ -142,98 +142,98 @@ class APIService {
             }
         }
         case 5://DTF_games
-            getContentDtf(type: "games/recent") { article in
+            getContentDtf(type: "games/recent", page: page) { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 6: //DTF_gameindustry
-            getContentDtf(type: "gameindustry/recent") { article in
+            getContentDtf(type: "gameindustry/recent", page: page) { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 7: //DTF_gamedev
-            getContentDtf(type: "gamedev/recent") { article in
+            getContentDtf(type: "gamedev/recent", page: page) { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 8: //DTF_cinema
-            getContentDtf(type: "cinema/recent") { article in
+            getContentDtf(type: "cinema/recent", page: page) { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 9: //DTF_all
-            getContentDtf(type: "default/recent") { article in
+            getContentDtf(type: "default/recent", page: page) { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 10: //Tjournal_news
-            getContentDtf(type: "news/recent", site: "tjournal") { article in
+            getContentDtf(type: "news/recent", page: page, site: "tjournal") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 11: //Tjournal_stories
-            getContentDtf(type: "stories/recent", site: "tjournal") { article in
+            getContentDtf(type: "stories/recent", page: page, site: "tjournal") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 12: //Tjournal_tech
-            getContentDtf(type: "tech/recent", site: "tjournal") { article in
+            getContentDtf(type: "tech/recent", page: page, site: "tjournal") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 13: //Tjournal_dev
-            getContentDtf(type: "dev/recent", site: "tjournal") { article in
+            getContentDtf(type: "dev/recent", page: page, site: "tjournal") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 14: //Tjournal_all
-            getContentDtf(type: "default/recent", site: "tjournal") { article in
+            getContentDtf(type: "default/recent", page: page, site: "tjournal") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 15: //Vc_all
-            getContentDtf(type: "default/recent", site: "vc") { article in
+            getContentDtf(type: "default/recent", page: page, site: "vc") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 16: //Vc_design
-            getContentDtf(type: "design/recent", site: "vc") { article in
+            getContentDtf(type: "design/recent", page: page, site: "vc") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 17: //Vc_tech
-            getContentDtf(type: "tech/recent", site: "vc") { article in
+            getContentDtf(type: "tech/recent", page: page, site: "vc") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 18: //Vc_dev
-            getContentDtf(type: "dev/recent", site: "vc") { article in
+            getContentDtf(type: "dev/recent", page: page, site: "vc") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)

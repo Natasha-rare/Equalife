@@ -36,6 +36,14 @@ struct Article {
     }
 }
 
+enum EditorCategory: String {
+    case politics
+    case games
+    case tech
+    case movies
+    case design
+}
+
 // Структура издания (может что-то добавлю)
 struct Editor {
     var name: String = ""
@@ -44,15 +52,17 @@ struct Editor {
     var editorId: Int = 0
     var sortId: Int = 0
     var isAdded: Bool = false
+    var category: [EditorCategory] = [.politics]
     
     init() {}
     
-    init(name: String, imageName: String, info: String, editorId: Int, isAdded: Bool) {
+    init(name: String, imageName: String, info: String, editorId: Int, isAdded: Bool, category: [EditorCategory]) {
         self.name = name
         self.imageName = imageName
         self.info = info
         self.editorId = editorId
         self.isAdded = isAdded
+        self.category = category
     }
 }
 
@@ -63,14 +73,19 @@ class RealmEditor: Object {
     @objc dynamic var editorId: Int = 0
     @objc dynamic var sortId: Int = 0
     @objc dynamic var isAdded: Bool = false
+    @objc dynamic var category: String = ""
     
-    convenience init(name: String, imageName: String, info: String, editorId: Int, isAdded: Bool) {
+    convenience init(name: String, imageName: String, info: String, editorId: Int, isAdded: Bool, category: [EditorCategory]) {
         self.init()
         self.name = name
         self.imageName = imageName
         self.info = info
         self.editorId = editorId
         self.isAdded = isAdded
+        for category in category {
+            self.category += "\(category.rawValue)|"
+        }
+        self.category.removeLast()
     }
 }
 
