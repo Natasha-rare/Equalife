@@ -56,10 +56,11 @@ class APIService {
 
     func getContentDtf(type:String, page: Int, site:String = "dtf", completion: @escaping(_ art: [Article])->()){
         var articles :[Article] = []
-        AF.request("https://api.\(site).ru/v1.9/timeline/\(type)?count=8&offset\(page*8)").responseJSON{
+        AF.request("https://api.\(site).ru/v1.9/timeline/\(type)?count=8&offset=\(page*8)").responseJSON{
             responseJSON in
             switch responseJSON.result{
             case .success(let value):
+                
                 let jsonAll = JSON(value)["result"]
                 for i  in 0..<jsonAll.count {
                     let json = jsonAll[i]
@@ -92,6 +93,7 @@ class APIService {
 
     // Здесь будут все GET запросы
     func GetNews(id :Int, page: Int, completion: @escaping ([Article])->()){
+        AF.cancelAllRequests()
         var articles: [Article] = []
         switch id{
             case -1:
@@ -100,7 +102,7 @@ class APIService {
                     completion([])
                 }
             case 0: //Meduza_news
-                AF.request("https://meduza.io/api/v3/search?chrono=news&locale=ru&page=\(page)&per_page=8").responseJSON { responseJSON in
+                AF.request("https://meduza.io/api/v3/search?chrono=news&locale=ru&page=\(page)&per_page=24").responseJSON { responseJSON in
                     switch responseJSON.result {
                     case .success(let value):
                         let json = JSON(value)
@@ -121,7 +123,7 @@ class APIService {
                     }
                 }
         case 1: //Meduza_stories
-            AF.request("https://meduza.io/api/v3/search?chrono=articles&locale=ru&page=\(page)&per_page=12").responseJSON
+            AF.request("https://meduza.io/api/v3/search?chrono=articles&locale=ru&page=\(page)&per_page=24").responseJSON
             {responseJSON in
             switch responseJSON.result {
             case .success(let value):

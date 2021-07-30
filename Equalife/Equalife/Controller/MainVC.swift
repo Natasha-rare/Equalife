@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import RealmSwift
+import CloudKit
 
 protocol EditorChange {
     func editorsChanged()
@@ -18,7 +19,8 @@ class MainVC: UIViewController, EditorChange {
     var chosenEditors: [Editor] = [Editor(name: "Global", imageName: "globe", info: "", editorId: -1, isAdded: true, category: [])]
     
     var articles: [[Article]] = []
-    var isLoading = false
+    fileprivate var isLoading = false
+    fileprivate var hasConnection = true
     
     var chosenId: Int = -1 {
         didSet {
@@ -32,13 +34,23 @@ class MainVC: UIViewController, EditorChange {
     var chosenIndex: Int = 0 {
         didSet {
             if articles[chosenIndex].isEmpty {
-                getNews(id: chosenId, page: 0)
+                if Reachability.isConnectedToNetwork(){
+                    getNews(id: chosenId, page: page)
+                } else{
+                    hasConnection = false
+                    articlesCollectionView.reloadData()
+                }
             } else {
                 articlesCollectionView.reloadData()
             }
         }
     }
     
+    var page: Int {
+        get {
+            return articles[chosenIndex].count / 8
+        }
+    }
     
     @IBOutlet weak var topBarCollectionView: UICollectionView!
     @IBOutlet weak var articlesCollectionView: UICollectionView!
@@ -91,9 +103,6 @@ class MainVC: UIViewController, EditorChange {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
         
-        // add border to tbcv
-        // TODO: getting editors from realm
-        
         updateEditors()
     }
     
@@ -133,13 +142,24 @@ class MainVC: UIViewController, EditorChange {
         isLoading = true
         articlesCollectionView.reloadData()
         
+        // MARK: here start animating
+        
         api.GetNews(id: id, page: page, completion: { articlesRes in
-            self.articles[self.chosenIndex] = articlesRes
+            self.articles[self.chosenIndex].append(contentsOf: articlesRes)
             self.isLoading = false
             self.articlesCollectionView.reloadData()
         })
     }
     
+}
+
+extension MainVC: LoadMoreDelegate {
+    func loadNextPage() {
+        getNews(id: chosenId, page: page)
+        let cell = collectionView(articlesCollectionView, cellForItemAt: IndexPath(item: articles[chosenIndex].count, section: 0)) as! LoadMoreCell
+        cell.loadButton.isEnabled = false
+//        cell.loadButton.tintColor = .link
+    }
 }
 
 extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, EditorDelegate {
@@ -161,7 +181,7 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
             if articles[chosenIndex].isEmpty {
                 return 1
             }
-            return articles[chosenIndex].count
+            return articles[chosenIndex].count + 1
         }
     }
     
@@ -169,6 +189,10 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
         if collectionView == topBarCollectionView {
             return CGSize(width: 64, height: 64)
         } else {
+            if !hasConnection {
+                return CGSize(width: self.view.frame.width, height: collectionView.frame.height)
+            }
+            
             if articles[chosenIndex].isEmpty {
                 return CGSize(width: self.view.frame.width, height: collectionView.frame.height)
             }
@@ -214,6 +238,11 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
         } else {
             // Articles Collection View
             
+            if !hasConnection {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noConnectionCell", for: indexPath)
+                return cell
+            }
+            
             if articles[chosenIndex].isEmpty {
                 switch isLoading {
                 case true:
@@ -224,6 +253,14 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noArticlesCell", for: indexPath) as! NoArticlesCell
                     return cell
                 }
+            }
+            
+            if indexPath.row == articles[chosenIndex].count {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "loadMoreCell", for: indexPath) as! LoadMoreCell
+                cell.delegate = self
+                cell.loadButton.isEnabled = true
+                cell.loadButton.tintColor = .systemBlue
+                return cell
             }
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "articleCell", for: indexPath) as! ArticleCell

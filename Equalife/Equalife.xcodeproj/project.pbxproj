@@ -32,6 +32,8 @@
 		1774674F26A73C94001F85F9 /* EditorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774674E26A73C94001F85F9 /* EditorCell.swift */; };
 		1774675126A743E7001F85F9 /* EditEditorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774675026A743E7001F85F9 /* EditEditorsCell.swift */; };
 		1774675326A75DE1001F85F9 /* BorderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774675226A75DE1001F85F9 /* BorderExtension.swift */; };
+		17E69FB326B43F8900778809 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E69FB226B43F8900778809 /* Reachability.swift */; };
+		17E69FB526B4412800778809 /* LoadMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E69FB426B4412800778809 /* LoadMoreCell.swift */; };
 		17F51EED26A862A500C6CDDC /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F51EEC26A862A500C6CDDC /* ArticleCell.swift */; };
 		5423AECF3C607DC56BD199BD /* Pods_Equalife.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0738DBBDEE2AA897378FEBB /* Pods_Equalife.framework */; };
 		86A9912426A97EEC00129959 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9912326A97EEC00129959 /* ArticleView.swift */; };
@@ -66,6 +68,8 @@
 		1774674E26A73C94001F85F9 /* EditorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorCell.swift; sourceTree = "<group>"; };
 		1774675026A743E7001F85F9 /* EditEditorsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEditorsCell.swift; sourceTree = "<group>"; };
 		1774675226A75DE1001F85F9 /* BorderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderExtension.swift; sourceTree = "<group>"; };
+		17E69FB226B43F8900778809 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		17E69FB426B4412800778809 /* LoadMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreCell.swift; sourceTree = "<group>"; };
 		17F51EEC26A862A500C6CDDC /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		6CDA110BA158FC16DC5DE417 /* Pods-Equalife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Equalife.debug.xcconfig"; path = "Target Support Files/Pods-Equalife/Pods-Equalife.debug.xcconfig"; sourceTree = "<group>"; };
 		86A9912326A97EEC00129959 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				1774674826A725A9001F85F9 /* NewsGets.swift */,
 				1774674A26A725C1001F85F9 /* NewsSearch.swift */,
 				1771F67226B07A4300FAAC25 /* UsersData.swift */,
+				17E69FB226B43F8900778809 /* Reachability.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 				1719B28126AA12100036CCAD /* PublisherCell.swift */,
 				1771F66E26B0728400FAAC25 /* NoArticlesCell.swift */,
 				1771F67026B0729400FAAC25 /* LoadingArticlesCell.swift */,
+				17E69FB426B4412800778809 /* LoadMoreCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17E69FB526B4412800778809 /* LoadMoreCell.swift in Sources */,
 				1771F67326B07A4300FAAC25 /* UsersData.swift in Sources */,
 				1774674326A72426001F85F9 /* SavedVC.swift in Sources */,
 				1774674926A725A9001F85F9 /* NewsGets.swift in Sources */,
@@ -317,6 +324,7 @@
 				1774673F26A723F7001F85F9 /* MainVC.swift in Sources */,
 				1774674726A7249E001F85F9 /* News.swift in Sources */,
 				1247C05B26AAAB4900A820FA /* Struct and classes.swift in Sources */,
+				17E69FB326B43F8900778809 /* Reachability.swift in Sources */,
 				1771F67126B0729400FAAC25 /* LoadingArticlesCell.swift in Sources */,
 				1774675126A743E7001F85F9 /* EditEditorsCell.swift in Sources */,
 				1774672626A71E97001F85F9 /* SceneDelegate.swift in Sources */,
