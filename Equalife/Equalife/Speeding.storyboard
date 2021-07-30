@@ -38,7 +38,7 @@
                                     <navigationItem title="Скорочтение" id="Z0U-Rb-eHj">
                                         <barButtonItem key="backBarButtonItem" title="Назад" id="SSj-7S-S3l"/>
                                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pCT-ZS-oR2">
-                                            <rect key="frame" x="46.5" y="4" width="160" height="36"/>
+                                            <rect key="frame" x="42.5" y="4" width="160" height="36"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -46,19 +46,25 @@
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
-                                                <segue destination="c3s-EN-o4y" kind="show" id="41B-t7-x7g"/>
+                                                <segue destination="c3s-EN-o4y" kind="show" identifier="infoShow" id="41B-t7-x7g"/>
                                             </connections>
                                         </button>
                                         <rightBarButtonItems>
-                                            <barButtonItem style="plain" systemItem="pause" id="Hfs-dp-Jik">
+                                            <barButtonItem style="plain" systemItem="stop" id="Hfs-dp-Jik">
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="CancelTask:" destination="Y6W-OH-hqX" id="yQX-qd-J2D"/>
+                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="play" id="iHc-ML-KPB">
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="startTimer:" destination="Y6W-OH-hqX" id="pw1-sl-98F"/>
+                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" id="DRI-aV-suw">
                                                 <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0:00" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" id="LMG-ub-MJw">
-                                                    <rect key="frame" x="212.5" y="3" width="97" height="38.5"/>
+                                                    <rect key="frame" x="208.5" y="3" width="97" height="38.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
@@ -73,6 +79,10 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="PlayBtn" destination="iHc-ML-KPB" id="H8g-8P-81x"/>
+                        <outlet property="timeLabel" destination="LMG-ub-MJw" id="TQH-H6-auu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
