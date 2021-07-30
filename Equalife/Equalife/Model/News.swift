@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 // Структура статьи (просто для начала)
 struct Article {
@@ -35,23 +36,58 @@ struct Article {
     }
 }
 
+enum EditorCategory: String {
+    case politics
+    case games
+    case tech
+    case movies
+    case design
+}
+
 // Структура издания (может что-то добавлю)
 struct Editor {
     var name: String = ""
     var imageName: String = ""
     var info: String = ""
     var editorId: Int = 0
+    var sortId: Int = 0
     var isAdded: Bool = false
-    init(){
-    }
+    var category: [EditorCategory] = [.politics]
     
-    init(name: String, imageName: String, info: String, editorId: Int, isAdded: Bool) {
+    init() {}
+    
+    init(name: String, imageName: String, info: String, editorId: Int, isAdded: Bool, category: [EditorCategory]) {
         self.name = name
         self.imageName = imageName
         self.info = info
         self.editorId = editorId
         self.isAdded = isAdded
+        self.category = category
     }
 }
+
+class RealmEditor: Object {
+    @objc dynamic var name: String = ""
+    @objc dynamic var imageName: String = ""
+    @objc dynamic var info: String = ""
+    @objc dynamic var editorId: Int = 0
+    @objc dynamic var sortId: Int = 0
+    @objc dynamic var isAdded: Bool = false
+    @objc dynamic var category: String = ""
+    
+    convenience init(name: String, imageName: String, info: String, editorId: Int, isAdded: Bool, category: [EditorCategory]) {
+        self.init()
+        self.name = name
+        self.imageName = imageName
+        self.info = info
+        self.editorId = editorId
+        self.isAdded = isAdded
+        for category in category {
+            self.category += "\(category.rawValue)|"
+        }
+        self.category.removeLast()
+    }
+}
+
 
 // TODO: Здесь будут все добавленные издания, сохраненные в кэше, но это все потом

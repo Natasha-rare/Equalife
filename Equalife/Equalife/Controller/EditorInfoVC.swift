@@ -32,6 +32,25 @@ class EditorInfoVC: UIViewController {
         buttonSetup()
         
         startAdded = editor.isAdded
+        
+        var labelCategories = ""
+        for category in editor.category {
+            switch category {
+            case .politics:
+                labelCategories += " Политика,"
+            case .games:
+                labelCategories += " Игры,"
+            case .tech:
+                labelCategories += " Технологии,"
+            case .movies:
+                labelCategories += " Фильмы,"
+            case .design:
+                labelCategories += " Дизайн,"
+            }
+        }
+        labelCategories.removeLast()
+        
+        categoryLabel.text = "Категории:\(labelCategories)"
     }
     
     func buttonSetup() {

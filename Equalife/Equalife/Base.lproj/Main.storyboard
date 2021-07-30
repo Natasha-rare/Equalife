@@ -393,7 +393,7 @@
                                                         <imageReference key="image" image="edit" symbolScale="large"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="Jah-mT-MLg" kind="show" id="9Sj-bQ-nVJ"/>
+                                                        <segue destination="Jah-mT-MLg" kind="show" identifier="toEditing" id="9Sj-bQ-nVJ"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -440,37 +440,26 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoFlat" translatesAutoresizingMaskIntoConstraints="NO" id="7zb-q5-3oc">
-                                                    <rect key="frame" x="192" y="0.0" width="192" height="140"/>
+                                                    <rect key="frame" x="230.5" y="0.0" width="153.5" height="140"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="IrZ-QU-l8Y"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8i-jz-I3O">
-                                                    <rect key="frame" x="12" y="8" width="172" height="21.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8i-jz-I3O">
+                                                    <rect key="frame" x="12" y="16.5" width="210.5" height="107.5"/>
+                                                    <string key="text">Title Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor</string>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5r6-Oa-xMl">
-                                                    <rect key="frame" x="8" y="29.5" width="176" height="73.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="179" id="Gfa-s2-QFF"/>
-                                                    </constraints>
-                                                    <color key="textColor" systemColor="labelColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Q8i-jz-I3O" firstAttribute="centerY" secondItem="5qA-wp-Kpm" secondAttribute="centerY" id="8ID-Yc-EOx"/>
                                                 <constraint firstAttribute="bottom" secondItem="7zb-q5-3oc" secondAttribute="bottom" id="Jys-bl-YR8"/>
-                                                <constraint firstItem="5r6-Oa-xMl" firstAttribute="top" secondItem="Q8i-jz-I3O" secondAttribute="bottom" id="LyH-Rj-tGz"/>
                                                 <constraint firstItem="Q8i-jz-I3O" firstAttribute="leading" secondItem="5qA-wp-Kpm" secondAttribute="leading" constant="12" id="NSb-Kf-ETf"/>
-                                                <constraint firstItem="7zb-q5-3oc" firstAttribute="leading" secondItem="5r6-Oa-xMl" secondAttribute="trailing" constant="8" id="VcT-r9-fTl"/>
                                                 <constraint firstAttribute="trailing" secondItem="7zb-q5-3oc" secondAttribute="trailing" id="Xyg-hc-qdO"/>
-                                                <constraint firstItem="Q8i-jz-I3O" firstAttribute="top" secondItem="5qA-wp-Kpm" secondAttribute="top" constant="8" id="h9d-so-jRK"/>
-                                                <constraint firstItem="7zb-q5-3oc" firstAttribute="width" secondItem="5qA-wp-Kpm" secondAttribute="width" multiplier="0.5" id="kPD-mW-Bjn"/>
+                                                <constraint firstItem="7zb-q5-3oc" firstAttribute="width" secondItem="5qA-wp-Kpm" secondAttribute="width" multiplier="0.4" id="kPD-mW-Bjn"/>
                                                 <constraint firstItem="7zb-q5-3oc" firstAttribute="leading" secondItem="Q8i-jz-I3O" secondAttribute="trailing" constant="8" id="moR-Y9-1mj"/>
-                                                <constraint firstItem="5r6-Oa-xMl" firstAttribute="leading" secondItem="5qA-wp-Kpm" secondAttribute="leading" constant="8" id="pgU-fq-5WS"/>
                                                 <constraint firstItem="7zb-q5-3oc" firstAttribute="top" secondItem="5qA-wp-Kpm" secondAttribute="top" id="uE0-70-BB9"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -482,8 +471,98 @@
                                         <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                         <connections>
                                             <outlet property="articleImageView" destination="7zb-q5-3oc" id="ByK-T0-RVM"/>
-                                            <outlet property="contentTextView" destination="5r6-Oa-xMl" id="ulB-sL-ukP"/>
                                             <outlet property="titleLabel" destination="Q8i-jz-I3O" id="tKj-bo-OIM"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="noArticlesCell" id="gdV-R9-XzL" customClass="NoArticlesCell" customModule="Equalife" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="160" width="384" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1b8-TP-fR5">
+                                            <rect key="frame" x="0.0" y="0.0" width="384" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В этом разделе нет статей" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="un3-Jt-13E">
+                                                    <rect key="frame" x="20" y="59.5" width="344" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="un3-Jt-13E" firstAttribute="centerY" secondItem="1b8-TP-fR5" secondAttribute="centerY" id="b2E-df-qa0"/>
+                                                <constraint firstItem="un3-Jt-13E" firstAttribute="leading" secondItem="1b8-TP-fR5" secondAttribute="leading" constant="20" id="c7b-bv-91C"/>
+                                                <constraint firstAttribute="trailing" secondItem="un3-Jt-13E" secondAttribute="trailing" constant="20" id="kR7-9h-F16"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="noArticlesLabel" destination="un3-Jt-13E" id="7dF-dc-fYQ"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="loadingCell" id="mqT-fz-4rB" customClass="LoadingArticlesCell" customModule="Equalife" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="310" width="384" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WTu-gy-Akh">
+                                            <rect key="frame" x="0.0" y="0.0" width="384" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="p4Y-gp-EVI">
+                                                    <rect key="frame" x="182" y="60" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="p4Y-gp-EVI" firstAttribute="centerY" secondItem="WTu-gy-Akh" secondAttribute="centerY" id="cwC-7t-A3Y"/>
+                                                <constraint firstItem="p4Y-gp-EVI" firstAttribute="centerX" secondItem="WTu-gy-Akh" secondAttribute="centerX" id="xdd-7a-R5b"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="loadingIndicator" destination="p4Y-gp-EVI" id="rte-ra-jXG"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="noConnectionCell" id="pvd-lF-ETz">
+                                        <rect key="frame" x="15" y="460" width="384" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WL8-gI-2Gc">
+                                            <rect key="frame" x="0.0" y="0.0" width="384" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="К сожалению, без интернета наши полномочия, как говорится, всё..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29B-eV-Bp1">
+                                                    <rect key="frame" x="20" y="49.5" width="344" height="41"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="29B-eV-Bp1" firstAttribute="centerY" secondItem="WL8-gI-2Gc" secondAttribute="centerY" id="Jfv-A7-FFb"/>
+                                                <constraint firstAttribute="trailing" secondItem="29B-eV-Bp1" secondAttribute="trailing" constant="20" id="gxc-Jb-ciO"/>
+                                                <constraint firstItem="29B-eV-Bp1" firstAttribute="leading" secondItem="WL8-gI-2Gc" secondAttribute="leading" constant="20" id="ii5-5W-Tzm"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="loadMoreCell" id="Tft-lc-GwK" customClass="LoadMoreCell" customModule="Equalife" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="610" width="384" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GDo-1S-kYD">
+                                            <rect key="frame" x="0.0" y="0.0" width="384" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eam-mt-Jbe">
+                                                    <rect key="frame" x="114.5" y="52.5" width="155" height="35"/>
+                                                    <color key="tintColor" systemColor="linkColor"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Загрузить еще..."/>
+                                                    <connections>
+                                                        <action selector="loadMore" destination="Tft-lc-GwK" eventType="touchUpInside" id="YiQ-8R-9YA"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Eam-mt-Jbe" firstAttribute="centerY" secondItem="GDo-1S-kYD" secondAttribute="centerY" id="KRF-2D-rYg"/>
+                                                <constraint firstItem="Eam-mt-Jbe" firstAttribute="centerX" secondItem="GDo-1S-kYD" secondAttribute="centerX" id="oBw-bU-U91"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="loadButton" destination="Eam-mt-Jbe" id="1pY-Pm-oxE"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -597,6 +676,9 @@
         <image name="timer" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
