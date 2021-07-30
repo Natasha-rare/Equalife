@@ -6,61 +6,113 @@
 //
 
 import SwiftUI
+import Kingfisher
 
-struct ContentView: View {
+struct ArticleView: View {
     
     let article : Article
     let screenWidth = UIScreen.screenWidth
     let screenHeight = UIScreen.screenHeight
     
-    init(article : Article) {
-        self.article = article
-    }
-    
-    // Это тестовый текст для проверки отображения
-    let someText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nisi diam. Ut nec quam aliquam, volutpat massa a, commodo ex. Mauris sed arcu mi. Integer vitae lorem enim. Maecenas sit amet scelerisque sapien, vitae vulputate odio. Aliquam pretium tellus et mauris consequat condimentum. Nullam non metus eu sem suscipit imperdiet. Etiam tempus nisi augue, tincidunt aliquam sapien lacinia eu. Aliquam placerat tortor et velit tempus pulvinar. Phasellus tempus elit sem, nec suscipit dui pulvinar scelerisque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam vitae tempus sem. Integer elementum sagittis eleifend. Donec efficitur nunc mi, vitae blandit neque hendrerit sit amet. Nunc luctus risus et tristique volutpat. Ut iaculis tincidunt quam, non ullamcorper eros. "
     
     var body: some View {
-        ZStack{
-            Color(#colorLiteral(red: 0.768627451, green: 0.768627451, blue: 0.768627451, alpha: 1))
-                .ignoresSafeArea()
-            VStack(){
-                Spacer()
-                HStack{
-                    Text(self.article.author ?? "")
-                        .padding(.leading, 30)
-                        .font(.title)
-                    Spacer()
-                    Text(self.article.date)
-                        .padding(.trailing, 30)
-                }
-                .frame(width: screenWidth, height: screenHeight * 0.3, alignment: .bottom)
-                Rectangle()
-                    .fill(Color(.white))
-                    .overlay(
+            ScrollView(.vertical, showsIndicators: false, content: {
+                GeometryReader{ geometry in
+                ZStack{
+                    VStack{
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 20) {
+                                    ForEach((0...article.imagesURL.count - 1), id: \.self) { imageIndex in
+                                        KFImage(URL(string: article.imagesURL[imageIndex])!)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.3)
+                                    }
+                                }
+                            }
+                            .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.3, alignment: .center)
+                            .overlay(
+                                ZStack(){
+                                    LinearGradient(gradient:
+                                                        Gradient(
+                                                            colors: [
+                                                                    Color(UIColor.black.withAlphaComponent(1)),
+                                                                    Color(UIColor.black.withAlphaComponent(0.2)),
+                                                                    Color(UIColor.white.withAlphaComponent(0.0))
+                                                            ]),
+                                                       startPoint: .bottom,
+                                                       endPoint: .center
+                                        )
+                                    VStack{
+                                        Spacer()
+                                        HStack{
+                                            Text(article.author ??  " " )
+                                                .foregroundColor(.white)
+                                                .font(.title)
+                                                .fontWeight(.bold)
+                                                .padding([.leading, .trailing], 5)
+                                                
+                                                
+                                            Spacer()
+                                            Text("Top View \(geometry.frame(in: .global).midY)")
+                                                .foregroundColor(.white)
+                                                .font(.title)
+                                                .fontWeight(.bold)
+                                                .padding([.leading, .trailing], 5)
+                                                
+                                        }
+                                    }
+                                }
+                                
+                            )
                         VStack{
                             HStack{
-                                Text(self.article.title)
-                                    .font(.largeTitle)
-                                    .fontWeight(.bold)
-                                    .padding(.leading, 30)
-                                    .padding(.top, 20)
+                                Text(article.title)
+                                    .foregroundColor(Color(.black))
+                                    .font(.title)
+                                    .fontWeight(.semibold)
+                                    .padding(.leading, 20)
+                                    
                                 Spacer()
                             }
-                            Text(someText)
-                                .padding(.leading, 30)
-                                .padding(.trailing, 30)
-                                .padding(.top, 15)
+                            Text(article.contents)
+                                .foregroundColor(Color(.black))
+                                .font(.body)
+                                .multilineTextAlignment(.leading)
+                                .padding([.leading, .trailing] , 20)
                         }
-                        .frame(width: screenWidth, height: screenHeight * 0.7 , alignment: .top)
-                    )
-                    .frame(width: screenWidth, height: screenHeight * 0.7 , alignment: .leading)
-            }
-            .ignoresSafeArea(.all)
-        }
+                    }
+                }
+                }
+                
+            })
+            .ignoresSafeArea()
     }
 }
 
+struct BackButton : View{
+    var body : some View{
+        Button(action: {
+            
+        }, label: {
+            Image(systemName: "arrowshape.turn.up.left.circle.fill")
+                .font(.largeTitle)
+                .foregroundColor(.black)
+                .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenHeight * 0.08)
+        })
+    }
+    
+}
+
+struct CustomNavigationView : View{
+    
+    var body: some View{
+        HStack{
+            Text("Назад")
+            Spacer()
+        }
+    }
+}
 
 
 // extension для получения размеров экрана
