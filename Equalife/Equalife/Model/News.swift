@@ -42,6 +42,8 @@ enum EditorCategory: String {
     case tech
     case movies
     case design
+    case health
+    case lifestyle
 }
 
 // Структура издания (может что-то добавлю)
