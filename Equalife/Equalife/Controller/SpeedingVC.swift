@@ -12,6 +12,8 @@ class SpeedingVC: UIViewController {
     var timer: Timer?
     var timeCreated:Date = Date()
     var timerStarted:Bool = false
+    var timerLastTime:TimeInterval = TimeInterval()
+    
     @IBOutlet var timeLabel: UITextField!
     
     override func viewDidLoad() {
@@ -26,15 +28,18 @@ class SpeedingVC: UIViewController {
     
     @IBOutlet var PlayBtn: UIBarButtonItem!
     
+    
     func toggleStart(){
-        if (timerStarted){
-            self.PlayBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.pause, target: self, action: Selector("startTimer"))
+        if (!timerStarted){
+            print("starteed")
+            self.PlayBtn.image = UIImage(systemName: "stop")
             timerStarted = true
         }
         else{
+            print("stoppde")
             timerStarted = false
-            self.PlayBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: Selector("startTimer"))
-            
+            self.PlayBtn.image = UIImage(systemName: "play")
+            pauseTimer()
         }
     }
     
@@ -45,7 +50,7 @@ class SpeedingVC: UIViewController {
     
     
     func updateTime(){
-        let time = Date().timeIntervalSince(self.timeCreated)
+        let time = Date().timeIntervalSince(self.timeCreated) + timerLastTime
         
         let hours = Int(time) / 3600
         let minutes = Int(time) / 60 % 60
@@ -67,22 +72,32 @@ class SpeedingVC: UIViewController {
 
 extension SpeedingVC{
     func createTimer() {
-      if timer == nil {
-        let timer = Timer(timeInterval: 1.0,
-          target: self,
-          selector: #selector(updateTimer),
-          userInfo: nil,
-          repeats: true)
-        RunLoop.current.add(timer, forMode: .common)
-        timer.tolerance = 0.1
-        
-        self.timer = timer
-      }
+        print("here")
+          if timer == nil {
+            print("nfnfnfnf")
+            let timer = Timer(timeInterval: 1.0,
+              target: self,
+              selector: #selector(updateTimer),
+              userInfo: nil,
+              repeats: true)
+            RunLoop.current.add(timer, forMode: .common)
+            timer.tolerance = 0.1
+            self.timer = timer
+            self.timeCreated = Date()
+          }
     }
     
     func cancelTimer() {
-      timer?.invalidate()
-      timer = nil
+        timer?.invalidate()
+        timer = nil
+        timeLabel.text = ""
+        timerLastTime = TimeInterval()
+    }
+    
+    func pauseTimer(){
+        timer?.invalidate()
+        timer = nil
+        timerLastTime = Date().timeIntervalSince(self.timeCreated)
     }
     
     @objc func updateTimer(){
