@@ -44,7 +44,6 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.title = ""
         let logo = UIImageView(image: UIImage(named: "LogoFlat"))
         logo.contentMode = .scaleAspectFit
