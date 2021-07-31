@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (5.4.2)
+  - IceCream (2.0.3):
+    - RealmSwift (< 10.8.0)
   - Kingfisher (6.3.0)
   - Realm (5.2.0):
     - Realm/Headers (= 5.2.0)
@@ -10,6 +12,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - IceCream
   - Kingfisher
   - Realm (= 5.2.0)
   - RealmSwift (= 5.2.0)
@@ -18,6 +21,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - IceCream
     - Kingfisher
     - Realm
     - RealmSwift
@@ -25,11 +29,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
+  IceCream: e39ae9fa8c419da0351d6e43e945966cf25880ab
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
   Realm: f749c723e272f08fdf1939af5e61d2bd09b203e8
   RealmSwift: bf0ab78b52c5bafba8b3ad73be8dfb4c1ea5cf01
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 6b635f15c22e7c0925d2aa621b0b0c3006594b25
+PODFILE CHECKSUM: 2414167f2c0d9dcc06c40eb9e21550dd7b741dab
 
 COCOAPODS: 1.10.1

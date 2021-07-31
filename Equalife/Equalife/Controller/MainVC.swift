@@ -63,37 +63,6 @@ class MainVC: UIViewController, EditorChange {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // starting stuff
-        
-        if UsersData.shared.haveAlreadyLaunched == nil || UsersData.shared.haveAlreadyLaunched == false {
-            let startEditors = [
-                Editor(name: "Meduza - Новости", imageName: "meduza", info: "Латвийское интернет-издание, созданное бывшим главным редактором Lenta.ru Галиной Тимченко в 2014 году", editorId: 0, isAdded: false, category: [.politics]),
-                Editor(name: "Meduza - Истории", imageName: "meduza", info: "Латвийское интернет-издание, созданное бывшим главным редактором Lenta.ru Галиной Тимченко в 2014 году", editorId: 1, isAdded: false, category: [.politics]),
-                Editor(name: "DTF", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 9, isAdded: false, category: [.games, .tech, .movies]),
-                Editor(name: "DTF - Игры", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 5, isAdded: false, category: [.games]),
-                Editor(name: "DTF - Игровая индустрия", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 6, isAdded: false, category: [.games]),
-                Editor(name: "DTF - Разработка", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 7, isAdded: false, category: [.tech]),
-                Editor(name: "DTF - Кино", imageName: "dtf", info: "Русскоязычный интернет-ресурс о компьютерных играх. До 2016 года был посвящён преимущественно разработке видеоигр.", editorId: 8, isAdded: false, category: [.movies]),
-                Editor(name: "TJournal", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 14, isAdded: false, category: [.politics, .tech]),
-                Editor(name: "TJournal - Новости", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 10, isAdded: false, category: [.politics]),
-                Editor(name: "TJournal - Истории", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 11, isAdded: false, category: [.politics]),
-                Editor(name: "TJournal - Технологии", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 12, isAdded: false, category: [.tech]),
-                Editor(name: "TJournal - разработка", imageName: "tj", info: "Российское интернет-издание и агрегатор новостей. Основано 20 июня 2011 года. С 2014 года входит в Издательский дом «Комитет». Тематика новостей — социальные сети, блоги, законодательство и гаджеты.", editorId: 13, isAdded: false, category: [.tech]),
-                Editor(name: "vc.ru", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 15, isAdded: false, category: [.design, .tech]),
-                Editor(name: "vc.ru - Дизайн", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 16, isAdded: false, category: [.design]),
-                Editor(name: "vc.ru - Технологии", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 17, isAdded: false, category: [.tech]),
-                Editor(name: "vc.ru - Разработка", imageName: "vc", info: "Интернет-издание о бизнесе, стартапах, инновациях, маркетинге и технологиях.", editorId: 18, isAdded: false, category: [.tech])
-            ]
-            
-            try! realm.write {
-                for editor in startEditors {
-                    realm.add(RealmEditor(name: editor.name, imageName: editor.imageName, info: editor.info, editorId: editor.editorId, isAdded: editor.isAdded, category: editor.category))
-                }
-            }
-            
-            UsersData.shared.haveAlreadyLaunched = true
-        }
-        
         self.navigationItem.title = ""
         let logo = UIImageView(image: UIImage(named: "LogoFlat"))
         logo.contentMode = .scaleAspectFit
@@ -200,19 +169,45 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
             
             if UIDevice.current.userInterfaceIdiom == .phone {
                 if UIDevice.current.orientation.isLandscape {
-                    return CGSize(width: (self.view.frame.width - 45)/2.25, height: 140)
+                    // return CGSize(width: (self.view.frame.width - 45)/2.25, height: 140)
+                    return CGSize(width: self.view.frame.width - 30, height: 140)
                 } else {
                     return CGSize(width: self.view.frame.width - 30, height: 140)
                 }
             } else {
+                if indexPath.item == articles[chosenIndex].count {
+                    return CGSize(width: self.view.frame.width, height: 140)
+                }
+                
                 return CGSize(width: (self.view.frame.width - 45)/2, height: 140)
             }
         }
     }
     
+    func centerItemsInCollectionView(cellWidth: Double, numberOfItems: Double, spaceBetweenCell: Double, collectionView: UICollectionView) -> UIEdgeInsets {
+        if collectionView == topBarCollectionView {
+            let totalWidth = cellWidth * numberOfItems
+            let totalSpacingWidth = spaceBetweenCell * (numberOfItems - 1)
+            let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
+            let rightInset = leftInset
+            if rightInset < 0 {
+                return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            }
+            return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+        } else {
+            return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+        return centerItemsInCollectionView(cellWidth: 64, numberOfItems: Double(chosenEditors.count + 1), spaceBetweenCell: 10, collectionView: topBarCollectionView)
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        articlesCollectionView.reloadData()
+        topBarCollectionView?.reloadData()
+        articlesCollectionView?.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -290,7 +285,7 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
             cell.layer.shadowOffset = .zero
             cell.layer.shadowOpacity = 0.2
             cell.layer.shadowColor = UIColor.label.cgColor
-            cell.layer.shadowPath = UIBezierPath(rect: cell.contentView.bounds).cgPath
+//            cell.layer.shadowPath = UIBezierPath(rect: cell.contentView.bounds).cgPath
             cell.layer.masksToBounds = false
             
             return cell
@@ -299,8 +294,10 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == articlesCollectionView {
-            chosenArticle = articles[chosenIndex][indexPath.item]
-            performSegue(withIdentifier: "toArticle", sender: nil)
+            if articles[chosenIndex].count != 0 {
+                chosenArticle = articles[chosenIndex][indexPath.item]
+                performSegue(withIdentifier: "toArticle", sender: nil)
+            }
         }
     }
 
