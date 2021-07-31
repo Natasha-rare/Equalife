@@ -16,9 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cC5-aC-8KI">
-                                <rect key="frame" x="20" y="95" width="374" height="767"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cC5-aC-8KI">
+                                <rect key="frame" x="20" y="98" width="374" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Аналитики «Тинькофф Образования» провели исследование, чтобы определить самые популярные вузы и факультеты среди абитуриентов-программистов и установить факторы, влияющие на их выбор. Большая часть опрошенных учится в НИУ ИТМО, также больше всего в опросе участвовали учащиеся МФТИ, МГУ и ВШЭ.
 
@@ -31,9 +30,8 @@
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="28"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IX8-J0-6DK">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IX8-J0-6DK">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Скорочтение" id="Z0U-Rb-eHj">
                                         <barButtonItem key="backBarButtonItem" title="Назад" id="SSj-7S-S3l"/>
@@ -78,6 +76,16 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cC5-aC-8KI" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="10" id="1ll-b4-6q3"/>
+                            <constraint firstItem="IX8-J0-6DK" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="JNT-QL-sAG"/>
+                            <constraint firstItem="cC5-aC-8KI" firstAttribute="top" secondItem="IX8-J0-6DK" secondAttribute="bottom" constant="10" id="LSw-AY-uBs"/>
+                            <constraint firstAttribute="trailing" secondItem="IX8-J0-6DK" secondAttribute="trailing" id="Poh-EU-FeY"/>
+                            <constraint firstItem="IX8-J0-6DK" firstAttribute="centerX" secondItem="cC5-aC-8KI" secondAttribute="centerX" id="Qtz-AH-YDR"/>
+                            <constraint firstItem="IX8-J0-6DK" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="RxA-CB-f0p"/>
+                            <constraint firstItem="cC5-aC-8KI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="cud-of-d8P"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cC5-aC-8KI" secondAttribute="trailing" constant="20" id="f1e-it-rSk"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="PlayBtn" destination="iHc-ML-KPB" id="H8g-8P-81x"/>
@@ -96,11 +104,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HYj-o5-dAl">
-                                <rect key="frame" x="20" y="38" width="374" height="453"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добро пожаловать в скорочтение!" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efC-Zd-wai">
+                                <rect key="frame" x="23.5" y="20" width="367" height="76.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYj-o5-dAl">
+                                <rect key="frame" x="20" y="106" width="374" height="467"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Добро пожаловать в модуль скорочтение! Перед Вами находится текст, который вы должна прочитать как можно быстрее. Вверху находится таймер, который будет отсчитывать премя, пройденное с начала выполнения задания. Вы можете остановить таймер и начать заново. Удачи!</string>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="467" id="whK-sH-S6t"/>
+                                </constraints>
+                                <mutableString key="text">Перед Вами находится текст, который вы должна прочитать как можно быстрее. Вверху находится таймер, который будет отсчитывать время, пройденное с начала выполнения задания. Вы можете остановить таймер, либо сбросить таймер и начать заново, нажав на крестик. Удачи!</mutableString>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="28"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -108,6 +124,15 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ScP-Uu-gcx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ScP-Uu-gcx" firstAttribute="trailing" secondItem="efC-Zd-wai" secondAttribute="trailing" constant="23.5" id="3mK-V2-7Ru"/>
+                            <constraint firstItem="efC-Zd-wai" firstAttribute="top" secondItem="ScP-Uu-gcx" secondAttribute="top" constant="20" id="4sw-tb-tqC"/>
+                            <constraint firstItem="HYj-o5-dAl" firstAttribute="leading" secondItem="UV6-mp-KQa" secondAttribute="leadingMargin" id="DWA-rA-Hf4"/>
+                            <constraint firstItem="efC-Zd-wai" firstAttribute="centerX" secondItem="ScP-Uu-gcx" secondAttribute="centerX" id="Lsh-U6-SJY"/>
+                            <constraint firstItem="efC-Zd-wai" firstAttribute="leading" secondItem="ScP-Uu-gcx" secondAttribute="leading" constant="23.5" id="g4T-Pg-ss3"/>
+                            <constraint firstItem="HYj-o5-dAl" firstAttribute="centerX" secondItem="ScP-Uu-gcx" secondAttribute="centerX" id="gaH-Id-CNL"/>
+                            <constraint firstItem="HYj-o5-dAl" firstAttribute="top" secondItem="efC-Zd-wai" secondAttribute="bottom" constant="9.5" id="sm8-5b-rC2"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1u0-TN-ghh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
