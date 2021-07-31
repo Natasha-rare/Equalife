@@ -68,6 +68,7 @@ class APIService {
                 for i in 0..<jsonAll.count{
                     let json = jsonAll[i]
                     var articleTxt = json["description"].stringValue
+                    var imgs: [String] = []
                     // finding full text
                     do {
                         let myTextHtml = try String(contentsOf: URL(string: json["url"].stringValue)!, encoding: .utf8)
@@ -79,13 +80,18 @@ class APIService {
                             if (articleTxt == "")
                             { continue}
                         }
+                        // get not all images + wrong imgs
+//                        let srcs: Elements = try articleText.select("img[src]")
+//                        let srcsStringArray: [String] = srcs.array().map { try! $0.attr("src").description }
+//                        imgs = srcsStringArray
+//                        print("arrr", srcsStringArray)
                     } catch let error {
                         print("Error: \(error)")
                     }
                     
                     var a = Article(title: json["title"].stringValue,
                                     contents: articleTxt,
-                                    imagesURL: [json["urlToImage"].stringValue],
+                                    imagesURL: imgs,
                                     author: json["author"].stringValue,
                                     date: json["publishedAt"].stringValue, isSaved: false)
                     articles.append(a)
@@ -118,17 +124,28 @@ class APIService {
                 for i  in 0..<jsonAll.count {
                     let json = jsonAll[i]
                     let _ = json["url"].stringValue
+                    var imgs: [String] = []
+                    do{
+                        let doc: Document = try SwiftSoup.parse(json["entryContent"]["html"].stringValue)
+                        let srcs: Elements = try doc.select("div[data-image-src]")
+                        let srcsStringArray: [String] = srcs.array().map { try! $0.attr("data-image-src").description }
+                        imgs = srcsStringArray
+                        print("imgsss", imgs)
+                    }
+                    catch let error{
+                        print("Error \(error)")
+                    }
+                    imgs.append(json["cover"]["url"].stringValue)
                     let text = json["entryContent"]["html"].stringValue.html2String
                     var content:[String] = text.components(separatedBy: " \n")
                     content.removeSubrange(0..<4)
                     if content[0].contains("Listen") { content.removeFirst() }
                     let a = Article(title: json["title"].stringValue,
                                    contents: content.joined(separator: ""),
-                                   imagesURL: [json["cover"]["url"].stringValue],
+                                   imagesURL: imgs,
                                    author: json["author"]["name"].stringValue,
                                    date: json["dateRFC"].stringValue,
                                    isSaved: false)
-                    
                     articles.append(a) // output works
                     if articles.count == jsonAll.count {
                         completion(articles)
