@@ -169,7 +169,8 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
             
             if UIDevice.current.userInterfaceIdiom == .phone {
                 if UIDevice.current.orientation.isLandscape {
-                    return CGSize(width: (self.view.frame.width - 45)/2.25, height: 140)
+                    // return CGSize(width: (self.view.frame.width - 45)/2.25, height: 140)
+                    return CGSize(width: self.view.frame.width - 30, height: 140)
                 } else {
                     return CGSize(width: self.view.frame.width - 30, height: 140)
                 }
@@ -184,15 +185,18 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
     }
     
     func centerItemsInCollectionView(cellWidth: Double, numberOfItems: Double, spaceBetweenCell: Double, collectionView: UICollectionView) -> UIEdgeInsets {
-        let totalWidth = cellWidth * numberOfItems
-        let totalSpacingWidth = spaceBetweenCell * (numberOfItems - 1)
-        let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
-        let rightInset = leftInset
-        print("X! \(rightInset)")
-        if rightInset < 0 {
-            return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        if collectionView == topBarCollectionView {
+            let totalWidth = cellWidth * numberOfItems
+            let totalSpacingWidth = spaceBetweenCell * (numberOfItems - 1)
+            let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
+            let rightInset = leftInset
+            if rightInset < 0 {
+                return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            }
+            return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+        } else {
+            return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         }
-        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -202,6 +206,7 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        topBarCollectionView?.reloadData()
         articlesCollectionView?.reloadData()
     }
     
@@ -289,8 +294,10 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == articlesCollectionView {
-            chosenArticle = articles[chosenIndex][indexPath.item]
-            performSegue(withIdentifier: "toArticle", sender: nil)
+            if articles[chosenIndex].count != 0 {
+                chosenArticle = articles[chosenIndex][indexPath.item]
+                performSegue(withIdentifier: "toArticle", sender: nil)
+            }
         }
     }
 

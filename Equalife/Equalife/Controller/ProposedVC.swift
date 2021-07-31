@@ -78,7 +78,7 @@ class ProposedVC: UIViewController, ProposedDelegate {
     func addedRemoved(id: Int) {
         for (index, editor) in editors.enumerated() {
             if editor.editorId == id {
-                editors[index].isAdded = true
+                editors[index].isAdded = !editors[index].isAdded
             }
         }
     }
