@@ -50,6 +50,12 @@ class ProposedVC: UIViewController, ProposedDelegate {
         collectionView.reloadData()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        collectionView.reloadData()
+    }
+    
     @IBAction func toMain() {
         let realmEditors = realm.objects(RealmEditor.self)
         for realmEditor in realmEditors {
@@ -106,12 +112,12 @@ extension ProposedVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLa
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if UIDevice.current.userInterfaceIdiom == .phone {
             if UIDevice.current.orientation.isLandscape {
-                return CGSize(width: (self.view.frame.width - 60)/3.25, height: (self.view.frame.width - 45)/3.25)
+                return CGSize(width: (self.view.frame.width - 60)/3, height: (self.view.frame.width - 45)/3)
             } else {
-                return CGSize(width: (self.view.frame.width - 45)/2, height: (self.view.frame.width - 45)/2.25)
+                return CGSize(width: (self.view.frame.width - 45)/2, height: (self.view.frame.width - 45)/2)
             }
         } else {
-            return CGSize(width: (self.view.frame.width - 60)/3.25, height: (self.view.frame.width - 45)/3.25)
+            return CGSize(width: (self.view.frame.width - 105)/6, height: (self.view.frame.width - 105)/6)
         }
     }
     

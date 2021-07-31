@@ -220,99 +220,6 @@
             </objects>
             <point key="canvasLocation" x="1717" y="75"/>
         </scene>
-        <!--SettingsVC-->
-        <scene sceneID="tDf-gj-Z89">
-            <objects>
-                <viewController id="eAq-uW-d3R" customClass="SettingsVC" customModule="Equalife" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Wei-Iu-yAk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3f1-LD-hHm">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
-                                <items>
-                                    <navigationItem title="Настройки" id="81e-DM-xZM">
-                                        <barButtonItem key="rightBarButtonItem" title="Готово" style="done" id="qlT-5v-dzO">
-                                            <color key="tintColor" systemColor="labelColor"/>
-                                            <connections>
-                                                <action selector="finish" destination="eAq-uW-d3R" id="Rwb-ku-0PU"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="98F-Xx-EGm">
-                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
-                                <connections>
-                                    <segue destination="spq-aT-JvN" kind="embed" id="DRM-ip-2Oi"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="jzx-tX-OHO"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="jzx-tX-OHO" firstAttribute="bottom" secondItem="98F-Xx-EGm" secondAttribute="bottom" id="0eP-TR-wgI"/>
-                            <constraint firstItem="98F-Xx-EGm" firstAttribute="top" secondItem="3f1-LD-hHm" secondAttribute="bottom" id="1zS-az-YoS"/>
-                            <constraint firstItem="98F-Xx-EGm" firstAttribute="leading" secondItem="jzx-tX-OHO" secondAttribute="leading" id="JW7-CK-AH2"/>
-                            <constraint firstItem="3f1-LD-hHm" firstAttribute="leading" secondItem="jzx-tX-OHO" secondAttribute="leading" id="KTy-xn-2Pu"/>
-                            <constraint firstItem="3f1-LD-hHm" firstAttribute="top" secondItem="jzx-tX-OHO" secondAttribute="top" id="csM-XJ-PQK"/>
-                            <constraint firstItem="3f1-LD-hHm" firstAttribute="trailing" secondItem="jzx-tX-OHO" secondAttribute="trailing" id="euk-hS-JfR"/>
-                            <constraint firstItem="jzx-tX-OHO" firstAttribute="trailing" secondItem="98F-Xx-EGm" secondAttribute="trailing" id="hh7-f8-qqP"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="r2f-lT-Grj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1717" y="-577"/>
-        </scene>
-        <!--Table View Controller-->
-        <scene sceneID="u9C-Mi-F1n">
-            <objects>
-                <tableViewController id="spq-aT-JvN" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="SPa-mK-HPH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="752"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <sections>
-                            <tableViewSection id="GHZ-vm-ePN">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="33K-hc-NlD">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="33K-hc-NlD" id="Pvx-JE-l1G">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tQV-fU-d5F">
-                                        <rect key="frame" x="0.0" y="93.5" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tQV-fU-d5F" id="2nh-n9-B9M">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="t2e-V2-bDq">
-                                        <rect key="frame" x="0.0" y="137" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t2e-V2-bDq" id="Jeb-c2-tnN">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="spq-aT-JvN" id="g2z-DM-AlP"/>
-                            <outlet property="delegate" destination="spq-aT-JvN" id="PZO-mV-Vyd"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MQQ-kE-XPt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2483" y="-577"/>
-        </scene>
         <!--MainVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -331,7 +238,7 @@
                                     <size key="itemSize" width="64" height="64"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="editorCell" id="L4I-OC-nlI" customClass="EditorCell" customModule="Equalife" customModuleProvider="target">
@@ -590,22 +497,12 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="4RA-Fy-yOz">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="WMN-zo-WEA"/>
-                        <leftBarButtonItems>
-                            <barButtonItem title="Item" image="bookmark" catalog="system" id="2Bd-HP-NRn">
-                                <color key="tintColor" systemColor="labelColor"/>
-                                <connections>
-                                    <segue destination="9zk-ar-QxI" kind="presentation" identifier="toSaved" id="9sr-jm-bRz"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Item" image="gear" catalog="system" id="29K-xd-Lye">
-                                <color key="tintColor" systemColor="labelColor"/>
-                                <connections>
-                                    <segue destination="eAq-uW-d3R" kind="popoverPresentation" popoverAnchorBarButtonItem="29K-xd-Lye" id="HKy-Js-Njj">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="bookmark" catalog="system" id="2Bd-HP-NRn">
+                            <color key="tintColor" systemColor="labelColor"/>
+                            <connections>
+                                <segue destination="9zk-ar-QxI" kind="presentation" identifier="toSaved" id="9sr-jm-bRz"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="timer" catalog="system" id="UEu-DR-ElY">
                             <color key="tintColor" systemColor="labelColor"/>
                             <connections>
@@ -670,7 +567,6 @@
         <image name="LogoFlat" width="195" height="195"/>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="edit" width="25" height="25"/>
-        <image name="gear" catalog="system" width="128" height="119"/>
         <image name="meduza" width="41" height="25"/>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="timer" catalog="system" width="128" height="121"/>

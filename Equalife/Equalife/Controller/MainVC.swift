@@ -174,9 +174,30 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
                     return CGSize(width: self.view.frame.width - 30, height: 140)
                 }
             } else {
+                if indexPath.item == articles[chosenIndex].count {
+                    return CGSize(width: self.view.frame.width, height: 140)
+                }
+                
                 return CGSize(width: (self.view.frame.width - 45)/2, height: 140)
             }
         }
+    }
+    
+    func centerItemsInCollectionView(cellWidth: Double, numberOfItems: Double, spaceBetweenCell: Double, collectionView: UICollectionView) -> UIEdgeInsets {
+        let totalWidth = cellWidth * numberOfItems
+        let totalSpacingWidth = spaceBetweenCell * (numberOfItems - 1)
+        let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
+        let rightInset = leftInset
+        print("X! \(rightInset)")
+        if rightInset < 0 {
+            return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        }
+        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+        return centerItemsInCollectionView(cellWidth: 64, numberOfItems: Double(chosenEditors.count + 1), spaceBetweenCell: 10, collectionView: topBarCollectionView)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -259,7 +280,7 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
             cell.layer.shadowOffset = .zero
             cell.layer.shadowOpacity = 0.2
             cell.layer.shadowColor = UIColor.label.cgColor
-            cell.layer.shadowPath = UIBezierPath(rect: cell.contentView.bounds).cgPath
+//            cell.layer.shadowPath = UIBezierPath(rect: cell.contentView.bounds).cgPath
             cell.layer.masksToBounds = false
             
             return cell
