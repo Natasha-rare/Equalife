@@ -44,7 +44,10 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        var ap = APIService()
+        var a = ap.GetNews(id: 0, page: 1){
+            art in
+        }
         self.navigationItem.title = ""
         let logo = UIImageView(image: UIImage(named: "LogoFlat"))
         logo.contentMode = .scaleAspectFit

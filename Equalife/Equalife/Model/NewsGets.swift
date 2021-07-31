@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import SwiftSoup
 
 class APIService {
 
@@ -36,8 +37,15 @@ class APIService {
                 let json = JSON(value)["root"]
 //                let url = json["url"].stringValue
                 let images = self.getImagesArray(imgJson: json["image"])
+                var text:String = ""
+                do{
+                  text = try SwiftSoup.parse(json["content"]["body"].stringValue).text()
+                }
+                catch let error {
+                    print("Error: \(error)")
+                }
                 article = Article(title: json["title"].stringValue,
-                                         contents: json["content"]["body"].stringValue.html2String,
+                                         contents: text,
                                          imagesURL: images,
                                          author: "",
                                          date: json["pub_date"].stringValue,
@@ -59,8 +67,24 @@ class APIService {
                 var jsonAll = JSON(value)["articles"]
                 for i in 0..<jsonAll.count{
                     let json = jsonAll[i]
+                    var articleTxt = json["description"].stringValue
+                    // finding full text
+                    do {
+                        let myTextHtml = try String(contentsOf: URL(string: json["url"].stringValue)!, encoding: .utf8)
+                        let doc: Document = try SwiftSoup.parse(myTextHtml)
+                        let articleText = try doc.select("*[itemprop*='articleBody']")
+                        articleTxt = try articleText.text()
+                        if (articleTxt == ""){
+                            articleTxt = try doc.select("div[class*='article__text']").text()
+                            if (articleTxt == "")
+                            { continue}
+                        }
+                    } catch let error {
+                        print("Error: \(error)")
+                    }
+                    
                     var a = Article(title: json["title"].stringValue,
-                                    contents: json["description"].stringValue,
+                                    contents: articleTxt,
                                     imagesURL: [json["urlToImage"].stringValue],
                                     author: json["author"].stringValue,
                                     date: json["publishedAt"].stringValue, isSaved: false)
