@@ -23,6 +23,7 @@
                                 <rect key="frame" x="109.5" y="219.5" width="195" height="195"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="195" id="1ov-6P-tK2"/>
                                     <constraint firstAttribute="width" secondItem="7Ai-49-2hF" secondAttribute="height" multiplier="1:1" id="fyr-xE-rxe"/>
                                 </constraints>
                                 <imageReference key="image" image="LogoFlat"/>
@@ -34,7 +35,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Расскажите, о чем вам интересно читать и мы поможем вам выбрать издателей" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFT-qG-s7i">
-                                <rect key="frame" x="20" y="481.5" width="374" height="42.5"/>
+                                <rect key="frame" x="20.5" y="481.5" width="373" height="42.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="TXD-Wt-tl1"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -53,15 +57,14 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rFT-qG-s7i" secondAttribute="trailing" constant="20" id="2w8-nP-zbR"/>
                             <constraint firstItem="bgG-ol-Bus" firstAttribute="top" secondItem="7Ai-49-2hF" secondAttribute="bottom" constant="20" id="3bd-Yq-iXK"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ge2-mJ-fwD" secondAttribute="bottom" constant="40" id="8zn-X9-J3w"/>
                             <constraint firstItem="bgG-ol-Bus" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="A3B-xO-wdV"/>
+                            <constraint firstItem="rFT-qG-s7i" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.9" id="Bil-vu-sPW"/>
+                            <constraint firstItem="rFT-qG-s7i" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="NT2-TE-CDY"/>
                             <constraint firstItem="bgG-ol-Bus" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="fqK-Xb-VNb"/>
                             <constraint firstItem="7Ai-49-2hF" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="gFO-Qi-F7n"/>
                             <constraint firstItem="rFT-qG-s7i" firstAttribute="top" secondItem="bgG-ol-Bus" secondAttribute="bottom" constant="20" id="ho3-Op-Naz"/>
-                            <constraint firstItem="rFT-qG-s7i" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="jks-43-m2P"/>
-                            <constraint firstItem="7Ai-49-2hF" firstAttribute="width" secondItem="7Ai-49-2hF" secondAttribute="height" multiplier="1:1" id="muV-VU-wl6"/>
                             <constraint firstItem="ge2-mJ-fwD" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="oPS-kT-Lhf"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bgG-ol-Bus" secondAttribute="trailing" constant="20" id="pm2-Zc-3e4"/>
                         </constraints>
@@ -83,6 +86,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="40" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="A35-Vs-uWe">
                                 <rect key="frame" x="0.0" y="140" width="414" height="604"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="Wt8-zg-R91"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="categoryCell" textLabel="YnV-Z0-JHw" style="IBUITableViewCellStyleDefault" id="Rm8-JW-4JV" customClass="CategoryCell" customModule="Equalife" customModuleProvider="target">
                                         <rect key="frame" x="20" y="38" width="374" height="50"/>
@@ -179,7 +185,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wgQ-wp-fMv">
                                 <rect key="frame" x="0.0" y="140" width="414" height="654"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tpS-5f-D00">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="15" id="tpS-5f-D00">
                                     <size key="itemSize" width="199" height="193"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
