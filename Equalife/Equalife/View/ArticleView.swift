@@ -10,8 +10,6 @@ import Kingfisher
 
 struct ArticleView: View {
     
-    @State var scrol : CGFloat = 0.0
-    
     let article : Article
     let screenWidth = UIScreen.screenWidth
     let screenHeight = UIScreen.screenHeight
@@ -99,6 +97,15 @@ struct ArticleView: View {
                 }
             })
             .ignoresSafeArea()
+            .gesture(
+               DragGesture().onChanged { value in
+                  if value.translation.height > 0 {
+                     print("Scroll down")
+                  } else {
+                     print("Scroll up")
+                  }
+               }
+            )
     }
 }
 
