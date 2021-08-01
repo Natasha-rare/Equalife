@@ -10,6 +10,8 @@ import Kingfisher
 
 struct ArticleView: View {
     
+    @State var scrol : CGFloat = 0.0
+    
     let article : Article
     let screenWidth = UIScreen.screenWidth
     let screenHeight = UIScreen.screenHeight
@@ -17,11 +19,10 @@ struct ArticleView: View {
     
     var body: some View {
             ScrollView(.vertical, showsIndicators: false, content: {
-//                GeometryReader{ geometry in
                 ZStack{
                     VStack{
                             ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 20) {
+                                HStack(spacing: 60) {
                                     if article.imagesURL.count == 0 {
                                         Image("imagePlaceholder")
                                             .resizable()
@@ -35,7 +36,7 @@ struct ArticleView: View {
                                                 .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.35)
                                         }
                                     }
-                                }
+                                }.padding(10)
                             }
                             .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.35, alignment: .center)
                             .overlay(
@@ -53,7 +54,7 @@ struct ArticleView: View {
                                     VStack{
                                         Spacer()
                                         HStack{
-                                            Text(article.author ??  " " )
+                                            Text(article.author ??  "Author" )
                                                 .foregroundColor(.white)
                                                 .font(.title)
                                                 .fontWeight(.bold)
@@ -61,7 +62,7 @@ struct ArticleView: View {
                                                 
                                                 
                                             Spacer()
-                                            Text("Top View ") //\(geometry.frame(in: .global).midY)
+                                            Text(article.date) //\(geometry.frame(in: .global).midY)
                                                 .foregroundColor(.white)
                                                 .font(.title)
                                                 .fontWeight(.bold)
@@ -77,21 +78,25 @@ struct ArticleView: View {
                                 .foregroundColor(Color(.black))
                                 .font(.title2)
                                 .fontWeight(.semibold)
-                                .padding([.leading, .trailing], 20)
+                                .padding([.leading, .trailing], 10)
                                 .lineLimit(nil)
-                                .fixedSize(horizontal: false, vertical: true)
+                                .frame(width: UIScreen.screenWidth)
                             
                             Text(article.contents)
                                 .foregroundColor(Color(.black))
                                 .font(.body)
                                 .multilineTextAlignment(.leading)
-                                .padding([.leading, .trailing], 20)
+                                .padding([.leading, .trailing], 10)
                                 .lineLimit(nil)
                                 .fixedSize(horizontal: false, vertical: true)
+                                .frame(width: UIScreen.screenWidth)
+                            Rectangle()
+                                .fill(Color.white)
+                                .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight / 3)
+                                
                         }
                     }
                 }
-            //}
             })
             .ignoresSafeArea()
     }
