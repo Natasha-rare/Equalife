@@ -9,11 +9,12 @@ import UIKit
 import SwiftUI
 import RealmSwift
 
-class ArticleVC: UIViewController, ScrollDelegate {
+class ArticleVC: UIViewController {
     
     var article: Article!
     var articleView: ArticleView!
     
+    var delegate: SavedChanges?
     var isSaved = false
     
     let realm = try! Realm()
@@ -22,7 +23,6 @@ class ArticleVC: UIViewController, ScrollDelegate {
         super.viewDidLoad()
         
         articleView = ArticleView(article: self.article)
-        articleView.delegate = self
         
         let contentView = UIHostingController(rootView: articleView)
         
@@ -43,7 +43,9 @@ class ArticleVC: UIViewController, ScrollDelegate {
             }
         }
         
-//        self.navigationController?.view.add
+        self.navigationController?.view.backgroundColor = UIColor.systemBackground
+        self.navigationController?.navigationBar.isTranslucent = false
+        
         if !isSaved {
             let button = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(ArticleVC.addToMarked))
             self.navigationItem.rightBarButtonItem = button
@@ -74,8 +76,8 @@ class ArticleVC: UIViewController, ScrollDelegate {
         }
     }
     
-    func didScroll() {
-        self.navigationController?.view.backgroundColor = UIColor.systemBackground
-        self.navigationController?.navigationBar.isTranslucent = false
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        delegate?.savingChanged(to: isSaved)
     }
 }

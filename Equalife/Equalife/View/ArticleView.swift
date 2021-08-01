@@ -8,10 +8,6 @@
 import SwiftUI
 import Kingfisher
 
-protocol ScrollDelegate {
-    func didScroll()
-}
-
 struct ArticleView: View {
     
     @State var scroll : CGFloat = 0.0
@@ -20,7 +16,6 @@ struct ArticleView: View {
     let screenWidth = UIScreen.screenWidth
     let screenHeight = UIScreen.screenHeight
     
-    var delegate: ScrollDelegate?
     var alreadyChanged = false
     
     var body: some View {
@@ -32,47 +27,26 @@ struct ArticleView: View {
                                     if article.imagesURL.count == 0 {
                                         Image("imagePlaceholder")
                                             .resizable()
-                                            .aspectRatio(contentMode: .fill)
+                                            .aspectRatio(contentMode: .fit)
                                             .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.35)
                                     } else {
                                         ForEach((0..<article.imagesURL.count), id: \.self) { imageIndex in
-                                            KFImage(URL(string: article.imagesURL[imageIndex])!)
+                                            KFImage(URL(string: article.imagesURL[imageIndex]))
                                                 .resizable()
-                                                .aspectRatio(contentMode: .fill)
+                                                .aspectRatio(contentMode: .fit)
                                                 .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.35)
                                         }
                                     }
                                 }.padding(10)
                             }
                             .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.35, alignment: .center)
-                            .overlay(
-                                ZStack(){
-                                    LinearGradient(gradient:
-                                                        Gradient(
-                                                            colors: [
-                                                                    Color(UIColor.black.withAlphaComponent(0.8)),
-                                                                    Color(UIColor.black.withAlphaComponent(0.2)),
-                                                                    Color(UIColor.white.withAlphaComponent(0.0))
-                                                            ]),
-                                                       startPoint: .bottom,
-                                                       endPoint: .center
-                                        )
-                                    VStack{
-                                        Spacer()
-                                        HStack{
-                                            Text(article.author ??  "Author" )
-                                                .foregroundColor(Color(UIColor.label))
-                                                .font(.subheadline)
-                                                .fontWeight(.medium)
-                                                .padding([.leading, .trailing], 5)
-                                        }
-                                    }
-                                }
-                                
-                            )
                         VStack{
+                            Rectangle()
+                                .fill(Color(UIColor.systemBackground))
+                                .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight / 60)
+                            
                             Text(article.title)
-                                .foregroundColor(Color(.black))
+                                .foregroundColor(Color(UIColor.label))
                                 .font(.title2)
                                 .fontWeight(.semibold)
                                 .padding([.leading, .trailing], 10)
@@ -101,42 +75,8 @@ struct ArticleView: View {
                 }
             })
             .ignoresSafeArea()
-            .gesture(
-                DragGesture()
-                    .onChanged { value in
-                        if !alreadyChanged {
-                            print("delegate is called")
-                            delegate?.didScroll()
-                        }
-                    }
-            )
     }
 }
-
-struct BackButton : View{
-    var body : some View{
-        Button(action: {
-            
-        }, label: {
-            Image(systemName: "arrowshape.turn.up.left.circle.fill")
-                .font(.largeTitle)
-                .foregroundColor(.black)
-                .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenHeight * 0.08)
-        })
-    }
-    
-}
-
-struct CustomNavigationView : View{
-    
-    var body: some View{
-        HStack{
-            Text("Назад")
-            Spacer()
-        }
-    }
-}
-
 
 // extension для получения размеров экрана
 extension UIScreen{

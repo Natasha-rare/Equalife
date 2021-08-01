@@ -188,23 +188,21 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
     }
     
     func centerItemsInCollectionView(cellWidth: Double, numberOfItems: Double, spaceBetweenCell: Double, collectionView: UICollectionView) -> UIEdgeInsets {
-        if collectionView == topBarCollectionView {
-            let totalWidth = cellWidth * numberOfItems
-            let totalSpacingWidth = spaceBetweenCell * (numberOfItems - 1)
-            let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
-            let rightInset = leftInset
-            if rightInset < 0 {
-                return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            }
-            return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
-        } else {
-            return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        let totalWidth = cellWidth * numberOfItems
+        let totalSpacingWidth = spaceBetweenCell * (numberOfItems - 1)
+        let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
+        let rightInset = leftInset
+        if rightInset < 0 {
+            return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         }
+        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
-        return centerItemsInCollectionView(cellWidth: 64, numberOfItems: Double(chosenEditors.count + 1), spaceBetweenCell: 10, collectionView: topBarCollectionView)
+        if collectionView == topBarCollectionView {
+            return centerItemsInCollectionView(cellWidth: 64, numberOfItems: Double(chosenEditors.count + 1), spaceBetweenCell: 10, collectionView: topBarCollectionView)
+        }
+        return UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
