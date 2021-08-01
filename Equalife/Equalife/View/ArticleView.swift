@@ -8,14 +8,20 @@
 import SwiftUI
 import Kingfisher
 
+protocol ScrollDelegate {
+    func didScroll()
+}
+
 struct ArticleView: View {
     
-    @State var scrol : CGFloat = 0.0
+    @State var scroll : CGFloat = 0.0
     
     let article : Article
     let screenWidth = UIScreen.screenWidth
     let screenHeight = UIScreen.screenHeight
     
+    var delegate: ScrollDelegate?
+    var alreadyChanged = false
     
     var body: some View {
             ScrollView(.vertical, showsIndicators: false, content: {
@@ -44,7 +50,7 @@ struct ArticleView: View {
                                     LinearGradient(gradient:
                                                         Gradient(
                                                             colors: [
-                                                                    Color(UIColor.black.withAlphaComponent(1)),
+                                                                    Color(UIColor.black.withAlphaComponent(0.8)),
                                                                     Color(UIColor.black.withAlphaComponent(0.2)),
                                                                     Color(UIColor.white.withAlphaComponent(0.0))
                                                             ]),
@@ -55,19 +61,10 @@ struct ArticleView: View {
                                         Spacer()
                                         HStack{
                                             Text(article.author ??  "Author" )
-                                                .foregroundColor(.white)
-                                                .font(.title)
-                                                .fontWeight(.bold)
+                                                .foregroundColor(Color(UIColor.label))
+                                                .font(.subheadline)
+                                                .fontWeight(.medium)
                                                 .padding([.leading, .trailing], 5)
-                                                
-                                                
-                                            Spacer()
-                                            Text(article.date) //\(geometry.frame(in: .global).midY)
-                                                .foregroundColor(.white)
-                                                .font(.title)
-                                                .fontWeight(.bold)
-                                                .padding([.leading, .trailing], 5)
-                                                
                                         }
                                     }
                                 }
@@ -82,23 +79,37 @@ struct ArticleView: View {
                                 .lineLimit(nil)
                                 .frame(width: UIScreen.screenWidth)
                             
+                            Rectangle()
+                                .fill(Color(UIColor.systemBackground))
+                                .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight / 60)
+                            
                             Text(article.contents)
-                                .foregroundColor(Color(.black))
+                                .foregroundColor(Color(UIColor.label))
                                 .font(.body)
                                 .multilineTextAlignment(.leading)
                                 .padding([.leading, .trailing], 10)
                                 .lineLimit(nil)
                                 .fixedSize(horizontal: false, vertical: true)
                                 .frame(width: UIScreen.screenWidth)
+                            
                             Rectangle()
-                                .fill(Color.white)
-                                .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight / 3)
+                                .fill(Color(UIColor.systemBackground))
+                                .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight / 10)
                                 
                         }
                     }
                 }
             })
             .ignoresSafeArea()
+            .gesture(
+                DragGesture()
+                    .onChanged { value in
+                        if !alreadyChanged {
+                            print("delegate is called")
+                            delegate?.didScroll()
+                        }
+                    }
+            )
     }
 }
 

@@ -59,16 +59,16 @@ class APIService {
         }
     }
     
-    func getWorldNews(completion: @escaping(_ art: [Article])->()){
+    func getWorldNews(page: Int, completion: @escaping(_ art: [Article])->()){
         var articles:[Article] = []
-        AF.request("https://newsapi.org/v2/top-headlines?language=ru&apiKey=209637fc7d0549bdb08f9f490015c8c4").responseJSON { responseJSON in
+        AF.request("https://newsapi.org/v2/top-headlines?language=ru&pageSize=14&page=\(page+1)&apiKey=209637fc7d0549bdb08f9f490015c8c4").responseJSON { responseJSON in
             switch responseJSON.result {
             case .success(let value):
-                var jsonAll = JSON(value)["articles"]
+                let jsonAll = JSON(value)["articles"]
                 for i in 0..<jsonAll.count{
                     let json = jsonAll[i]
                     var articleTxt = json["description"].stringValue
-                    var imgs: [String] = []
+                    let imgs: [String] = []
                     // finding full text
                     do {
                         let myTextHtml = try String(contentsOf: URL(string: json["url"].stringValue)!, encoding: .utf8)
@@ -89,12 +89,11 @@ class APIService {
                         print("Error: \(error)")
                     }
                     
-                    var a = Article(title: json["title"].stringValue,
-                                    contents: articleTxt,
-                                    imagesURL: imgs,
-                                    author: json["author"].stringValue,
-                                    date: json["publishedAt"].stringValue, isSaved: false)
-                    articles.append(a)
+                    articles.append(Article(title: json["title"].stringValue,
+                                            contents: articleTxt,
+                                            imagesURL: imgs,
+                                            author: json["author"].stringValue,
+                                            date: json["publishedAt"].stringValue, isSaved: false))
                 }
                 completion(articles)
             case let .failure(error):
@@ -168,12 +167,12 @@ class APIService {
         var articles: [Article] = []
         switch id{
         case -1: //global
-            getWorldNews(){ allArticles in
+            getWorldNews(page: page, completion: { allArticles in
                 articles = allArticles
                 DispatchQueue.main.async {
                     completion(articles)
                 }
-            }
+            })
         case 0: //Meduza_news
                 AF.request("https://meduza.io/api/v3/search?chrono=news&locale=ru&page=\(page)&per_page=24").responseJSON { responseJSON in
                     switch responseJSON.result {
@@ -315,56 +314,56 @@ class APIService {
                 }
             }
         case 19: //Vc_finance
-            getContentDtf(type: "finance", site: "vc") { article in
+            getContentDtf(type: "finance", page: page, site: "vc") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 20: //Vc_media
-            getContentDtf(type: "media", site: "vc") { article in
+            getContentDtf(type: "media", page: page, site: "vc") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 21: //Vc_education
-            getContentDtf(type: "education", site: "vc") { article in
+            getContentDtf(type: "education", page: page, site: "vc") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 22: //Vc_yandex.zen
-            getContentDtf(type: "yandex.zen", site: "vc") { article in
+            getContentDtf(type: "yandex.zen", page: page, site: "vc") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 23: //Tjournal_yandex.zen
-            getContentDtf(type: "yandex.zen", site: "tjournal") { article in
+            getContentDtf(type: "yandex.zen", page: page, site: "tjournal") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 24: //Tjournal_games
-            getContentDtf(type: "games", site: "tjournal") { article in
+            getContentDtf(type: "games", page: page, site: "tjournal") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 25: //DTF_news
-            getContentDtf(type: "news", site: "dtf") { article in
+            getContentDtf(type: "news", page: page, site: "dtf") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)
                 }
             }
         case 26: //DTF_design
-            getContentDtf(type: "design", site: "dtf") { article in
+            getContentDtf(type: "design", page: page, site: "dtf") { article in
                 articles = article
                 DispatchQueue.main.async {
                     completion(articles)

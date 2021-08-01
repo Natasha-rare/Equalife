@@ -497,7 +497,8 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="4RA-Fy-yOz">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="WMN-zo-WEA"/>
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="bookmark" catalog="system" id="2Bd-HP-NRn">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="2Bd-HP-NRn">
+                            <imageReference key="image" image="bookmark" catalog="system"/>
                             <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <segue destination="9zk-ar-QxI" kind="presentation" identifier="toSaved" id="9sr-jm-bRz"/>

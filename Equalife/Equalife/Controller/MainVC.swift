@@ -49,6 +49,10 @@ class MainVC: UIViewController, EditorChange {
     
     var page: Int {
         get {
+            if chosenEditors[chosenIndex].editorId == 0 || chosenEditors[chosenIndex].editorId == 1 {
+                return articles[chosenIndex].count / 16
+            }
+            
             return articles[chosenIndex].count / 8
         }
     }
@@ -169,7 +173,7 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
             if UIDevice.current.userInterfaceIdiom == .phone {
                 if UIDevice.current.orientation.isLandscape {
                     // return CGSize(width: (self.view.frame.width - 45)/2.25, height: 140)
-                    return CGSize(width: self.view.frame.width - 30, height: 140)
+                    return CGSize(width: (self.view.frame.width - 30) / 1.5, height: 140)
                 } else {
                     return CGSize(width: self.view.frame.width - 30, height: 140)
                 }
