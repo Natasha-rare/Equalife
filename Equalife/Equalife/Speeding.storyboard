@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,16 +15,137 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cC5-aC-8KI">
+                                <rect key="frame" x="20" y="98" width="374" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Аналитики «Тинькофф Образования» провели исследование, чтобы определить самые популярные вузы и факультеты среди абитуриентов-программистов и установить факторы, влияющие на их выбор. Большая часть опрошенных учится в НИУ ИТМО, также больше всего в опросе участвовали учащиеся МФТИ, МГУ и ВШЭ.
+
+В ходе работы авторы опросили 128 студентов технических специальностей из разных городов, вузов и образовательных курсов. Из них 54 студента имели диплом «Всероссийской олимпиады школьников» и 74 учились по программе «Тинькофф Поколения». У респондентов спрашивали, в каких вузах они учатся и на каких факультетах, чем руководствовались при выборе учебного заведения и оправдал ли он их ожидания.
+Компания не уточнила дополнительных фактов об опрошенных, например, их материальное положение. В отчёте отметили, что средняя стоимость обучения на технических курсах топовых вузов составляет около 296 тысяч рублей в год, что в 1,7 раза выше, чем в среднем по стране. При этом аналитики не дали полную информацию о том, сколько студентов учится на бюджетной и платной основах. Авторы упомянули лишь то, что из 6,3 % студентов, сменивших вуз, меньше трети респондентов поступали в вузы по грантам, целевым образовательным субсидиям и «другим способам». 4,4 % студентов поступали по ЕГЭ и 2,7 % по результатам олимпиады.
+Большая часть опрошенных учится в Национальном исследовательском университете ИТМО в Санкт-Петербурге (22 %) и в Московском физико-техническом институте (21 %). Следом идут Московский государственный университет (12 %), Высшая школа экономики (10 %), Санкт-Петербургский государственный университет (5 %), Московский государственный технический университет им. Н. Э. Баумана (3 %), Санкт-Петербургский политехнический университет Петра Великого (2 %), Уральский федеральный университет (2 %), Российский технологический университет МИРЭА в Москве (1 %) и Национальный исследовательский ядерный университет МИФИ (1 %).
+Среди опрошенных большая часть учится на мехмате МГУ и факультете компьютерных наук ВШЭ. В число самых популярных также вошла Физтех-школа прикладной математики и информатики в МФТИ вместе с факультетом инноваций и высоких технологий и факультетом управления и прикладной математики.
+</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="28"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IX8-J0-6DK">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Скорочтение" id="Z0U-Rb-eHj">
+                                        <barButtonItem key="backBarButtonItem" title="Назад" id="SSj-7S-S3l"/>
+                                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pCT-ZS-oR2">
+                                            <rect key="frame" x="42" y="4" width="160" height="36"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="     Скорочтение" image="info.circle" catalog="system">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="c3s-EN-o4y" kind="show" identifier="infoShow" id="41B-t7-x7g"/>
+                                            </connections>
+                                        </button>
+                                        <rightBarButtonItems>
+                                            <barButtonItem style="plain" systemItem="stop" id="Hfs-dp-Jik">
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="CancelTask:" destination="Y6W-OH-hqX" id="yQX-qd-J2D"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem image="play" catalog="system" style="plain" id="iHc-ML-KPB">
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="startTimer:" destination="Y6W-OH-hqX" id="pw1-sl-98F"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="DRI-aV-suw">
+                                                <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0:00" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" id="LMG-ub-MJw">
+                                                    <rect key="frame" x="208" y="3" width="97" height="38.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cC5-aC-8KI" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="10" id="1ll-b4-6q3"/>
+                            <constraint firstItem="IX8-J0-6DK" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="JNT-QL-sAG"/>
+                            <constraint firstItem="cC5-aC-8KI" firstAttribute="top" secondItem="IX8-J0-6DK" secondAttribute="bottom" constant="10" id="LSw-AY-uBs"/>
+                            <constraint firstAttribute="trailing" secondItem="IX8-J0-6DK" secondAttribute="trailing" id="Poh-EU-FeY"/>
+                            <constraint firstItem="IX8-J0-6DK" firstAttribute="centerX" secondItem="cC5-aC-8KI" secondAttribute="centerX" id="Qtz-AH-YDR"/>
+                            <constraint firstItem="IX8-J0-6DK" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="RxA-CB-f0p"/>
+                            <constraint firstItem="cC5-aC-8KI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="cud-of-d8P"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cC5-aC-8KI" secondAttribute="trailing" constant="20" id="f1e-it-rSk"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="PlayBtn" destination="iHc-ML-KPB" id="H8g-8P-81x"/>
+                        <outlet property="timeLabel" destination="LMG-ub-MJw" id="TQH-H6-auu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="94"/>
+            <point key="canvasLocation" x="34.782608695652179" y="93.75"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="YL0-Tb-bKX">
+            <objects>
+                <viewController id="c3s-EN-o4y" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UV6-mp-KQa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добро пожаловать в скорочтение!" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efC-Zd-wai">
+                                <rect key="frame" x="23.5" y="20" width="367" height="76.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYj-o5-dAl">
+                                <rect key="frame" x="20" y="106" width="374" height="467"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="467" id="whK-sH-S6t"/>
+                                </constraints>
+                                <mutableString key="text">Перед Вами находится текст, который вы должна прочитать как можно быстрее. Вверху находится таймер, который будет отсчитывать время, пройденное с начала выполнения задания. Вы можете остановить таймер, либо сбросить таймер и начать заново, нажав на крестик. Удачи!</mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="28"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ScP-Uu-gcx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ScP-Uu-gcx" firstAttribute="trailing" secondItem="efC-Zd-wai" secondAttribute="trailing" constant="23.5" id="3mK-V2-7Ru"/>
+                            <constraint firstItem="efC-Zd-wai" firstAttribute="top" secondItem="ScP-Uu-gcx" secondAttribute="top" constant="20" id="4sw-tb-tqC"/>
+                            <constraint firstItem="HYj-o5-dAl" firstAttribute="leading" secondItem="UV6-mp-KQa" secondAttribute="leadingMargin" id="DWA-rA-Hf4"/>
+                            <constraint firstItem="efC-Zd-wai" firstAttribute="centerX" secondItem="ScP-Uu-gcx" secondAttribute="centerX" id="Lsh-U6-SJY"/>
+                            <constraint firstItem="efC-Zd-wai" firstAttribute="leading" secondItem="ScP-Uu-gcx" secondAttribute="leading" constant="23.5" id="g4T-Pg-ss3"/>
+                            <constraint firstItem="HYj-o5-dAl" firstAttribute="centerX" secondItem="ScP-Uu-gcx" secondAttribute="centerX" id="gaH-Id-CNL"/>
+                            <constraint firstItem="HYj-o5-dAl" firstAttribute="top" secondItem="efC-Zd-wai" secondAttribute="bottom" constant="9.5" id="sm8-5b-rC2"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1u0-TN-ghh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="811.59420289855075" y="93.75"/>
         </scene>
     </scenes>
     <resources>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="play" catalog="system" width="120" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
