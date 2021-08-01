@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-
 		1247C05B26AAAB4900A820FA /* Struct and classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1247C05A26AAAB4900A820FA /* Struct and classes.swift */; };
-
 		1719B28026AA0CF10036CCAD /* EditorsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1719B27F26AA0CF10036CCAD /* EditorsVC.swift */; };
 		1719B28226AA12100036CCAD /* PublisherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1719B28126AA12100036CCAD /* PublisherCell.swift */; };
 		173CD85826AA971F004360CB /* EditorInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CD85726AA971F004360CB /* EditorInfoVC.swift */; };
-
+		1771F66F26B0728400FAAC25 /* NoArticlesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771F66E26B0728400FAAC25 /* NoArticlesCell.swift */; };
+		1771F67126B0729400FAAC25 /* LoadingArticlesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771F67026B0729400FAAC25 /* LoadingArticlesCell.swift */; };
+		1771F67326B07A4300FAAC25 /* UsersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771F67226B07A4300FAAC25 /* UsersData.swift */; };
 		1774672426A71E97001F85F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774672326A71E97001F85F9 /* AppDelegate.swift */; };
 		1774672626A71E97001F85F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774672526A71E97001F85F9 /* SceneDelegate.swift */; };
 		1774672B26A71E97001F85F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1774672926A71E97001F85F9 /* Main.storyboard */; };
@@ -32,6 +32,13 @@
 		1774674F26A73C94001F85F9 /* EditorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774674E26A73C94001F85F9 /* EditorCell.swift */; };
 		1774675126A743E7001F85F9 /* EditEditorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774675026A743E7001F85F9 /* EditEditorsCell.swift */; };
 		1774675326A75DE1001F85F9 /* BorderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1774675226A75DE1001F85F9 /* BorderExtension.swift */; };
+		17B6A07126B501670032DAED /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B6A07026B501670032DAED /* CategoriesVC.swift */; };
+		17B6A07326B503040032DAED /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B6A07226B503040032DAED /* CategoryCell.swift */; };
+		17B6A07526B518410032DAED /* ProposedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B6A07426B518410032DAED /* ProposedVC.swift */; };
+		17B6A07726B520780032DAED /* ProposedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B6A07626B520780032DAED /* ProposedCell.swift */; };
+		17E69FB326B43F8900778809 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E69FB226B43F8900778809 /* Reachability.swift */; };
+		17E69FB526B4412800778809 /* LoadMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E69FB426B4412800778809 /* LoadMoreCell.swift */; };
+		17E69FB726B4AF9500778809 /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17E69FB626B4AF9500778809 /* Welcome.storyboard */; };
 		17F51EED26A862A500C6CDDC /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F51EEC26A862A500C6CDDC /* ArticleCell.swift */; };
 		5423AECF3C607DC56BD199BD /* Pods_Equalife.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0738DBBDEE2AA897378FEBB /* Pods_Equalife.framework */; };
 		86A9912426A97EEC00129959 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9912326A97EEC00129959 /* ArticleView.swift */; };
@@ -39,13 +46,13 @@
 
 /* Begin PBXFileReference section */
 		0111BE27D0A29E7B9F02B9CA /* Pods-Equalife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Equalife.release.xcconfig"; path = "Target Support Files/Pods-Equalife/Pods-Equalife.release.xcconfig"; sourceTree = "<group>"; };
-
 		1247C05A26AAAB4900A820FA /* Struct and classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Struct and classes.swift"; sourceTree = "<group>"; };
-
 		1719B27F26AA0CF10036CCAD /* EditorsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorsVC.swift; sourceTree = "<group>"; };
 		1719B28126AA12100036CCAD /* PublisherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherCell.swift; sourceTree = "<group>"; };
 		173CD85726AA971F004360CB /* EditorInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorInfoVC.swift; sourceTree = "<group>"; };
-
+		1771F66E26B0728400FAAC25 /* NoArticlesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoArticlesCell.swift; sourceTree = "<group>"; };
+		1771F67026B0729400FAAC25 /* LoadingArticlesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingArticlesCell.swift; sourceTree = "<group>"; };
+		1771F67226B07A4300FAAC25 /* UsersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersData.swift; sourceTree = "<group>"; };
 		1774672026A71E97001F85F9 /* Equalife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Equalife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1774672326A71E97001F85F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1774672526A71E97001F85F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +73,13 @@
 		1774674E26A73C94001F85F9 /* EditorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorCell.swift; sourceTree = "<group>"; };
 		1774675026A743E7001F85F9 /* EditEditorsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEditorsCell.swift; sourceTree = "<group>"; };
 		1774675226A75DE1001F85F9 /* BorderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderExtension.swift; sourceTree = "<group>"; };
+		17B6A07026B501670032DAED /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
+		17B6A07226B503040032DAED /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		17B6A07426B518410032DAED /* ProposedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposedVC.swift; sourceTree = "<group>"; };
+		17B6A07626B520780032DAED /* ProposedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposedCell.swift; sourceTree = "<group>"; };
+		17E69FB226B43F8900778809 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		17E69FB426B4412800778809 /* LoadMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreCell.swift; sourceTree = "<group>"; };
+		17E69FB626B4AF9500778809 /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		17F51EEC26A862A500C6CDDC /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		6CDA110BA158FC16DC5DE417 /* Pods-Equalife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Equalife.debug.xcconfig"; path = "Target Support Files/Pods-Equalife/Pods-Equalife.debug.xcconfig"; sourceTree = "<group>"; };
 		86A9912326A97EEC00129959 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
@@ -125,6 +139,7 @@
 				1774673126A71E9A001F85F9 /* Info.plist */,
 				1774673A26A72301001F85F9 /* Article.storyboard */,
 				1774673C26A72321001F85F9 /* Speeding.storyboard */,
+				17E69FB626B4AF9500778809 /* Welcome.storyboard */,
 			);
 			path = Equalife;
 			sourceTree = "<group>";
@@ -135,6 +150,8 @@
 				1774674626A7249E001F85F9 /* News.swift */,
 				1774674826A725A9001F85F9 /* NewsGets.swift */,
 				1774674A26A725C1001F85F9 /* NewsSearch.swift */,
+				1771F67226B07A4300FAAC25 /* UsersData.swift */,
+				17E69FB226B43F8900778809 /* Reachability.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,6 +165,11 @@
 				86A9912326A97EEC00129959 /* ArticleView.swift */,
 				17F51EEC26A862A500C6CDDC /* ArticleCell.swift */,
 				1719B28126AA12100036CCAD /* PublisherCell.swift */,
+				1771F66E26B0728400FAAC25 /* NoArticlesCell.swift */,
+				1771F67026B0729400FAAC25 /* LoadingArticlesCell.swift */,
+				17E69FB426B4412800778809 /* LoadMoreCell.swift */,
+				17B6A07226B503040032DAED /* CategoryCell.swift */,
+				17B6A07626B520780032DAED /* ProposedCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -162,6 +184,8 @@
 				1774674C26A72739001F85F9 /* SettingsVC.swift */,
 				1719B27F26AA0CF10036CCAD /* EditorsVC.swift */,
 				173CD85726AA971F004360CB /* EditorInfoVC.swift */,
+				17B6A07026B501670032DAED /* CategoriesVC.swift */,
+				17B6A07426B518410032DAED /* ProposedVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -247,6 +271,7 @@
 				1774672D26A71E9A001F85F9 /* Assets.xcassets in Resources */,
 				1774672B26A71E97001F85F9 /* Main.storyboard in Resources */,
 				1774673D26A72321001F85F9 /* Speeding.storyboard in Resources */,
+				17E69FB726B4AF9500778809 /* Welcome.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,23 +324,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17E69FB526B4412800778809 /* LoadMoreCell.swift in Sources */,
+				1771F67326B07A4300FAAC25 /* UsersData.swift in Sources */,
 				1774674326A72426001F85F9 /* SavedVC.swift in Sources */,
 				1774674926A725A9001F85F9 /* NewsGets.swift in Sources */,
 				1774674526A72450001F85F9 /* SpeedingVC.swift in Sources */,
+				1771F66F26B0728400FAAC25 /* NoArticlesCell.swift in Sources */,
 				1774674B26A725C1001F85F9 /* NewsSearch.swift in Sources */,
 				17F51EED26A862A500C6CDDC /* ArticleCell.swift in Sources */,
 				1774674F26A73C94001F85F9 /* EditorCell.swift in Sources */,
+				17B6A07126B501670032DAED /* CategoriesVC.swift in Sources */,
 				86A9912426A97EEC00129959 /* ArticleView.swift in Sources */,
 				1774675326A75DE1001F85F9 /* BorderExtension.swift in Sources */,
 				1774672426A71E97001F85F9 /* AppDelegate.swift in Sources */,
+				17B6A07326B503040032DAED /* CategoryCell.swift in Sources */,
 				173CD85826AA971F004360CB /* EditorInfoVC.swift in Sources */,
+				17B6A07526B518410032DAED /* ProposedVC.swift in Sources */,
 				1774673F26A723F7001F85F9 /* MainVC.swift in Sources */,
 				1774674726A7249E001F85F9 /* News.swift in Sources */,
-
 				1247C05B26AAAB4900A820FA /* Struct and classes.swift in Sources */,
-
+				17E69FB326B43F8900778809 /* Reachability.swift in Sources */,
+				1771F67126B0729400FAAC25 /* LoadingArticlesCell.swift in Sources */,
+				17B6A07726B520780032DAED /* ProposedCell.swift in Sources */,
 				1774675126A743E7001F85F9 /* EditEditorsCell.swift in Sources */,
-
 				1774672626A71E97001F85F9 /* SceneDelegate.swift in Sources */,
 				1719B28226AA12100036CCAD /* PublisherCell.swift in Sources */,
 				1774674126A72405001F85F9 /* ArticleVC.swift in Sources */,
@@ -469,7 +500,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CBSKMU7MH4;
+				DEVELOPMENT_TEAM = 4ZMR47P37Z;
 				INFOPLIST_FILE = Equalife/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -491,7 +522,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CBSKMU7MH4;
+				DEVELOPMENT_TEAM = 4ZMR47P37Z;
 				INFOPLIST_FILE = Equalife/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (

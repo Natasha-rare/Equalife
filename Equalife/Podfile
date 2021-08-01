@@ -3,9 +3,10 @@ target 'Equalife' do
   use_frameworks!
 
   pod 'Alamofire'
-  pod 'Realm', '5.2.0'
-  pod 'RealmSwift', '5.2.0'
   pod 'Kingfisher'
   pod 'SwiftyJSON'
+  pod 'Realm', '5.2.0'
+  pod 'RealmSwift', '5.2.0'
   pod 'SwiftSoup'
+
 end
