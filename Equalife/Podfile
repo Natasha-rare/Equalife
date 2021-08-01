@@ -7,6 +7,6 @@ target 'Equalife' do
   pod 'SwiftyJSON'
   pod 'Realm', '5.2.0'
   pod 'RealmSwift', '5.2.0'
-  pod 'IceCream'
+  pod 'SwiftSoup'
 
 end
