@@ -19,6 +19,7 @@ class MainVC: UIViewController, EditorChange {
     var chosenEditors: [Editor] = [Editor(name: "Global", imageName: "globe", info: "", editorId: -1, isAdded: true, category: [])]
     
     var articles: [[Article]] = []
+    var globalArticles: [Article] = []
     fileprivate var isLoading = false
     fileprivate var hasConnection = true
     fileprivate var chosenArticle = Article()
@@ -49,6 +50,10 @@ class MainVC: UIViewController, EditorChange {
     
     var page: Int {
         get {
+            if chosenEditors[chosenIndex].editorId == 0 || chosenEditors[chosenIndex].editorId == 1 {
+                return articles[chosenIndex].count / 16
+            }
+            
             return articles[chosenIndex].count / 8
         }
     }
@@ -97,12 +102,15 @@ class MainVC: UIViewController, EditorChange {
         for _ in 0..<chosenEditors.count {
             articles.append([])
         }
+        articles[0] = globalArticles
+        
         
         topBarCollectionView.reloadData()
         chosenId = -1
     }
     
     func editorsChanged() {
+        globalArticles = articles[0]
         updateEditors()
     }
     
@@ -136,8 +144,9 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
     func changeDelegate(id: Int) {
         for  (index, editor) in chosenEditors.enumerated() {
             if editor.editorId == chosenId {
-                let cell = topBarCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as! EditorCell
-                cell.anotherChosen()
+                if let cell = topBarCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? EditorCell {
+                    cell.anotherChosen()
+                }
                 chosenId = id
             }
         }
@@ -169,7 +178,7 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
             if UIDevice.current.userInterfaceIdiom == .phone {
                 if UIDevice.current.orientation.isLandscape {
                     // return CGSize(width: (self.view.frame.width - 45)/2.25, height: 140)
-                    return CGSize(width: self.view.frame.width - 30, height: 140)
+                    return CGSize(width: (self.view.frame.width - 30) / 1.5, height: 140)
                 } else {
                     return CGSize(width: self.view.frame.width - 30, height: 140)
                 }
@@ -184,23 +193,21 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
     }
     
     func centerItemsInCollectionView(cellWidth: Double, numberOfItems: Double, spaceBetweenCell: Double, collectionView: UICollectionView) -> UIEdgeInsets {
-        if collectionView == topBarCollectionView {
-            let totalWidth = cellWidth * numberOfItems
-            let totalSpacingWidth = spaceBetweenCell * (numberOfItems - 1)
-            let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
-            let rightInset = leftInset
-            if rightInset < 0 {
-                return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            }
-            return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
-        } else {
-            return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        let totalWidth = cellWidth * numberOfItems
+        let totalSpacingWidth = spaceBetweenCell * (numberOfItems - 1)
+        let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
+        let rightInset = leftInset
+        if rightInset < 0 {
+            return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         }
+        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
-        return centerItemsInCollectionView(cellWidth: 64, numberOfItems: Double(chosenEditors.count + 1), spaceBetweenCell: 10, collectionView: topBarCollectionView)
+        if collectionView == topBarCollectionView {
+            return centerItemsInCollectionView(cellWidth: 64, numberOfItems: Double(chosenEditors.count + 1), spaceBetweenCell: 10, collectionView: topBarCollectionView)
+        }
+        return UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -224,6 +231,9 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
                 
                 if indexPath.item == 0 {
                     cell.editorButton.setImage(UIImage(named: "globe"), for: .normal)
+                }
+                
+                if indexPath.item == chosenIndex {
                     cell.thisChosen()
                 } else {
                     cell.anotherChosen()

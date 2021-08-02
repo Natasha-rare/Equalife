@@ -56,21 +56,42 @@ class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, I
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         if indexPath.section == 0 {
+            if chosenEditors.isEmpty {
+                return .none
+            }
+            
             return .delete
         } else {
+            if availableEditors.isEmpty {
+                return .none
+            }
+            
             return .insert
         }
     }
     
     // when insert or delete is tapped
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        // TODO: move to another array and row
+        
         if editingStyle == .insert {
             chosenEditors.append(availableEditors[indexPath.row])
             chosenEditors[chosenEditors.count - 1].isAdded = true
             chosenEditors[chosenEditors.count - 1].sortId = chosenEditors.count
             availableEditors.remove(at: indexPath.row)
-            tableView.moveRow(at: indexPath, to: IndexPath(row: tableView.numberOfRows(inSection: 0), section: 0))
+            
+            if availableEditors.isEmpty {
+                tableView.insertRows(at: [IndexPath(row: tableView.numberOfRows(inSection: 0), section: 0)], with: .automatic)
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+                
+            } else {
+                if chosenEditors.count == 1 {
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                } else {
+                    tableView.moveRow(at: indexPath, to: IndexPath(row: tableView.numberOfRows(inSection: 0), section: 0))
+                }
+            }
+            
             
             let realmEditors = realm.objects(RealmEditor.self)
             for editor in realmEditors {
@@ -85,14 +106,27 @@ class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, I
             availableEditors.insert(chosenEditors[indexPath.row], at: 0)
             availableEditors[0].isAdded = false
             chosenEditors.remove(at: indexPath.row)
-            tableView.moveRow(at: indexPath, to: IndexPath(row: 0, section: 1))
+            
+            if chosenEditors.isEmpty {
+                print("is empty called")
+                tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+                
+            } else {
+                if availableEditors.count == 1 {
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+                } else {
+                    tableView.moveRow(at: indexPath, to: IndexPath(row: 0, section: 1))
+                }
+            }
             
             let realmEditors = realm.objects(RealmEditor.self)
             for editor in realmEditors {
                 if editor.editorId == availableEditors[0].editorId {
                     try! realm.write {
                         editor.isAdded = false
-                        editor.sortId = chosenEditors[0].sortId
+                        editor.sortId = availableEditors[0].sortId
                     }
                 }
             }
@@ -110,8 +144,14 @@ class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, I
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
+            if chosenEditors.isEmpty {
+                return 1
+            }
             return chosenEditors.count
         case 1:
+            if availableEditors.isEmpty {
+                return 1
+            }
             return availableEditors.count
         default:
             return 0
@@ -119,6 +159,16 @@ class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, I
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 && chosenEditors.isEmpty {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "noChosenCell")!
+            return cell
+        }
+        
+        if indexPath.section == 1 && availableEditors.isEmpty {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "noAvailableCell")!
+            return cell
+        }
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "publisherCell") as! PublisherCell
         
         if indexPath.section == 0 {
@@ -133,13 +183,14 @@ class EditorsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, I
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
+        if indexPath.section == 0 && !chosenEditors.isEmpty {
             chosenEditor = chosenEditors[indexPath.row]
-        } else {
+            performSegue(withIdentifier: "toInfo", sender: nil)
+        } else if indexPath.section == 1 && !availableEditors.isEmpty {
             chosenEditor = availableEditors[indexPath.row]
+            performSegue(withIdentifier: "toInfo", sender: nil)
         }
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "toInfo", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -36,14 +36,44 @@ struct Article {
     }
 }
 
+class RealmArticle: Object {
+    @objc dynamic var title: String = ""
+    @objc dynamic var contents: String = ""
+    @objc dynamic var imagesURL: String = ""
+    @objc dynamic var author: String? = ""
+    @objc dynamic var date: String = ""
+    @objc dynamic var isSaved: Bool = false
+    
+    convenience init(title: String, contents: String, imagesURL: [String], author: String?, date: String, isSaved: Bool) {
+        self.init()
+        self.title = title
+        self.contents = contents
+        
+        if let author = author {
+            self.author = author
+        }
+        
+        self.date = date
+        self.isSaved = isSaved
+        
+        for imageURL in imagesURL {
+//            self.imagesURL.append(imageURL)
+            self.imagesURL += "\(imageURL)|"
+            self.imagesURL.removeLast()
+        }
+    }
+}
+
 enum EditorCategory: String {
     case politics
     case games
     case tech
     case movies
     case design
-    case health
-    case lifestyle
+    case finance
+    case dzen
+    case education
+    case media
 }
 
 // Структура издания (может что-то добавлю)
@@ -90,6 +120,3 @@ class RealmEditor: Object {
         self.category.removeLast()
     }
 }
-
-
-// TODO: Здесь будут все добавленные издания, сохраненные в кэше, но это все потом
