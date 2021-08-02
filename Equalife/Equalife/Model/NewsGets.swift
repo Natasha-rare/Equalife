@@ -44,11 +44,16 @@ class APIService {
                 catch let error {
                     print("Error: \(error)")
                 }
+                var dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                var date = dateFormat.date(from: json["pub_date"].stringValue)
+                dateFormat.dateFormat = "dd-MM-yyyy"
+                //print(images)
                 article = Article(title: json["title"].stringValue,
                                          contents: text,
                                          imagesURL: images,
                                          author: "",
-                                         date: json["pub_date"].stringValue,
+                                         date: dateFormat.string(from: date!),
                                          isSaved: false)
                 if let articleRes = article {
                     completion(articleRes)
@@ -80,20 +85,26 @@ class APIService {
                             if (articleTxt == "")
                             { continue}
                         }
-                        // get not all images + wrong imgs
-//                        let srcs: Elements = try articleText.select("img[src]")
-//                        let srcsStringArray: [String] = srcs.array().map { try! $0.attr("src").description }
-//                        imgs = srcsStringArray
-//                        print("arrr", srcsStringArray)
+//                         get not all images + wrong imgs
+                        let srcs: Elements = try articleText.select("img[class*='g-image']")
+                        let srcsStringArray: [String] = srcs.array().map { try! $0.attr("src").description }
+                        imgs = srcsStringArray
+                        print("arrr", srcsStringArray)
                     } catch let error {
                         print("Error: \(error)")
                     }
-                    imgs.append(json["urlToImage"].stringValue)
+                    if (!(json["urlToImage"].stringValue == "")){
+                        imgs.append(json["urlToImage"].stringValue)}
+                    //print("imggs", imgs)
+                    var dateFormat = DateFormatter()
+                    dateFormat.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                    var date = dateFormat.date(from: json["publishedAt"].stringValue)
+                    dateFormat.dateFormat = "dd-MM-yyyy"
                     var a = Article(title: json["title"].stringValue,
                                     contents: articleTxt,
                                     imagesURL: imgs,
                                     author: json["author"].stringValue,
-                                    date: json["publishedAt"].stringValue, isSaved: false)
+                                    date: dateFormat.string(from: date!), isSaved: false)
                     articles.append(a)
                 }
                 completion(articles)
@@ -102,16 +113,6 @@ class APIService {
                 
             }
         }
-    }
-
-    func getTextFromBlocks(json: Array<JSON>)->String{
-        var text:String = ""
-        for block in json{
-            if block["type"] == "text"{
-                text += block["data"]["text"].stringValue
-            }
-        }
-        return text
     }
 
     func getContentDtf(type:String, page: Int = 0, site:String = "dtf", completion: @escaping(_ art: [Article])->()){
@@ -142,14 +143,16 @@ class APIService {
                     
                     if content.count > 4 {
                         content.removeSubrange(0..<4)
-                        if content[0].contains("Listen") { content.removeFirst() }  // карл, зачем?
+                        if content[0].contains("Listen") { content.removeFirst() }
                     }
-                    
+                    var dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "dd-MM-yyyy"
+                    var date = NSDate(timeIntervalSince1970: TimeInterval(TimeInterval(json["date"].doubleValue)))
                     let a = Article(title: json["title"].stringValue,
                                    contents: content.joined(separator: ""),
                                    imagesURL: imgs,
                                    author: json["author"]["name"].stringValue,
-                                   date: json["dateRFC"].stringValue,
+                                   date: dateFormatter.string(from: date as Date),
                                    isSaved: false)
                     articles.append(a) // output works
                     if articles.count == jsonAll.count {

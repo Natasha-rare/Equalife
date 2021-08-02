@@ -29,6 +29,7 @@ struct ArticleView: View {
                                             .aspectRatio(contentMode: .fill)
                                             .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight * 0.35)
                                     } else {
+                                        // вылетает
                                         ForEach((0..<article.imagesURL.count), id: \.self) { imageIndex in
                                             KFImage(URL(string: article.imagesURL[imageIndex])!)
                                                 .resizable()
