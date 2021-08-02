@@ -51,7 +51,7 @@ struct ArticleView: View {
                                 .fontWeight(.semibold)
                                 .padding([.leading, .trailing], 10)
                                 .lineLimit(nil)
-                                .frame(width: UIScreen.screenWidth)
+                                .frame(width: UIScreen.screenWidth, alignment: .leading)
                             
                             Rectangle()
                                 .fill(Color(UIColor.systemBackground))
@@ -64,12 +64,24 @@ struct ArticleView: View {
                                 .padding([.leading, .trailing], 10)
                                 .lineLimit(nil)
                                 .fixedSize(horizontal: false, vertical: true)
-                                .frame(width: UIScreen.screenWidth)
+                                .frame(width: UIScreen.screenWidth, alignment: .leading)
                             
                             Rectangle()
                                 .fill(Color(UIColor.systemBackground))
-                                .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight / 10)
+                                .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight / 60)
+                            
+                            Text(article.author ?? "" + " " + article.date ?? "")
+                                .foregroundColor(Color(UIColor.label))
+                                .font(.subheadline)
+                                .multilineTextAlignment(.leading)
+                                .padding([.leading, .trailing], 10)
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .frame(width: UIScreen.screenWidth, alignment: .center)
                                 
+                            Rectangle()
+                                .fill(Color(UIColor.systemBackground))
+                                .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight / 30)
                         }
                     }
                 }

@@ -144,8 +144,9 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
     func changeDelegate(id: Int) {
         for  (index, editor) in chosenEditors.enumerated() {
             if editor.editorId == chosenId {
-                let cell = topBarCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as! EditorCell
-                cell.anotherChosen()
+                if let cell = topBarCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? EditorCell {
+                    cell.anotherChosen()
+                }
                 chosenId = id
             }
         }
@@ -230,6 +231,9 @@ extension MainVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
                 
                 if indexPath.item == 0 {
                     cell.editorButton.setImage(UIImage(named: "globe"), for: .normal)
+                }
+                
+                if indexPath.item == chosenIndex {
                     cell.thisChosen()
                 } else {
                     cell.anotherChosen()
