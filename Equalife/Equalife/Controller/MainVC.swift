@@ -19,6 +19,7 @@ class MainVC: UIViewController, EditorChange {
     var chosenEditors: [Editor] = [Editor(name: "Global", imageName: "globe", info: "", editorId: -1, isAdded: true, category: [])]
     
     var articles: [[Article]] = []
+    var globalArticles: [Article] = []
     fileprivate var isLoading = false
     fileprivate var hasConnection = true
     fileprivate var chosenArticle = Article()
@@ -101,12 +102,15 @@ class MainVC: UIViewController, EditorChange {
         for _ in 0..<chosenEditors.count {
             articles.append([])
         }
+        articles[0] = globalArticles
+        
         
         topBarCollectionView.reloadData()
         chosenId = -1
     }
     
     func editorsChanged() {
+        globalArticles = articles[0]
         updateEditors()
     }
     

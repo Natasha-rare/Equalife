@@ -59,6 +59,70 @@
                                             <outlet property="titleLabel" destination="JFa-Kj-VpW" id="UJZ-eY-PiW"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noChosenCell" id="Vub-6a-662">
+                                        <rect key="frame" x="20" y="111.5" width="374" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vub-6a-662" id="ehg-qT-kqs">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cBE-8f-Ibo">
+                                                    <rect key="frame" x="20" y="9" width="40" height="38"/>
+                                                    <color key="tintColor" systemColor="labelColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="cBE-8f-Ibo" secondAttribute="height" multiplier="1:1" id="HaQ-UR-mcI"/>
+                                                    </constraints>
+                                                    <imageReference key="image" image="exclamationmark.triangle" catalog="system"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нет выбранных издателей" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXa-lc-HEp">
+                                                    <rect key="frame" x="72" y="17.5" width="211.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="HXa-lc-HEp" firstAttribute="centerY" secondItem="ehg-qT-kqs" secondAttribute="centerY" id="QkM-CB-IZU"/>
+                                                <constraint firstItem="HXa-lc-HEp" firstAttribute="leading" secondItem="cBE-8f-Ibo" secondAttribute="trailing" constant="12" id="S0s-lh-AQW"/>
+                                                <constraint firstItem="cBE-8f-Ibo" firstAttribute="leading" secondItem="ehg-qT-kqs" secondAttribute="leading" constant="20" symbolic="YES" id="adV-4a-QQj"/>
+                                                <constraint firstAttribute="bottom" secondItem="cBE-8f-Ibo" secondAttribute="bottom" constant="8" id="eEg-gZ-45c"/>
+                                                <constraint firstItem="cBE-8f-Ibo" firstAttribute="top" secondItem="ehg-qT-kqs" secondAttribute="top" constant="8" id="jDJ-ax-0kr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noAvailableCell" id="kp6-Yu-iPB">
+                                        <rect key="frame" x="20" y="167.5" width="374" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kp6-Yu-iPB" id="bds-h8-2Gb">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tgY-te-VVo">
+                                                    <rect key="frame" x="20" y="9" width="40" height="38"/>
+                                                    <color key="tintColor" systemColor="labelColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="tgY-te-VVo" secondAttribute="height" multiplier="1:1" id="xzB-rj-cDp"/>
+                                                    </constraints>
+                                                    <imageReference key="image" image="exclamationmark.triangle" catalog="system"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нет доступных издателей" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSh-1n-cqo">
+                                                    <rect key="frame" x="72" y="17.5" width="207" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="tgY-te-VVo" secondAttribute="bottom" constant="8" id="VVT-L5-TSK"/>
+                                                <constraint firstItem="zSh-1n-cqo" firstAttribute="leading" secondItem="tgY-te-VVo" secondAttribute="trailing" constant="12" id="WtH-MH-z4z"/>
+                                                <constraint firstItem="tgY-te-VVo" firstAttribute="top" secondItem="bds-h8-2Gb" secondAttribute="top" constant="8" id="fOA-J7-n8u"/>
+                                                <constraint firstItem="zSh-1n-cqo" firstAttribute="centerY" secondItem="bds-h8-2Gb" secondAttribute="centerY" id="hIq-0q-F0n"/>
+                                                <constraint firstItem="tgY-te-VVo" firstAttribute="leading" secondItem="bds-h8-2Gb" secondAttribute="leading" constant="20" symbolic="YES" id="kVb-TI-DtH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Jah-mT-MLg" id="V2W-ds-FKp"/>
@@ -656,6 +720,7 @@
         <image name="LogoFlat" width="195" height="195"/>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="edit" width="25" height="25"/>
+        <image name="exclamationmark.triangle" catalog="system" width="128" height="112"/>
         <image name="meduza" width="41" height="25"/>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="timer" catalog="system" width="128" height="121"/>

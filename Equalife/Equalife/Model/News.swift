@@ -70,8 +70,10 @@ enum EditorCategory: String {
     case tech
     case movies
     case design
-    case health
-    case lifestyle
+    case finance
+    case dzen
+    case education
+    case media
 }
 
 // Структура издания (может что-то добавлю)

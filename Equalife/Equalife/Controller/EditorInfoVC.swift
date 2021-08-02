@@ -46,10 +46,14 @@ class EditorInfoVC: UIViewController {
                 labelCategories += " Фильмы,"
             case .design:
                 labelCategories += " Дизайн,"
-            case .health:
-                labelCategories += " Здоровье,"
-            case .lifestyle:
-                labelCategories += " Образ Жизни,"
+            case .media:
+                labelCategories += " Медиа,"
+            case .finance:
+                labelCategories += " Финансы,"
+            case .education:
+                labelCategories += " Образование,"
+            case .dzen:
+                labelCategories += " Дзен,"
             }
         }
         labelCategories.removeLast()
