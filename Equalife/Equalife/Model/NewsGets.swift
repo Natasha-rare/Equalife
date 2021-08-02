@@ -88,7 +88,7 @@ class APIService {
                     } catch let error {
                         print("Error: \(error)")
                     }
-                    
+                    imgs.append(json["urlToImage"].stringValue)
                     var a = Article(title: json["title"].stringValue,
                                     contents: articleTxt,
                                     imagesURL: imgs,
@@ -114,7 +114,7 @@ class APIService {
         return text
     }
 
-    func getContentDtf(type:String, page: Int, site:String = "dtf", completion: @escaping(_ art: [Article])->()){
+    func getContentDtf(type:String, page: Int = 0, site:String = "dtf", completion: @escaping(_ art: [Article])->()){
         var articles :[Article] = []
         AF.request("https://api.\(site).ru/v1.9/timeline/\(type)?count=8&offset=\(page*8)").responseJSON{
             responseJSON in
