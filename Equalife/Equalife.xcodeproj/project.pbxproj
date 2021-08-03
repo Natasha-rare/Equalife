@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1260009326B91D7900BF046A /* SpeedQuizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260009226B91D7900BF046A /* SpeedQuizes.swift */; };
 		1719B28026AA0CF10036CCAD /* EditorsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1719B27F26AA0CF10036CCAD /* EditorsVC.swift */; };
 		1719B28226AA12100036CCAD /* PublisherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1719B28126AA12100036CCAD /* PublisherCell.swift */; };
 		173CD85826AA971F004360CB /* EditorInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CD85726AA971F004360CB /* EditorInfoVC.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		0111BE27D0A29E7B9F02B9CA /* Pods-Equalife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Equalife.release.xcconfig"; path = "Target Support Files/Pods-Equalife/Pods-Equalife.release.xcconfig"; sourceTree = "<group>"; };
+		1260009226B91D7900BF046A /* SpeedQuizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedQuizes.swift; sourceTree = "<group>"; };
 		1719B27F26AA0CF10036CCAD /* EditorsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorsVC.swift; sourceTree = "<group>"; };
 		1719B28126AA12100036CCAD /* PublisherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherCell.swift; sourceTree = "<group>"; };
 		173CD85726AA971F004360CB /* EditorInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorInfoVC.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				1774674A26A725C1001F85F9 /* NewsSearch.swift */,
 				1771F67226B07A4300FAAC25 /* UsersData.swift */,
 				17E69FB226B43F8900778809 /* Reachability.swift */,
+				1260009226B91D7900BF046A /* SpeedQuizes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				17B6A07526B518410032DAED /* ProposedVC.swift in Sources */,
 				1774673F26A723F7001F85F9 /* MainVC.swift in Sources */,
 				1774674726A7249E001F85F9 /* News.swift in Sources */,
+				1260009326B91D7900BF046A /* SpeedQuizes.swift in Sources */,
 				17E69FB326B43F8900778809 /* Reachability.swift in Sources */,
 				1771F67126B0729400FAAC25 /* LoadingArticlesCell.swift in Sources */,
 				17B6A07726B520780032DAED /* ProposedCell.swift in Sources */,

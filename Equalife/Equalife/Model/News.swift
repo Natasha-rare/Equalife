@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-// Структура статьи (просто для начала)
+// Структура статьи
 struct Article {
     var title: String = ""
     var contents: String = ""

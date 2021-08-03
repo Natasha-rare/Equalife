@@ -73,7 +73,7 @@ class APIService {
                 for i in 0..<jsonAll.count{
                     let json = jsonAll[i]
                     var articleTxt = json["description"].stringValue
-                    let imgs: [String] = []
+                    var imgs: [String] = []
                     // finding full text
                     do {
                         let myTextHtml = try String(contentsOf: URL(string: json["url"].stringValue)!, encoding: .utf8)
