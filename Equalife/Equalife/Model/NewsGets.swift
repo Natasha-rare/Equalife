@@ -73,7 +73,7 @@ class APIService {
                 for i in 0..<jsonAll.count{
                     let json = jsonAll[i]
                     var articleTxt = json["description"].stringValue
-                    let imgs: [String] = []
+                    var imgs: [String] = []
                     // finding full text
                     do {
                         let myTextHtml = try String(contentsOf: URL(string: json["url"].stringValue)!, encoding: .utf8)
@@ -97,16 +97,16 @@ class APIService {
                     if (!(json["urlToImage"].stringValue == "")){
                         imgs.append(json["urlToImage"].stringValue)}
                     //print("imggs", imgs)
-                    var dateFormat = DateFormatter()
+                    let dateFormat = DateFormatter()
                     dateFormat.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-                    var date = dateFormat.date(from: json["publishedAt"].stringValue)
+                    let date = dateFormat.date(from: json["publishedAt"].stringValue)
                     dateFormat.dateFormat = "dd-MM-yyyy"
-                    var a = Article(title: json["title"].stringValue,
-                                    contents: articleTxt,
-                                    imagesURL: imgs,
-                                    author: json["author"].stringValue,
-                                    date: dateFormat.string(from: date!), isSaved: false)
-                    articles.append(a)
+                    
+                    articles.append(Article(title: json["title"].stringValue,
+                                            contents: articleTxt,
+                                            imagesURL: imgs,
+                                            author: json["author"].stringValue,
+                                            date: dateFormat.string(from: date!), isSaved: false))
                 }
                 completion(articles)
             case let .failure(error):

@@ -99,6 +99,7 @@ extension ProposedVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLa
         cell.titleLabel.text = editors[indexPath.item].name
         cell.logoImageView.image = UIImage(named: editors[indexPath.item].imageName)
         
+        cell.button.setTitle("", for: .normal)
         cell.button.backgroundColor = .systemGreen
         cell.button.setImage(UIImage(systemName: "plus"), for: .normal)
         
